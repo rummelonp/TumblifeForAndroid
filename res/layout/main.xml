@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent">
+  <WebView
+    android:id="@+id/web_view"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_weight="1.0" />
+  <LinearLayout
+    android:id="@+id/tumblr_buttons"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+    <Button
+      android:id="@+id/tumblr_button_like"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:text="@string/tumblr_button_like" />
+    <Button
+      android:id="@+id/tumblr_button_reblog"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:text="@string/tumblr_button_reblog" />
+    <Button
+      android:id="@+id/tumblr_button_back"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:text="@string/tumblr_button_back" />
+    <Button
+      android:id="@+id/tumblr_button_next"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:text="@string/tumblr_button_next" />
+    <Button
+      android:id="@+id/tumblr_button_pin"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:text="@string/tumblr_button_pin"
+      android:visibility="gone" />
+  </LinearLayout>
+  <LinearLayout
+    android:id="@+id/web_group"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:visibility="gone">
+    <Button
+      android:id="@+id/web_button_open"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:text="@string/web_button_open" />
+    <Button
+      android:id="@+id/web_button_stop"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:text="@string/web_button_stop" />
+    <Button
+      android:id="@+id/web_button_back"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:text="@string/web_button_back" />
+    <Button
+      android:id="@+id/web_button_next"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:text="@string/web_button_next" />
+    <Button
+      android:id="@+id/web_button_close"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:text="@string/web_button_close" />
+  </LinearLayout>
+</LinearLayout>

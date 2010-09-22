@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android">
+  <PreferenceCategory android:title="@string/setting_title_account">
+    <EditTextPreference
+      android:key="@string/setting_email_key"
+      android:title="@string/setting_email_title"
+      android:dialogTitle="@string/setting_email_title" />
+    <EditTextPreference
+      android:key="@string/setting_password_key"
+      android:title="@string/setting_password_title"
+      android:dialogTitle="@string/setting_password_title"
+      android:password="true" />
+  </PreferenceCategory>
+  <PreferenceCategory android:title="@string/setting_title_setting">
+    <CheckBoxPreference
+      android:key="@string/setting_usessl_key"
+      android:title="@string/setting_usessl_title"
+      android:summary="@string/setting_usessl_summary"
+      android:defaultValue="@string/setting_usessl_default" />
+    <CheckBoxPreference
+      android:key="@string/setting_quickpost_key"
+      android:title="@string/setting_quickpost_title"
+      android:summary="@string/setting_quickpost_summary"
+      android:defaultValue="@string/setting_quickpost_default" />
+    <CheckBoxPreference
+      android:key="@string/setting_usepin_key"
+      android:title="@string/setting_usepin_title"
+      android:summary="@string/setting_usepin_summary"
+      android:defaultValue="@string/setting_usepin_default" />
+    <ListPreference
+      android:key="@string/setting_pinaction_key"
+      android:title="@string/setting_pinaction_title"
+      android:summary="@string/setting_pinaction_summary"
+      android:entries="@array/setting_pinaction_items"
+      android:entryValues="@array/setting_pinaction_items"
+      android:defaultValue="@string/setting_pinaction_default" />
+    <ListPreference
+      android:key="@string/setting_viewmode_key"
+      android:title="@string/setting_viewmode_title"
+      android:entries="@array/setting_viewmode_items"
+      android:entryValues="@array/setting_viewmode_items"
+      android:defaultValue="@string/setting_viewmode_default" />
+    <CheckBoxPreference
+      android:key="@string/setting_skipminepost_key"
+      android:title="@string/setting_skipminepost_title"
+      android:defaultValue="@string/setting_skipminepost_default" />
+    <CheckBoxPreference
+      android:key="@string/setting_skipphotos_key"
+      android:title="@string/setting_skipphotos_title"
+      android:defaultValue="@string/setting_skipphotos_default" />
+    <CheckBoxPreference
+      android:key="@string/setting_savephotos_key"
+      android:title="@string/setting_savephotos_title"
+      android:summary="@string/setting_savephotos_summary"
+      android:defaultValue="@string/setting_savephotos_default" />
+    <CheckBoxPreference
+      android:key="@string/setting_clearcache_key"
+      android:title="@string/setting_clearcache_title"
+      android:summary="@string/setting_clearcache_summary"
+      android:defaultValue="@string/setting_clearcache_default" />
+  </PreferenceCategory>
+</PreferenceScreen>

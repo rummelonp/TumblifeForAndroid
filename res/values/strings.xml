@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  
+  <!-- Application Name -->
+    <string name="app_name">Tumblife2</string>
+  
+  <!-- Activity Name -->
+    <string name="activity_main">Tumblife2</string>
+    <string name="activity_setting">Tumblife2: Setting</string>
+
+  <!-- Main Activity Button Tumblr -->
+    <string name="tumblr_button_like">Like</string>
+    <string name="tumblr_button_reblog">Reblog</string>
+    <string name="tumblr_button_back">Back</string>
+    <string name="tumblr_button_next">Next</string>
+    <string name="tumblr_button_pin">Pin</string>
+  
+  <!-- Main Activity Button Web -->
+    <string name="web_button_open">Open</string>
+    <string name="web_button_stop">Stop</string>
+    <string name="web_button_back">Back</string>
+    <string name="web_button_next">Next</string>
+    <string name="web_button_close">Close</string>
+
+  <!-- Main Activity Menu -->
+    <string name="main_menu_account">Account</string>
+    <string name="main_menu_setting">Setting</string>
+    <string name="main_menu_exit">Exit</string>
+    <string name="main_menu_reload">Reload</string>
+    <string name="main_menu_moveto">Move To</string>
+    <string name="main_menu_post">Private Post</string>
+    <string name="main_menu_about">About</string>
+  
+  <!-- Toast Message -->
+    <string name="login">Login...</string>
+    <string name="login_success">Login Done.</string>
+  
+    <string name="load">Loading...</string>
+    <string name="load_success">Load Done.</string>
+    <string name="load_failure">Load Failure, Retry...</string>
+    <string name="load_end">All Post Loaded.</string>
+  
+    <string name="like">Like...</string>
+    <string name="like_success">Like Done.</string>
+    <string name="like_failure">Like Failure.</string>
+  
+    <string name="reblog">Reblog...</string>
+    <string name="reblog_success">Reblog Done.</string>
+    <string name="reblog_failure">Reblog Failure.</string>
+  
+  <!-- Alert Button -->
+    <string name="button_ok">OK</string>
+    <string name="button_retry">Retry</string>
+    <string name="button_positive">Yes</string>
+    <string name="button_negative">No</string>
+    <string name="button_cancel">Cancel</string>
+    <string name="button_clear">Clear</string>
+  
+  <!-- Alert Message -->
+    <string name="no_internet_title">No network connection.</string>
+    <string name="no_internet_message">No network connection. The page will continue loading after connection has been restored.</string>
+  
+    <string name="no_sdcard_title">SD card not found.</string>
+    <string name="no_sdcard_message">SD card not found. To use Tumblife, SD card required.</string>
+  
+    <string name="login_no_account_title">No Account.</string>
+    <string name="login_no_account_message">Show Setting?</string>
+  
+    <string name="login_failure_title">Login Failure.</string>
+    <string name="login_failure_message">Show Setting?</string>
+    
+    <string name="like_title">Like This?</string>
+    
+    <string name="reblog_title">Reblog Comment</string>
+  
+  <!-- Setting Activity -->
+    <string name="setting_title_account">Account</string>
+    <string name="setting_title_setting">Setting</string>
+  
+    <string name="setting_email_key">email</string>
+    <string name="setting_email_title">E-mail address</string>
+
+    <string name="setting_password_key">password</string>
+    <string name="setting_password_title">Password</string>
+
+    <string name="setting_usessl_key">usessl</string>
+    <string name="setting_usessl_title">Use SSL</string>
+    <string name="setting_usessl_summary">Using SSL, you will secure connection. When this option is off, load is faster.</string>
+    <string name="setting_usessl_default">true</string>
+
+    <string name="setting_quickpost_key">quickpost</string>
+    <string name="setting_quickpost_title">Use Quick Post</string>
+    <string name="setting_quickpost_summary">Using Quick Post, you will Like and Reblog without confirmation dialog.</string>
+    <string name="setting_quickpost_default">false</string>
+  
+    <string name="setting_usepin_key">usepin</string>
+    <string name="setting_usepin_title">Use Pin</string>
+    <string name="setting_usepin_summary">To pin up the post, can Reblog or Like all later.</string>
+    <string name="setting_usepin_default">false</string>
+  
+    <string name="setting_pinaction_key">pinaction</string>
+    <string name="setting_pinaction_title">When Using Pin</string>
+    <string name="setting_pinaction_summary">Action when using pin.</string>
+    <string-array name="setting_pinaction_items">
+      <item>None</item>
+      <item>Back</item>
+      <item>Next</item>
+    </string-array>
+    <string name="setting_pinaction_default">None</string>
+    
+    <string name="setting_viewmode_key">viewmode</string>
+    <string name="setting_viewmode_title">View Mode</string>
+    <string-array name="setting_viewmode_items">
+      <item>Default</item>
+      <item>Quote</item>
+      <item>Photos</item>
+    </string-array>
+    <string name="setting_viewmode_default">Default</string>
+  
+    <string name="setting_skipminepost_key">skipminepost</string>
+    <string name="setting_skipminepost_title">Skip Mine Post</string>
+    <string name="setting_skipminepost_default">false</string>
+  
+    <string name="setting_skipphotos_key">skipphotos</string>
+    <string name="setting_skipphotos_title">Skip Photos</string>
+    <string name="setting_skipphotos_default">false</string>
+
+    <string name="setting_savephotos_key">savephotos</string>
+    <string name="setting_savephotos_title">Save Photos</string>
+    <string name="setting_savephotos_summary">When it is off, use remote images.</string>
+    <string name="setting_savephotos_default">true</string>
+
+    <string name="setting_clearcache_key">clearcache</string>
+    <string name="setting_clearcache_title">Clear Cache</string>
+    <string name="setting_clearcache_summary">Delete the cache file when finished.</string>
+    <string name="setting_clearcache_default">false</string>
+
+</resources>
