@@ -36,11 +36,11 @@
       android:entryValues="@array/setting_pinaction_items"
       android:defaultValue="@string/setting_pinaction_default" />
     <ListPreference
-      android:key="@string/setting_viewmode_key"
-      android:title="@string/setting_viewmode_title"
-      android:entries="@array/setting_viewmode_items"
-      android:entryValues="@array/setting_viewmode_items"
-      android:defaultValue="@string/setting_viewmode_default" />
+      android:key="@string/setting_dashboardtype_key"
+      android:title="@string/setting_dashboardtype_title"
+      android:entries="@array/setting_dashboardtype_items"
+      android:entryValues="@array/setting_dashboardtype_items"
+      android:defaultValue="@string/setting_dashboardtype_default" />
     <CheckBoxPreference
       android:key="@string/setting_skipminepost_key"
       android:title="@string/setting_skipminepost_title"
@@ -54,6 +54,13 @@
       android:title="@string/setting_savephotos_title"
       android:summary="@string/setting_savephotos_summary"
       android:defaultValue="@string/setting_savephotos_default" />
+    <ListPreference
+      android:key="@string/setting_sendto_key"
+      android:title="@string/setting_sendto_title"
+      android:summary="@string/setting_sendto_summary"
+      android:entries="@array/setting_sendto_items"
+      android:entryValues="@array/setting_sendto_items"
+      android:defaultValue="@string/setting_sendto_default" />
     <CheckBoxPreference
       android:key="@string/setting_clearcache_key"
       android:title="@string/setting_clearcache_title"

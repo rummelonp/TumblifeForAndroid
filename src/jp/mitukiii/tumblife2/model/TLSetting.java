@@ -3,24 +3,30 @@ package jp.mitukiii.tumblife2.model;
 import jp.mitukiii.tumblife2.R;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.preference.PreferenceManager;
 
 public class TLSetting extends TLModel
 {
-  public static enum PIN_ACTION_TYPE {
+  public static enum PIN_ACTION {
     None,
     Back,
     Next
   };
   
-  public static enum VIEW_MODE_TYPE {
+  public static enum DASHBOARD_TYPE {
     Default (null),
     Quote ("quote"),
-    Photos ("photo");
+    Photo ("photo"),
+    Text ("text"),
+    Link ("link"),
+    Chat ("chat"),
+    Video ("video"),
+    Audio ("audio");
     
     private String type;
     
-    private VIEW_MODE_TYPE(String type)
+    private DASHBOARD_TYPE(String type)
     {
       this.type = type;
     }
@@ -31,20 +37,50 @@ public class TLSetting extends TLModel
     }
   };
   
+  public static enum SEND_TO {
+    Confirmation (0),
+    Browser (0),
+    Share (1);
+    
+    private int which;
+    
+    private SEND_TO(int which)
+    {
+      this.which = which;
+    }
+    
+    public int getWhich()
+    {
+      return which;
+    }
+    
+    public static SEND_TO valueOf(int which)
+    {
+      for (SEND_TO item: values()) {
+        if (item.getWhich() == which) {
+          return item;
+        }
+      }
+      return null;
+    }
+  };
+  
   protected static TLSetting settingManager;
 
-  protected String                  email;
-  protected String                  password;
+  protected String           email;
+  protected String           password;
+  protected long             lastPostId;
 
-  protected boolean                 useSsl;
-  protected boolean                 useQuickpost;
-  protected boolean                 usePin;
-  protected PIN_ACTION_TYPE         pinAction;
-  protected VIEW_MODE_TYPE          viewMode;
-  protected boolean                 useSkipMinePost;
-  protected boolean                 useSkipPhotos;
-  protected boolean                 useSavePhotos;
-  protected boolean                 useClearCache;
+  protected boolean          useSsl;
+  protected boolean          useQuickpost;
+  protected boolean          usePin;
+  protected PIN_ACTION       pinAction;
+  protected DASHBOARD_TYPE   dashboardType;
+  protected boolean          useSkipMinePost;
+  protected boolean          useSkipPhotos;
+  protected boolean          useSavePhotos;
+  protected SEND_TO          sendTo;
+  protected boolean          useClearCache;
   
   protected TLSetting(Context context)
   {
@@ -72,10 +108,14 @@ public class TLSetting extends TLModel
         context.getString(R.string.setting_password_key),
         "");
     
+    lastPostId = preferences.getLong(
+        context.getString(R.string.setting_lastpostid_key),
+        0);
+    
     String viewModeString = preferences.getString(
-        context.getString(R.string.setting_viewmode_key),
-        context.getString(R.string.setting_viewmode_default));
-    viewMode = VIEW_MODE_TYPE.valueOf(viewModeString);
+        context.getString(R.string.setting_dashboardtype_key),
+        context.getString(R.string.setting_dashboardtype_default));
+    dashboardType = DASHBOARD_TYPE.valueOf(viewModeString);
   }
   
   public void loadSetting(Context context)
@@ -113,7 +153,12 @@ public class TLSetting extends TLModel
     String pinActionString = preferences.getString(
         context.getString(R.string.setting_pinaction_key),
         context.getString(R.string.setting_pinaction_default));
-    pinAction = PIN_ACTION_TYPE.valueOf(pinActionString);
+    pinAction = PIN_ACTION.valueOf(pinActionString);
+    
+    String sendToString = preferences.getString(
+        context.getString(R.string.setting_sendto_key),
+        context.getString(R.string.setting_sendto_default));
+    sendTo = SEND_TO.valueOf(sendToString);
   }
 
   public String getEmail()
@@ -124,6 +169,24 @@ public class TLSetting extends TLModel
   public String getPassword()
   {
     return password;
+  }
+  
+  public long getLastPostId()
+  {
+    return lastPostId;
+  }
+  
+  public void setLastPostId(long lastPostId)
+  {
+    this.lastPostId = lastPostId;
+  }
+  
+  public boolean saveLastPostId(Context context, long lastPostId)
+  {
+    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+    Editor editor = preferences.edit();
+    editor.putLong(context.getString(R.string.setting_lastpostid_key), lastPostId);
+    return editor.commit();
   }
 
   public boolean useSsl()
@@ -141,14 +204,14 @@ public class TLSetting extends TLModel
     return usePin;
   }
 
-  public PIN_ACTION_TYPE getPinAction()
+  public PIN_ACTION getPinAction()
   {
     return pinAction;
   }
 
-  public VIEW_MODE_TYPE getViewMode()
+  public DASHBOARD_TYPE getDashboardType()
   {
-    return viewMode;
+    return dashboardType;
   }
 
   public boolean useSkipMinePost()
@@ -164,6 +227,11 @@ public class TLSetting extends TLModel
   public boolean useSavePhotos()
   {
     return useSavePhotos;
+  }
+  
+  public SEND_TO getSendTo()
+  {
+    return sendTo;
   }
 
   public boolean useClearCache()

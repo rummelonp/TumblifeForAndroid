@@ -38,15 +38,25 @@
     <string name="load">Loading...</string>
     <string name="load_success">Load Done.</string>
     <string name="load_failure">Load Failure, Retry...</string>
-    <string name="load_end">All Post Loaded.</string>
+    
+    <string name="loadall_success">All Post Loaded.</string>
   
     <string name="like">Like...</string>
     <string name="like_success">Like Done.</string>
     <string name="like_failure">Like Failure.</string>
+    
+  	<string name="likeall_success">Like All Done.</string>
   
     <string name="reblog">Reblog...</string>
     <string name="reblog_success">Reblog Done.</string>
     <string name="reblog_failure">Reblog Failure.</string>
+    
+  	<string name="reblogall_success">Reblog All Done.</string>
+    
+    <string name="startactivity_failure">Client Not Found.</string>
+    
+    <string name="last_post">Last Post in Last Session.\nPost #%s (%s)</string>
+  	<string name="new_posts">%s New Posts.</string>
   
   <!-- Alert Button -->
     <string name="button_ok">OK</string>
@@ -55,26 +65,50 @@
     <string name="button_negative">No</string>
     <string name="button_cancel">Cancel</string>
     <string name="button_clear">Clear</string>
+    
+    <string name="button_likeone">Like One</string>
+    
+    <string name="button_reblogone">Reblog One</string>
   
   <!-- Alert Message -->
-    <string name="no_internet_title">No network connection.</string>
+    <string name="no_internet_title">No Network Connection.</string>
     <string name="no_internet_message">No network connection. The page will continue loading after connection has been restored.</string>
   
-    <string name="no_sdcard_title">SD card not found.</string>
+    <string name="no_sdcard_title">SD Card Not Found.</string>
     <string name="no_sdcard_message">SD card not found. To use Tumblife, SD card required.</string>
   
     <string name="login_no_account_title">No Account.</string>
-    <string name="login_no_account_message">Show Setting?</string>
+    <string name="login_no_account_message">Show setting?</string>
   
     <string name="login_failure_title">Login Failure.</string>
-    <string name="login_failure_message">Show Setting?</string>
+    <string name="login_failure_message">Show setting?</string>
     
     <string name="like_title">Like This?</string>
     
+    <string name="likeall_title">Like All Pin Posts?</string>
+  	<string name="likeall_message">You have %s items. Like all pin posts, or Like a current post.</string>
+  	<string name="likeall_failure_title">Like All Failure.</string>
+  	<string name="likeall_failure_message">%s items left. retry Like all, or cancel.</string>
+  	
+  	<string name="likeall_progress_title">Like All...</string>
+    
     <string name="reblog_title">Reblog Comment</string>
+    
+    <string name="reblogall_title">Reblog All Pin Posts?</string>
+  	<string name="reblogall_message">You have %s items. Reblog all pin posts, or Reblog a current post.</string>
+  	<string name="reblogall_failure_title">Reblog All Failure.</string>
+  	<string name="reblogall_failure_message">%s items left. retry Reblog all, or cancel.</string>
+  	
+  	<string name="reblogall_progress_title">Reblog All...</string>
+    
+    <string name="sendto_title">Send To</string>
+    <string-array name="sendto_items">
+      <item>Browser</item>
+      <item>Share</item>
+    </string-array>
   
   <!-- Setting Activity -->
-    <string name="setting_title_account">Account</string>
+  	<string name="setting_title_account">Account</string>
     <string name="setting_title_setting">Setting</string>
   
     <string name="setting_email_key">email</string>
@@ -82,6 +116,8 @@
 
     <string name="setting_password_key">password</string>
     <string name="setting_password_title">Password</string>
+    
+    <string name="setting_lastpostid_key">lastpostid</string>
 
     <string name="setting_usessl_key">usessl</string>
     <string name="setting_usessl_title">Use SSL</string>
@@ -90,7 +126,7 @@
 
     <string name="setting_quickpost_key">quickpost</string>
     <string name="setting_quickpost_title">Use Quick Post</string>
-    <string name="setting_quickpost_summary">Using Quick Post, you will Like and Reblog without confirmation dialog.</string>
+    <string name="setting_quickpost_summary">Using quick post, you will Like and Reblog without confirmation dialog.</string>
     <string name="setting_quickpost_default">false</string>
   
     <string name="setting_usepin_key">usepin</string>
@@ -108,14 +144,19 @@
     </string-array>
     <string name="setting_pinaction_default">None</string>
     
-    <string name="setting_viewmode_key">viewmode</string>
-    <string name="setting_viewmode_title">View Mode</string>
-    <string-array name="setting_viewmode_items">
+    <string name="setting_dashboardtype_key">dashboardtype</string>
+    <string name="setting_dashboardtype_title">Dashboard Type</string>
+    <string-array name="setting_dashboardtype_items">
       <item>Default</item>
       <item>Quote</item>
-      <item>Photos</item>
+      <item>Photo</item>
+      <item>Text</item>
+      <item>Link</item>
+      <item>Chat</item>
+      <item>Video</item>
+      <item>Audio</item>
     </string-array>
-    <string name="setting_viewmode_default">Default</string>
+    <string name="setting_dashboardtype_default">Default</string>
   
     <string name="setting_skipminepost_key">skipminepost</string>
     <string name="setting_skipminepost_title">Skip Mine Post</string>
@@ -129,6 +170,16 @@
     <string name="setting_savephotos_title">Save Photos</string>
     <string name="setting_savephotos_summary">When it is off, use remote images.</string>
     <string name="setting_savephotos_default">true</string>
+    
+    <string name="setting_sendto_key">sendto</string>
+    <string name="setting_sendto_title">Send To</string>
+    <string name="setting_sendto_summary">When link clicked, where do you send.</string>
+    <string-array name="setting_sendto_items">
+      <item>Confirmation</item>
+      <item>Browser</item>
+      <item>Share</item>
+    </string-array>
+    <string name="setting_sendto_default">Confirmation</string>
 
     <string name="setting_clearcache_key">clearcache</string>
     <string name="setting_clearcache_title">Clear Cache</string>

@@ -1,6 +1,6 @@
 package jp.mitukiii.tumblife2;
 
-import jp.mitukiii.tumblife2.model.TLSetting.VIEW_MODE_TYPE;
+import jp.mitukiii.tumblife2.model.TLSetting.DASHBOARD_TYPE;
 import jp.mitukiii.tumblife2.util.TLLog;
 import android.content.Context;
 import android.os.Bundle;
@@ -23,7 +23,7 @@ public class TLSettingManager extends PreferenceActivity
     
     context = this;
     
-    ListPreference viewMode = (ListPreference) findPreference(getString(R.string.setting_viewmode_key));
+    ListPreference viewMode = (ListPreference) findPreference(getString(R.string.setting_dashboardtype_key));
     viewMode.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
       @Override
       public boolean onPreferenceChange(Preference preference, Object newValue)
@@ -42,7 +42,7 @@ public class TLSettingManager extends PreferenceActivity
   {
     super.onResume();
     togglePreference(findPreference(getString(R.string.setting_usepin_key)));
-    togglePreference(findPreference(getString(R.string.setting_viewmode_key)));
+    togglePreference(findPreference(getString(R.string.setting_dashboardtype_key)));
   }
   
   @Override
@@ -64,10 +64,10 @@ public class TLSettingManager extends PreferenceActivity
       } else {
         pinAction.setEnabled(false);
       }
-    } else if (getString(R.string.setting_viewmode_key).equals(key)) {
+    } else if (getString(R.string.setting_dashboardtype_key).equals(key)) {
       ListPreference viewMode = (ListPreference) preference;
       CheckBoxPreference skipPhotos = (CheckBoxPreference) findPreference(getString(R.string.setting_skipphotos_key));
-      if (VIEW_MODE_TYPE.Default == VIEW_MODE_TYPE.valueOf(viewMode.getValue())) {
+      if (DASHBOARD_TYPE.Default == DASHBOARD_TYPE.valueOf(viewMode.getValue())) {
         skipPhotos.setEnabled(true);
       } else {
         skipPhotos.setEnabled(false);

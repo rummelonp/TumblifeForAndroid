@@ -98,7 +98,7 @@ public class TLExplorer
       TLLog.d("TLExplorer / makeImageFile : file exits. : fileName / " + fileName);
       return fileUrl;
     } else {
-      TLLog.v("TLExplorer / makeImageFile : fileName / " + fileName);
+      TLLog.d("TLExplorer / makeImageFile : fileName / " + fileName);
     }
     HttpURLConnection con = null;
     InputStream input = null;

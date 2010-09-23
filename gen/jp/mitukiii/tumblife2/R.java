@@ -9,13 +9,17 @@ package jp.mitukiii.tumblife2;
 
 public final class R {
     public static final class array {
-        public static final int setting_pinaction_items=0x7f050000;
-        public static final int setting_viewmode_items=0x7f050001;
+        public static final int sendto_items=0x7f050000;
+        public static final int setting_dashboardtype_items=0x7f050002;
+        public static final int setting_pinaction_items=0x7f050001;
+        public static final int setting_sendto_items=0x7f050003;
     }
     public static final class attr {
     }
     public static final class drawable {
         public static final int icon=0x7f020000;
+        public static final int none=0x7f020001;
+        public static final int pin=0x7f020002;
     }
     public static final class id {
         public static final int main_menu_about=0x7f06000e;
@@ -51,29 +55,38 @@ public final class R {
         /**  Application Name 
          */
         public static final int app_name=0x7f040000;
-        public static final int button_cancel=0x7f040024;
-        public static final int button_clear=0x7f040025;
-        public static final int button_negative=0x7f040023;
+        public static final int button_cancel=0x7f040029;
+        public static final int button_clear=0x7f04002a;
+        public static final int button_likeone=0x7f04002b;
+        public static final int button_negative=0x7f040028;
         /**  Alert Button 
          */
-        public static final int button_ok=0x7f040020;
-        public static final int button_positive=0x7f040022;
-        public static final int button_retry=0x7f040021;
+        public static final int button_ok=0x7f040025;
+        public static final int button_positive=0x7f040027;
+        public static final int button_reblogone=0x7f04002c;
+        public static final int button_retry=0x7f040026;
+        public static final int last_post=0x7f040023;
         public static final int like=0x7f04001a;
         public static final int like_failure=0x7f04001c;
         public static final int like_success=0x7f04001b;
-        public static final int like_title=0x7f04002e;
+        public static final int like_title=0x7f040035;
+        public static final int likeall_failure_message=0x7f040039;
+        public static final int likeall_failure_title=0x7f040038;
+        public static final int likeall_message=0x7f040037;
+        public static final int likeall_progress_title=0x7f04003a;
+        public static final int likeall_success=0x7f04001d;
+        public static final int likeall_title=0x7f040036;
         public static final int load=0x7f040016;
-        public static final int load_end=0x7f040019;
         public static final int load_failure=0x7f040018;
         public static final int load_success=0x7f040017;
+        public static final int loadall_success=0x7f040019;
         /**  Toast Message 
          */
         public static final int login=0x7f040014;
-        public static final int login_failure_message=0x7f04002d;
-        public static final int login_failure_title=0x7f04002c;
-        public static final int login_no_account_message=0x7f04002b;
-        public static final int login_no_account_title=0x7f04002a;
+        public static final int login_failure_message=0x7f040034;
+        public static final int login_failure_title=0x7f040033;
+        public static final int login_no_account_message=0x7f040032;
+        public static final int login_no_account_title=0x7f040031;
         public static final int login_success=0x7f040015;
         public static final int main_menu_about=0x7f040013;
         /**  Main Activity Menu 
@@ -84,57 +97,71 @@ public final class R {
         public static final int main_menu_post=0x7f040012;
         public static final int main_menu_reload=0x7f040010;
         public static final int main_menu_setting=0x7f04000e;
-        public static final int no_internet_message=0x7f040027;
+        public static final int new_posts=0x7f040024;
+        public static final int no_internet_message=0x7f04002e;
         /**  Alert Message 
          */
-        public static final int no_internet_title=0x7f040026;
-        public static final int no_sdcard_message=0x7f040029;
-        public static final int no_sdcard_title=0x7f040028;
-        public static final int reblog=0x7f04001d;
-        public static final int reblog_failure=0x7f04001f;
-        public static final int reblog_success=0x7f04001e;
-        public static final int reblog_title=0x7f04002f;
-        public static final int setting_clearcache_default=0x7f040056;
-        public static final int setting_clearcache_key=0x7f040053;
-        public static final int setting_clearcache_summary=0x7f040055;
-        public static final int setting_clearcache_title=0x7f040054;
-        public static final int setting_email_key=0x7f040032;
-        public static final int setting_email_title=0x7f040033;
-        public static final int setting_password_key=0x7f040034;
-        public static final int setting_password_title=0x7f040035;
-        public static final int setting_pinaction_default=0x7f040045;
-        public static final int setting_pinaction_key=0x7f040042;
-        public static final int setting_pinaction_summary=0x7f040044;
-        public static final int setting_pinaction_title=0x7f040043;
-        public static final int setting_quickpost_default=0x7f04003d;
-        public static final int setting_quickpost_key=0x7f04003a;
-        public static final int setting_quickpost_summary=0x7f04003c;
-        public static final int setting_quickpost_title=0x7f04003b;
-        public static final int setting_savephotos_default=0x7f040052;
-        public static final int setting_savephotos_key=0x7f04004f;
-        public static final int setting_savephotos_summary=0x7f040051;
-        public static final int setting_savephotos_title=0x7f040050;
-        public static final int setting_skipminepost_default=0x7f04004b;
-        public static final int setting_skipminepost_key=0x7f040049;
-        public static final int setting_skipminepost_title=0x7f04004a;
-        public static final int setting_skipphotos_default=0x7f04004e;
-        public static final int setting_skipphotos_key=0x7f04004c;
-        public static final int setting_skipphotos_title=0x7f04004d;
+        public static final int no_internet_title=0x7f04002d;
+        public static final int no_sdcard_message=0x7f040030;
+        public static final int no_sdcard_title=0x7f04002f;
+        public static final int reblog=0x7f04001e;
+        public static final int reblog_failure=0x7f040020;
+        public static final int reblog_success=0x7f04001f;
+        public static final int reblog_title=0x7f04003b;
+        public static final int reblogall_failure_message=0x7f04003f;
+        public static final int reblogall_failure_title=0x7f04003e;
+        public static final int reblogall_message=0x7f04003d;
+        public static final int reblogall_progress_title=0x7f040040;
+        public static final int reblogall_success=0x7f040021;
+        public static final int reblogall_title=0x7f04003c;
+        public static final int sendto_title=0x7f040041;
+        public static final int setting_clearcache_default=0x7f04006d;
+        public static final int setting_clearcache_key=0x7f04006a;
+        public static final int setting_clearcache_summary=0x7f04006c;
+        public static final int setting_clearcache_title=0x7f04006b;
+        public static final int setting_dashboardtype_default=0x7f04005b;
+        public static final int setting_dashboardtype_key=0x7f040059;
+        public static final int setting_dashboardtype_title=0x7f04005a;
+        public static final int setting_email_key=0x7f040044;
+        public static final int setting_email_title=0x7f040045;
+        public static final int setting_lastpostid_key=0x7f040048;
+        public static final int setting_password_key=0x7f040046;
+        public static final int setting_password_title=0x7f040047;
+        public static final int setting_pinaction_default=0x7f040058;
+        public static final int setting_pinaction_key=0x7f040055;
+        public static final int setting_pinaction_summary=0x7f040057;
+        public static final int setting_pinaction_title=0x7f040056;
+        public static final int setting_quickpost_default=0x7f040050;
+        public static final int setting_quickpost_key=0x7f04004d;
+        public static final int setting_quickpost_summary=0x7f04004f;
+        public static final int setting_quickpost_title=0x7f04004e;
+        public static final int setting_savephotos_default=0x7f040065;
+        public static final int setting_savephotos_key=0x7f040062;
+        public static final int setting_savephotos_summary=0x7f040064;
+        public static final int setting_savephotos_title=0x7f040063;
+        public static final int setting_sendto_default=0x7f040069;
+        public static final int setting_sendto_key=0x7f040066;
+        public static final int setting_sendto_summary=0x7f040068;
+        public static final int setting_sendto_title=0x7f040067;
+        public static final int setting_skipminepost_default=0x7f04005e;
+        public static final int setting_skipminepost_key=0x7f04005c;
+        public static final int setting_skipminepost_title=0x7f04005d;
+        public static final int setting_skipphotos_default=0x7f040061;
+        public static final int setting_skipphotos_key=0x7f04005f;
+        public static final int setting_skipphotos_title=0x7f040060;
         /**  Setting Activity 
          */
-        public static final int setting_title_account=0x7f040030;
-        public static final int setting_title_setting=0x7f040031;
-        public static final int setting_usepin_default=0x7f040041;
-        public static final int setting_usepin_key=0x7f04003e;
-        public static final int setting_usepin_summary=0x7f040040;
-        public static final int setting_usepin_title=0x7f04003f;
-        public static final int setting_usessl_default=0x7f040039;
-        public static final int setting_usessl_key=0x7f040036;
-        public static final int setting_usessl_summary=0x7f040038;
-        public static final int setting_usessl_title=0x7f040037;
-        public static final int setting_viewmode_default=0x7f040048;
-        public static final int setting_viewmode_key=0x7f040046;
-        public static final int setting_viewmode_title=0x7f040047;
+        public static final int setting_title_account=0x7f040042;
+        public static final int setting_title_setting=0x7f040043;
+        public static final int setting_usepin_default=0x7f040054;
+        public static final int setting_usepin_key=0x7f040051;
+        public static final int setting_usepin_summary=0x7f040053;
+        public static final int setting_usepin_title=0x7f040052;
+        public static final int setting_usessl_default=0x7f04004c;
+        public static final int setting_usessl_key=0x7f040049;
+        public static final int setting_usessl_summary=0x7f04004b;
+        public static final int setting_usessl_title=0x7f04004a;
+        public static final int startactivity_failure=0x7f040022;
         public static final int tumblr_button_back=0x7f040005;
         /**  Main Activity Button Tumblr 
          */

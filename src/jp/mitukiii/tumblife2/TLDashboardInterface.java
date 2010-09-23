@@ -1,10 +1,13 @@
 package jp.mitukiii.tumblife2;
 
+import android.os.Handler;
 import jp.mitukiii.tumblife2.model.TLPost;
 
 public interface TLDashboardInterface
 {
   public void start();
+  
+  public String getTitle();
   
   public TLPost postCurrent();
   
@@ -14,15 +17,19 @@ public interface TLDashboardInterface
   
   public TLPost postPin(TLPost post);
   
-  public String getTitle();
+  public int getPinPostsCount();
+  
+  public boolean hasPinPosts();
+  
+  public boolean isPinPost(TLPost post);
   
   public void like(TLPost post);
   
-  public void likeAll();
+  public void likeAll(Handler progressHandler);
   
   public void reblog(TLPost post, String comment);
   
-  public void reblogAll();
+  public void reblogAll(Handler progressHandler);
   
   public void stop();
   

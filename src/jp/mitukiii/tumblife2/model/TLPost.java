@@ -535,7 +535,6 @@ public class TLPost extends TLModel
               "<div id=\"meta\">\n" +
               "<h2 id=\"tumblelog\">" + getTumblelogName() + "</h2>\n" +
               "<h2 id=\"note-count\">" + getNoteCount() + " notes</h2>\n" +
-              "<h2 id=\"like\">♥</h2>\n" +
               "</div>\n" +
               "<div id=\"content\" class=\"" + getType() + "\">\n");
     if (TYPE_QUOTE.equals(getType())) {
