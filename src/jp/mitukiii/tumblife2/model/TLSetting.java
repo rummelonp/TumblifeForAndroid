@@ -38,7 +38,7 @@ public class TLSetting extends TLModel
   };
   
   public static enum SEND_TO {
-    Confirmation (0),
+    Confirmation (2),
     Browser (0),
     Share (1);
     

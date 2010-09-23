@@ -28,6 +28,35 @@ import jp.mitukiii.tumblife2.util.TLPostFactory;
 
 public class TLDashboard implements TLDashboardInterface
 {
+  public static enum MOVE_TO {
+    FirstPost (0),
+    LastPost (1),
+    LastSession (2),
+    NextMyPost (3);
+    
+    private int which;
+    
+    private MOVE_TO(int which)
+    {
+      this.which = which;
+    }
+    
+    public int getWhich()
+    {
+      return which;
+    }
+    
+    public static MOVE_TO valueOf(int which)
+    {
+      for (MOVE_TO item: values()) {
+        if (item.getWhich() == which) {
+          return item;
+        }
+      }
+      return null;
+    }
+  }
+  
   protected static final String      HTTP_SCHEME   = "http://";
   protected static final String      HTTPS_SCHEME  = "https://";
   protected static final String      TUMBLR_URL    = "www.tumblr.com";
@@ -57,6 +86,7 @@ public class TLDashboard implements TLDashboardInterface
   protected TLTumblelog              tumblelog;
 
   protected boolean                  isLastPostLoaded;
+  protected int                      lastPostIndex;
   
   protected boolean                  isLogined;
   protected boolean                  isStoped;
@@ -203,6 +233,7 @@ public class TLDashboard implements TLDashboardInterface
                 delegate.showNewPosts((post.getIndex() == 0)? "no": String.valueOf(post.getIndex()));
               }
             });
+            lastPostIndex = post.getIndex();
             isLastPostLoaded = true;
           }
         }
@@ -333,6 +364,38 @@ public class TLDashboard implements TLDashboardInterface
       default:
         return postCurrent();
     }
+  }
+  
+  public TLPost moveTo(int which)
+  {
+    switch (MOVE_TO.valueOf(which)) {
+      case FirstPost:
+        postIndex = 0;
+        return postCurrent();
+      case LastPost:
+        postIndex = posts.size();
+        return postBack();
+      case LastSession:
+        if (isLastPostLoaded) {
+          postIndex = lastPostIndex;
+          return postCurrent();
+        }
+        return null;
+      case NextMyPost:
+        TLPost post = null;
+        int _postIndex = postIndex;
+        _postIndex += 1;
+        while (posts.size() > _postIndex) {
+          post = posts.get(_postIndex);
+          if (post.getTumblelogName().equals(tumblelog.getName())) {
+            postIndex = _postIndex;
+            return postCurrent();
+          }
+          _postIndex += 1;
+        }
+        return null;
+    }
+    return null;
   }
   
   public int getPinPostsCount()

@@ -17,6 +17,8 @@ public interface TLDashboardInterface
   
   public TLPost postPin(TLPost post);
   
+  public TLPost moveTo(int which);
+  
   public int getPinPostsCount();
   
   public boolean hasPinPosts();

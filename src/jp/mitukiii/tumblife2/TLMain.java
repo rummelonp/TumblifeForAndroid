@@ -48,7 +48,7 @@ public class TLMain extends Activity implements TLDashboardDelegate, TLWebViewCl
   protected AlertDialog     alertNoInternet;
   protected AlertDialog     alertNoSDCard;
   protected AlertDialog     alertLoginFailure;
-
+  protected AlertDialog     alertMoveTo;
   protected AlertDialog     alertLike;
   protected AlertDialog     alertLikeAll;
   protected AlertDialog     alertLikeAllFailure;
@@ -225,6 +225,7 @@ public class TLMain extends Activity implements TLDashboardDelegate, TLWebViewCl
         reload();
         break;
       case R.id.main_menu_moveto:
+        moveTo();
         break;
       case R.id.main_menu_post:
         break;
@@ -537,6 +538,28 @@ public class TLMain extends Activity implements TLDashboardDelegate, TLWebViewCl
     }
     
     currentPost = post;
+  }
+  
+  protected void moveTo()
+  {
+    TLLog.d("TLMain / moveTo");
+    
+    if (alertMoveTo == null) {
+      alertMoveTo = new AlertDialog.Builder(context)
+      .setTitle(R.string.moveto_title)
+      .setItems(getResources().getStringArray(R.array.moveto_items), new OnClickListener() {
+        public void onClick(DialogInterface dialog, int which) {
+          TLPost post = dashboard.moveTo(which);
+          if (post == null) {
+            showToast(getString(R.string.moveto_failure));
+          } else {
+            movePost(post);
+          }
+        }
+      })
+      .create(); 
+    }
+    alertMoveTo.show();
   }
   
   protected void like()

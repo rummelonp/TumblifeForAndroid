@@ -40,6 +40,8 @@
     <string name="load_failure">Load Failure, Retry...</string>
     
     <string name="loadall_success">All Post Loaded.</string>
+    
+    <string name="moveto_failure">Post Has Not Found.</string>
   
     <string name="like">Like...</string>
     <string name="like_success">Like Done.</string>
@@ -82,6 +84,14 @@
   
     <string name="login_failure_title">Login Failure.</string>
     <string name="login_failure_message">Show setting?</string>
+    
+    <string name="moveto_title">Move To</string>
+ 	<string-array name="moveto_items">
+      <item>First Post</item>
+      <item>Last Post</item>
+      <item>Last Session</item>
+      <item>Next My Post</item>
+    </string-array>
     
     <string name="like_title">Like This?</string>
     
