@@ -22,7 +22,7 @@
     android:title="@string/main_menu_moveto"
     android:icon="@android:drawable/ic_menu_set_as" />
   <item
-    android:id="@+id/main_menu_post"
-    android:title="@string/main_menu_post"
+    android:id="@+id/main_menu_privatepost"
+    android:title="@string/main_menu_privatepost"
     android:icon="@android:drawable/ic_menu_agenda" />
 </menu>

@@ -28,7 +28,7 @@
     <string name="main_menu_exit">Exit</string>
     <string name="main_menu_reload">Reload</string>
     <string name="main_menu_moveto">Move To</string>
-    <string name="main_menu_post">Private Post</string>
+    <string name="main_menu_privatepost">Private Post</string>
     <string name="main_menu_about">About</string>
   
   <!-- Toast Message -->
@@ -54,10 +54,17 @@
     <string name="reblog_failure">Reblog Failure.</string>
     
   	<string name="reblogall_success">Reblog All Done.</string>
+  	
+  	<string name="write">Posting...</string>
+  	<string name="write_success">Post Done.</string>
+  	<string name="write_failure">Post Failure.</string>
     
     <string name="startactivity_failure">Client Not Found.</string>
     
-    <string name="last_post">Last Post in Last Session.\nPost #%s (%s)</string>
+    <string name="last_post">\
+      Last Post in Last Session.\n\
+      Post #%s (%s)\
+    </string>
   	<string name="new_posts">%s New Posts.</string>
   
   <!-- Alert Button -->
@@ -116,6 +123,22 @@
       <item>Browser</item>
       <item>Share</item>
     </string-array>
+    
+    <string name="about_title">Tumblife: About</string>
+  	<string name="about_message">\
+  	  Tumblr client for Android.\n\
+  	  Like and Reblog only.\n\
+  	  \n\
+  	  Developer:\n\
+  	  　Kazuya Takeshima\n\
+  	  \n\
+  	  E-Mail:\n\
+  	  　mail@tumblife.com\n\
+  	  \n\
+  	  Official Web Site:\n\
+  	  　http://tumblife.com\n\
+  	  　http://mitukiii.jp\n
+  	</string>
   
   <!-- Setting Activity -->
   	<string name="setting_title_account">Account</string>
@@ -190,6 +213,10 @@
       <item>Share</item>
     </string-array>
     <string name="setting_sendto_default">Confirmation</string>
+    
+    <string name="setting_privateposttext_key">privateposttext</string>
+    <string name="setting_privateposttext_title">Private Post Text</string>
+    <string name="setting_privateposttext_default">Current Page</string>
 
     <string name="setting_clearcache_key">clearcache</string>
     <string name="setting_clearcache_title">Clear Cache</string>

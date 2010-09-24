@@ -1,5 +1,6 @@
 package jp.mitukiii.tumblife2;
 
+import java.util.HashMap;
 import jp.mitukiii.tumblife2.model.TLPost;
 import jp.mitukiii.tumblife2.model.TLSetting;
 import jp.mitukiii.tumblife2.util.TLLog;
@@ -14,6 +15,7 @@ import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.util.Linkify;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -22,6 +24,7 @@ import android.view.Window;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class TLMain extends Activity implements TLDashboardDelegate, TLWebViewClientDelegate
@@ -49,6 +52,7 @@ public class TLMain extends Activity implements TLDashboardDelegate, TLWebViewCl
   protected AlertDialog     alertNoSDCard;
   protected AlertDialog     alertLoginFailure;
   protected AlertDialog     alertMoveTo;
+  protected AlertDialog     alertAbout;
   protected AlertDialog     alertLike;
   protected AlertDialog     alertLikeAll;
   protected AlertDialog     alertLikeAllFailure;
@@ -61,6 +65,8 @@ public class TLMain extends Activity implements TLDashboardDelegate, TLWebViewCl
   
   protected Handler         handlerLike;
   protected Handler         handlerReblog;
+  
+  protected TextView        textViewAbout;
   
   protected EditText        editTextReblog;
   
@@ -157,7 +163,7 @@ public class TLMain extends Activity implements TLDashboardDelegate, TLWebViewCl
       setEnabledButtons(false);
       webView.loadUrl(postFactory.getDefaultHtmlUrl());
       setTitle(dashboard.getTitle());
-      showToast(getString(R.string.login));
+      showToast(R.string.login);
       setting.loadAccount(context);
       dashboard.start();
     };
@@ -216,6 +222,7 @@ public class TLMain extends Activity implements TLDashboardDelegate, TLWebViewCl
         showSetting();
         break;
       case R.id.main_menu_about:
+        showAbout();
         break;
       case R.id.main_menu_exit:
         isFinished = true;
@@ -227,7 +234,8 @@ public class TLMain extends Activity implements TLDashboardDelegate, TLWebViewCl
       case R.id.main_menu_moveto:
         moveTo();
         break;
-      case R.id.main_menu_post:
+      case R.id.main_menu_privatepost:
+        privatePost();
         break;
     }
     
@@ -291,8 +299,8 @@ public class TLMain extends Activity implements TLDashboardDelegate, TLWebViewCl
   {
     TLLog.d("TLMain / loginSuccess");
     
-    showToast(getString(R.string.login_success));
-    showToast(getString(R.string.load));
+    showToast(R.string.login_success);
+    showToast(R.string.load);
     setTitle(dashboard.getTitle());
   }
   
@@ -333,35 +341,35 @@ public class TLMain extends Activity implements TLDashboardDelegate, TLWebViewCl
   {
     TLLog.d("TLMain / loadSuccess");
     
-    showToast(getString(R.string.load_success));
+    showToast(R.string.load_success);
   }
   
   public void loadAllSuccess()
   {
     TLLog.d("TLMain / loadAllSuccess");
     
-    showToast(getString(R.string.loadall_success));
+    showToast(R.string.loadall_success);
   }
   
   public void loadFailure()
   {
     TLLog.d("TLMain / loadFailure");
     
-    showToast(getString(R.string.load_failure));
+    showToast(R.string.load_failure);
   }
   
   public void likeSuccess()
   {
     TLLog.d("TLMain / likeSuccess");
     
-    showToast(getString(R.string.like_success));
+    showToast(R.string.like_success);
   }
   
   public void likeFailure()
   {
     TLLog.d("TLMain / likeFailure");
     
-    showToast(getString(R.string.like_failure));
+    showToast(R.string.like_failure);
   }
   
   public void likeAllSuccess()
@@ -372,7 +380,7 @@ public class TLMain extends Activity implements TLDashboardDelegate, TLWebViewCl
     if (progressLike != null) {
       progressLike.dismiss();
     }
-    showToast(getString(R.string.likeall_success));
+    showToast(R.string.likeall_success);
   }
   
   public void likeAllFailure()
@@ -406,14 +414,14 @@ public class TLMain extends Activity implements TLDashboardDelegate, TLWebViewCl
   {
     TLLog.d("TLMain / reblogSuccess");
     
-    showToast(getString(R.string.reblog_success));
+    showToast(R.string.reblog_success);
   }
   
   public void reblogFailure()
   {
     TLLog.d("TLMain / reblogFailure");
     
-    showToast(getString(R.string.reblog_failure));
+    showToast(R.string.reblog_failure);
   }
   
   public void reblogAllSuccess()
@@ -424,7 +432,7 @@ public class TLMain extends Activity implements TLDashboardDelegate, TLWebViewCl
     if (progressReblog != null) {
       progressReblog.dismiss();
     }
-    showToast(getString(R.string.reblogall_success));
+    showToast(R.string.reblogall_success);
   }
   
   public void reblogAllFailure()
@@ -454,11 +462,25 @@ public class TLMain extends Activity implements TLDashboardDelegate, TLWebViewCl
     alertReblogAllFailure.show();
   }
   
+  public void writeSuccess()
+  {
+    TLLog.d("TLMain / writeSuccess");
+    
+    showToast(R.string.write_success);
+  }
+  
+  public void writeFailure()
+  {
+    TLLog.d("TLMain / writeFailure");
+    
+    showToast(R.string.write_failure);
+  }
+  
   public void startActivityFailure()
   {
     TLLog.d("TLMain / startActivityFailure");
     
-    showToast(getString(R.string.startactivity_failure));
+    showToast(R.string.startactivity_failure);
   }
   
   public void showNewPosts(String text)
@@ -492,8 +514,13 @@ public class TLMain extends Activity implements TLDashboardDelegate, TLWebViewCl
     dashboard = new TLDashboard(this, context, handler);
     webView.loadUrl(postFactory.getDefaultHtmlUrl());
     setTitle(dashboard.getTitle());
-    showToast(getString(R.string.login));
+    showToast(R.string.login);
     dashboard.start();
+  }
+  
+  protected void showToast(int resid)
+  {
+    showToast(getString(resid));
   }
   
   protected void showToast(String text)
@@ -509,6 +536,29 @@ public class TLMain extends Activity implements TLDashboardDelegate, TLWebViewCl
     
     Intent intent = new Intent(context, TLSettingManager.class);
     startActivity(intent);
+  }
+  
+  protected void showAbout()
+  {
+    TLLog.d("TLMain / showAbout");
+    
+    if (textViewAbout == null) {
+      textViewAbout = new TextView(context);
+      textViewAbout.setTextSize(15);
+      textViewAbout.setAutoLinkMask(Linkify.ALL);
+      textViewAbout.setText(R.string.about_message);
+    }
+    
+    if (alertAbout == null) {
+      alertAbout = new AlertDialog.Builder(context)
+      .setTitle(R.string.about_title)
+      .setView(textViewAbout)
+      .setPositiveButton(R.string.button_ok, new OnClickListener() {
+        public void onClick(DialogInterface dialog, int whichButton) {}
+      })
+      .create();
+    }
+    alertAbout.show();
   }
   
   protected void movePost(TLPost post)
@@ -551,7 +601,7 @@ public class TLMain extends Activity implements TLDashboardDelegate, TLWebViewCl
         public void onClick(DialogInterface dialog, int which) {
           TLPost post = dashboard.moveTo(which);
           if (post == null) {
-            showToast(getString(R.string.moveto_failure));
+            showToast(R.string.moveto_failure);
           } else {
             movePost(post);
           }
@@ -571,7 +621,7 @@ public class TLMain extends Activity implements TLDashboardDelegate, TLWebViewCl
     TLLog.d("TLMain / like : index / " + currentPost.getIndex());
     
     if (setting.useQuickpost()) {
-      showToast(getString(R.string.like));
+      showToast(R.string.like);
       dashboard.like(currentPost);
     } else {
       if (alertLike == null) {
@@ -580,7 +630,7 @@ public class TLMain extends Activity implements TLDashboardDelegate, TLWebViewCl
         .setPositiveButton(R.string.button_positive, new OnClickListener() {
           public void onClick(DialogInterface dialog, int whichButton)
           {
-            showToast(getString(R.string.like));
+            showToast(R.string.like);
             dashboard.like(currentPost);
           }
         })
@@ -654,7 +704,7 @@ public class TLMain extends Activity implements TLDashboardDelegate, TLWebViewCl
     TLLog.d("TLMain / reblog : index / " + currentPost.getIndex());
     
     if (setting.useQuickpost()) {
-      showToast(getString(R.string.reblog));
+      showToast(R.string.reblog);
       dashboard.reblog(currentPost, null);
     } else {
       if (editTextReblog == null) {
@@ -668,7 +718,7 @@ public class TLMain extends Activity implements TLDashboardDelegate, TLWebViewCl
           public void onClick(DialogInterface dialog, int whichButton)
           {
             String comment = editTextReblog.getText().toString();
-            showToast(getString(R.string.reblog));
+            showToast(R.string.reblog);
             dashboard.reblog(currentPost, comment);
           }
         })
@@ -732,5 +782,23 @@ public class TLMain extends Activity implements TLDashboardDelegate, TLWebViewCl
     }
     alertReblogAll.setMessage(String.format(getString(R.string.reblogall_message), dashboard.getPinPostsCount()));
     alertReblogAll.show();
+  }
+  
+  protected void privatePost()
+  {
+    if (!dashboard.isLogined()) {
+      return;
+    }
+    
+    TLLog.d("TLMain / privatePost");
+    
+    String text = setting.getPrivatePostText();
+    if (text == null || text.length() == 0) {
+      text = getString(R.string.setting_privateposttext_default);
+    }
+    HashMap<String, String> parameters = new HashMap<String, String>();
+    parameters.put("private", "1");
+    showToast(R.string.write);
+    dashboard.writeRegular(text, null, parameters);
   }
 }

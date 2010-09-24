@@ -61,6 +61,11 @@
       android:entries="@array/setting_sendto_items"
       android:entryValues="@array/setting_sendto_items"
       android:defaultValue="@string/setting_sendto_default" />
+    <EditTextPreference
+      android:key="@string/setting_privateposttext_key"
+      android:title="@string/setting_privateposttext_title"
+      android:dialogTitle="@string/setting_privateposttext_title"
+      android:defaultValue="@string/setting_privateposttext_default" />
     <CheckBoxPreference
       android:key="@string/setting_clearcache_key"
       android:title="@string/setting_clearcache_title"

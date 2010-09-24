@@ -36,5 +36,9 @@ public interface TLDashboardDelegate
   
   public void reblogAllFailure();
   
+  public void writeSuccess();
+  
+  public void writeFailure();
+  
   public void showNewPosts(String text);
 }

@@ -80,6 +80,7 @@ public class TLSetting extends TLModel
   protected boolean          useSkipPhotos;
   protected boolean          useSavePhotos;
   protected SEND_TO          sendTo;
+  protected String           privatePostText;
   protected boolean          useClearCache;
   
   protected TLSetting(Context context)
@@ -145,6 +146,10 @@ public class TLSetting extends TLModel
     useSavePhotos = preferences.getBoolean(
         context.getString(R.string.setting_savephotos_key),
         Boolean.valueOf(context.getString(R.string.setting_savephotos_default)));
+    
+    privatePostText = preferences.getString(
+        context.getString(R.string.setting_privateposttext_key),
+        context.getString(R.string.setting_privateposttext_default));
     
     useClearCache = preferences.getBoolean(
         context.getString(R.string.setting_clearcache_key),
@@ -232,6 +237,11 @@ public class TLSetting extends TLModel
   public SEND_TO getSendTo()
   {
     return sendTo;
+  }
+  
+  public String getPrivatePostText()
+  {
+    return privatePostText;
   }
 
   public boolean useClearCache()

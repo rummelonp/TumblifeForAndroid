@@ -230,7 +230,7 @@ public class TLDashboard implements TLDashboardInterface
             setting.setLastPostId(post.getId());
             handler.post(new Runnable() {
               public void run() {
-                delegate.showNewPosts((post.getIndex() == 0)? "no": String.valueOf(post.getIndex()));
+                delegate.showNewPosts((post.getIndex() == 0)? "No": String.valueOf(post.getIndex()));
               }
             });
             lastPostIndex = post.getIndex();
@@ -452,10 +452,12 @@ public class TLDashboard implements TLDashboardInterface
       }
       result = true;
     } catch (IOException e) {
-      TLLog.e("TLDashboard / login", e);
+      TLLog.e("TLDashboard / like", e);
       result = false;
     } finally {
-      con.disconnect();
+      if (con != null) {
+        con.disconnect();
+      }
     }
     if (result) {
       return true;
@@ -527,10 +529,12 @@ public class TLDashboard implements TLDashboardInterface
       }
       result = true;
     } catch (IOException e) {
-      TLLog.e("TLDashboard / login", e);
+      TLLog.e("TLDashboard / reblog", e);
       result = false;
     } finally {
-      con.disconnect();
+      if (con != null) {
+        con.disconnect();
+      }
     }
     if (result) {
       return true;
@@ -577,6 +581,46 @@ public class TLDashboard implements TLDashboardInterface
           handler.post(new Runnable() { public void run() { delegate.reblogAllSuccess(); } });
         } else {
           handler.post(new Runnable() { public void run() { delegate.reblogAllFailure(); } });
+        }
+      }
+    }.start();
+  }
+  
+  public void writeRegular(final String title, final String body, final HashMap<String, String> options)
+  {
+    if ((title == null || title.length() == 0) &&
+        (body == null || body.length() == 0))
+    {
+      return;
+    }
+    
+    TLLog.d("TLDashboard / write : title / " + title + " : body / " + body);
+    
+    new Thread() {
+      public void run() {
+        HttpURLConnection con = null;
+        try {
+          HashMap<String, String> parameters = getAccountParameters();
+          parameters.putAll(options);
+          parameters.put("type", "regular");
+          if (title != null) {
+            parameters.put("title", title);
+          }
+          if (body != null) {
+            parameters.put("bodt", body);
+          }
+          con = TLConnection.get(getTumblrUrl(WRITE_URL), parameters);
+          if (con.getResponseCode() != HttpURLConnection.HTTP_CREATED) {
+            throw new TLAuthenticationFailureException("Authentication failed.");
+          }
+          handler.post(new Runnable() { public void run() { delegate.writeSuccess(); }});
+        } catch (IOException e) {
+          TLLog.e("TLDashboard / write", e);
+          handler.post(new Runnable() { public void run() { delegate.writeFailure(); }});
+        } finally {
+          if (con != null) {
+            con.disconnect();
+          }
         }
       }
     }.start();

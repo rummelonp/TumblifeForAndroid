@@ -1,5 +1,6 @@
 package jp.mitukiii.tumblife2;
 
+import java.util.HashMap;
 import android.os.Handler;
 import jp.mitukiii.tumblife2.model.TLPost;
 
@@ -32,6 +33,8 @@ public interface TLDashboardInterface
   public void reblog(TLPost post, String comment);
   
   public void reblogAll(Handler progressHandler);
+  
+  public void writeRegular(String text, String body, HashMap<String, String> options);
   
   public void stop();
   
