@@ -11,7 +11,7 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceScreen;
 import android.preference.Preference.OnPreferenceChangeListener;
 
-public class TLSettingManager extends PreferenceActivity
+public class Setting extends PreferenceActivity
 { 
   protected Context context;
   

@@ -1,4 +1,4 @@
-package jp.mitukiii.tumblife2;
+package jp.mitukiii.tumblife2.tumblr;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -12,6 +12,8 @@ import org.xmlpull.v1.XmlPullParserException;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
+import jp.mitukiii.tumblife2.Main;
+import jp.mitukiii.tumblife2.R;
 import jp.mitukiii.tumblife2.exeption.TLAuthenticationFailureException;
 import jp.mitukiii.tumblife2.exeption.TLParserException;
 import jp.mitukiii.tumblife2.exeption.TLSDCardNotFoundException;
@@ -137,7 +139,7 @@ public class TLDashboard implements TLDashboardInterface
             try {
               load();
             } catch (TLSDCardNotFoundException e) {
-              TLLog.e("TLDashboard / start", e);
+              TLLog.i("TLDashboard / start", e);
               handler.post(new Runnable() { public void run() { delegate.noSDCard(); } });
               return;
             }
@@ -259,10 +261,8 @@ public class TLDashboard implements TLDashboardInterface
   
   public String getTitle()
   {
-    TLLog.v("TLDashboard / getTitle");
-    
     StringBuffer sb = new StringBuffer();
-    sb.append(TLMain.APP_NAME + ": ");
+    sb.append(Main.APP_NAME + ": ");
     if (isLogined) {
       if (posts.size() > 0) {
         sb.append((postIndex + 1) + "/" + posts.size());
@@ -345,8 +345,6 @@ public class TLDashboard implements TLDashboardInterface
     if (post == null) {
       return null;
     }
-    
-    TLLog.v("TLDashboard / pinPost");
     
     if (pinPosts.containsKey(post.getId())) {
       pinPosts.remove(post.getId());

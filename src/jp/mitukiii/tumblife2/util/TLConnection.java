@@ -49,7 +49,6 @@ public class TLConnection
         parameterString += parameterKey + "=" + URLEncoder.encode(parameterValue);
       }
       if (parameterString != null) {
-        TLLog.i("TLConnection / request : parameter / " + parameterString);
         writer = new OutputStreamWriter(con.getOutputStream());
         writer.write(parameterString);
         writer.flush();

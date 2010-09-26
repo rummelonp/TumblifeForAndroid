@@ -12,8 +12,8 @@ import jp.mitukiii.tumblife2.model.TLSetting;
 
 public class TLPostFactory
 { 
-  protected static final int     SLEEP_TIME       = 2 * 1000;
-  protected static final int     MAX_THREAD_COUNT = 5;
+  protected static final int     SLEEP_TIME       = 1 * 1000;
+  protected static final int     MAX_THREAD_COUNT = 3;
 
   protected static TLPostFactory postFactory;
 
@@ -116,7 +116,11 @@ public class TLPostFactory
   
   public void addQueueToFirst(TLPost post)
   {
-    if (post == null || !post.isPhoto() || !setting.useSavePhotos()) {
+    if (!setting.useSavePhotos() ||
+        post == null ||
+        !post.isPhoto() ||
+        post.getImageFileUrl() != null)
+    {
       return;
     }
     
@@ -130,7 +134,11 @@ public class TLPostFactory
 
   public void addQueueToLast(TLPost post)
   {
-    if (post == null || !post.isPhoto() || !setting.useSavePhotos()) {
+    if (!setting.useSavePhotos() ||
+        post == null ||
+        !post.isPhoto() ||
+        post.getImageFileUrl() != null)
+    {
       return;
     }
     
@@ -156,7 +164,7 @@ public class TLPostFactory
             TLLog.d("TLPostFactory / start : stoped.");
           } else {
             int index = 0;
-            TLLog.v("TLPostFactory / start : running. : Thread count / " + threadCount);
+            TLLog.v("TLPostFactory / start : running. : Thread count / " + threadCount + " : Queue count / " + posts.size());
             while (posts.size() > index && MAX_THREAD_COUNT > threadCount) {
               TLPost post = posts.get(index);
               makePostFiles(post);
@@ -245,9 +253,9 @@ public class TLPostFactory
           makeImageFile(post);
           makeHtmlFile(post);
         } catch (TLSDCardNotFoundException e) {
-          TLLog.i("TLPostFactory / makePostFiles", e);
+          TLLog.w("TLPostFactory / makePostFiles", e);
         } catch (IOException e) {
-          TLLog.i("TLPostFactory / makePostFiles", e);
+          TLLog.w("TLPostFactory / makePostFiles", e);
         }
         if (posts.contains(post)) {
           posts.remove(post);

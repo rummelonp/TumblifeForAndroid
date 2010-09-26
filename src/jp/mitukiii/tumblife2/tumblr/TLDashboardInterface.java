@@ -1,4 +1,4 @@
-package jp.mitukiii.tumblife2;
+package jp.mitukiii.tumblife2.tumblr;
 
 import java.util.HashMap;
 import android.os.Handler;

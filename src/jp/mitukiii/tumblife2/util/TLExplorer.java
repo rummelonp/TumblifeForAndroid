@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import jp.mitukiii.tumblife2.TLMain;
+import jp.mitukiii.tumblife2.Main;
 import jp.mitukiii.tumblife2.exeption.TLSDCardNotFoundException;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -21,7 +21,7 @@ public class TLExplorer
 {
   public static final String         FILE_SCHEME     = "file:";
   public static final String         SD_CARD         = Environment.getExternalStorageDirectory().getPath() + "/";
-  public static final String         APP_DIR         = SD_CARD + TLMain.APP_NAME + "/";
+  public static final String         APP_DIR         = SD_CARD + Main.APP_NAME + "/";
   public static final String         HTML_DIR        = APP_DIR + "html/";
   public static final String         CSS_DIR         = APP_DIR + "css/";
   public static final String         JS_DIR          = APP_DIR + "js/";
@@ -122,6 +122,9 @@ public class TLExplorer
       }
       fileOutput = new FileOutputStream(filePath, false);
       image.compress(IMAGE_FORMAT, IMAGE_QUALITY, fileOutput);
+    } catch (OutOfMemoryError e) {
+      TLLog.e("TLExplorer / makeImageFile : fileName / " + fileName, e);
+      throw new IOException(e.getMessage());
     } finally {
       try {
         if (output != null) {
@@ -144,7 +147,9 @@ public class TLExplorer
       } catch (IOException e) {
         TLLog.i("TLExplorer / makeImageFile :", e);
       }
-      con.disconnect();
+      if (con != null) {
+        con.disconnect();
+      }
     }
     return fileUrl;
   }

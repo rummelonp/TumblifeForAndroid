@@ -1,5 +1,6 @@
-package jp.mitukiii.tumblife2;
+package jp.mitukiii.tumblife2.ui;
 
+import jp.mitukiii.tumblife2.R;
 import jp.mitukiii.tumblife2.model.TLSetting;
 import jp.mitukiii.tumblife2.util.TLLog;
 import android.app.AlertDialog;

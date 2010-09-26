@@ -1,4 +1,4 @@
-package jp.mitukiii.tumblife2;
+package jp.mitukiii.tumblife2.ui;
 
 public interface TLWebViewClientDelegate
 {
