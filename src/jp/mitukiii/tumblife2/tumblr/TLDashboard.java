@@ -96,6 +96,11 @@ public class TLDashboard implements TLDashboardInterface
 
   public TLDashboard(TLDashboardDelegate delegate, Context context, Handler handler)
   {
+    init(delegate, context, handler);
+  }
+  
+  public void init(TLDashboardDelegate delegate, Context context, Handler handler)
+  {
     this.delegate = delegate;
     this.context  = context;
     this.handler  = handler;
@@ -109,13 +114,6 @@ public class TLDashboard implements TLDashboardInterface
     
     new Thread() {
       public void run() {
-        if (setting.getEmail().length() == 0 ||
-            setting.getPassword().length() == 0)
-        {
-          TLLog.d("TLDashboard / start : No account.");
-          handler.post(new Runnable() { public void run() { delegate.noAccount(); } });
-          return;
-        }
         if (!login()) {
           TLLog.d("TLDashboard / start : Login failed.");
           return;
@@ -163,7 +161,7 @@ public class TLDashboard implements TLDashboardInterface
     try {
       con = TLConnection.post(getTumblrUrl(AUTH_URL), getAccountParameters());
       if (con.getResponseCode() != HttpURLConnection.HTTP_OK) {
-        throw new TLAuthenticationFailureException("Authentication failed.");
+        throw new TLAuthenticationFailureException();
       }
       user = new TLUserParser(con.getInputStream()).parse();
       tumblelog = user.getPrimaryTumblelog();
@@ -205,11 +203,11 @@ public class TLDashboard implements TLDashboardInterface
       }
       con = TLConnection.get(getTumblrUrl(DASHBOARD_URL), parameters);
       if (con.getResponseCode() != HttpURLConnection.HTTP_OK) {
-        throw new TLAuthenticationFailureException("Authentication failed.");
+        throw new TLAuthenticationFailureException();
       }
       List<TLPost> _posts = new TLPostParser(con.getInputStream()).parse();
       if (_posts.size() == 0) {
-        throw new TLParserException("Parsing failed.");
+        throw new TLParserException();
       }
       if (posts.size() == 0) {
         setting.saveLastPostId(context, _posts.get(0).getId());
@@ -449,7 +447,7 @@ public class TLDashboard implements TLDashboardInterface
       parameters.put("reblog-key", post.getReblogKey());
       con = TLConnection.get(getTumblrUrl(LIKE_URL), parameters);
       if (con.getResponseCode() != HttpURLConnection.HTTP_OK) {
-        throw new TLAuthenticationFailureException("Authentication failed.");
+        throw new TLAuthenticationFailureException();
       }
       result = true;
     } catch (IOException e) {
@@ -478,7 +476,6 @@ public class TLDashboard implements TLDashboardInterface
         } else {
           handler.post(new Runnable() { public void run() { delegate.likeFailure(); } });
         }
-        
       }
     }.start();
   }
@@ -526,7 +523,7 @@ public class TLDashboard implements TLDashboardInterface
       }
       con = TLConnection.post(getTumblrUrl(REBLOG_URL), parameters);
       if (con.getResponseCode() != HttpURLConnection.HTTP_CREATED) {
-        throw new TLAuthenticationFailureException("Authentication failed.");
+        throw new TLAuthenticationFailureException();
       }
       result = true;
     } catch (IOException e) {
@@ -612,7 +609,7 @@ public class TLDashboard implements TLDashboardInterface
           }
           con = TLConnection.get(getTumblrUrl(WRITE_URL), parameters);
           if (con.getResponseCode() != HttpURLConnection.HTTP_CREATED) {
-            throw new TLAuthenticationFailureException("Authentication failed.");
+            throw new TLAuthenticationFailureException();
           }
           handler.post(new Runnable() { public void run() { delegate.writeSuccess(); }});
         } catch (IOException e) {

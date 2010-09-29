@@ -46,7 +46,7 @@ public class TLExplorer
         !makeDirectory(new File(APP_DIR)) ||
         !makeDirectory(new File(fileDir)))
     {
-      throw new TLSDCardNotFoundException("SDCard not found.");
+      throw new TLSDCardNotFoundException();
     }
     String filePath = fileDir + fileName;
     String fileUrl = FILE_SCHEME + filePath;
@@ -91,7 +91,56 @@ public class TLExplorer
   public static String makeGifImageFile(String urlString, String fileName)
     throws TLSDCardNotFoundException, MalformedURLException, FileNotFoundException, IOException
   {
-    return makeFile(IMAGE_DIR, fileName, TLConnection.get(urlString).getInputStream(), false);
+    if (!isSDCardWriteble() ||
+        !makeDirectory(new File(APP_DIR)) ||
+        !makeDirectory(new File(IMAGE_DIR)))
+    {
+      throw new TLSDCardNotFoundException();
+    }
+    String filePath = IMAGE_DIR + fileName;
+    String fileUrl = FILE_SCHEME + filePath;
+    if (new File(filePath).exists()) {
+      TLLog.d("TLExplorer / makeGifImageFile : file exits. : fileName / " + fileName);
+      return fileUrl;
+    } else {
+      TLLog.d("TLExplorer / makeGifImageFile : fileName / " + fileName);
+    }
+    HttpURLConnection con = null;
+    InputStream input = null;
+    FileOutputStream fileOutput = null;
+    try {
+      con = TLConnection.get(urlString);
+      input = new BufferedInputStream(con.getInputStream(), IO_BUFFER_SIZE);
+      fileOutput = new FileOutputStream(filePath, false);
+      byte[] b = new byte[IO_BUFFER_SIZE];
+      int read;
+      while ((read = input.read(b)) != -1) {
+        fileOutput.write(b, 0, read);
+      }
+      fileOutput.flush();
+    } catch (OutOfMemoryError e) {
+      TLLog.e("TLExplorer / makeGifImageFile : fileName / " + fileName, e);
+      throw new IOException(e.getMessage());
+    } finally {
+      try {
+        if (fileOutput != null) {
+          fileOutput.close();
+        }
+      } catch (IOException e) {
+        TLLog.i("TLExplorer / makeGifImageFile :", e);
+      }
+      try {
+        if (input != null) {
+          input.close();
+        }
+      } catch (IOException e) {
+        TLLog.i("TLExplorer / makeGifImageFile :", e);
+      }
+      if (con != null) {
+        con.disconnect();
+      }
+    }
+    return fileUrl;
   }
   
   public static String makePngImageFile(String urlString, String fileName)
@@ -101,15 +150,15 @@ public class TLExplorer
         !makeDirectory(new File(APP_DIR)) ||
         !makeDirectory(new File(IMAGE_DIR)))
     {
-      throw new TLSDCardNotFoundException("SDCard not found.");
+      throw new TLSDCardNotFoundException();
     }
     String filePath = IMAGE_DIR + fileName;
     String fileUrl = FILE_SCHEME + filePath;
     if (new File(filePath).exists()) {
-      TLLog.d("TLExplorer / makeImageFile : file exits. : fileName / " + fileName);
+      TLLog.d("TLExplorer / makePngImageFile : file exits. : fileName / " + fileName);
       return fileUrl;
     } else {
-      TLLog.d("TLExplorer / makeImageFile : fileName / " + fileName);
+      TLLog.d("TLExplorer / makePngImageFile : fileName / " + fileName);
     }
     HttpURLConnection con = null;
     InputStream input = null;
@@ -129,12 +178,12 @@ public class TLExplorer
       byte[] data = dataStream.toByteArray();
       Bitmap image = BitmapFactory.decodeByteArray(data, 0, data.length);
       if (image == null) {
-        throw new FileNotFoundException("Image writing failed.");
+        throw new FileNotFoundException("Image decoding failed.");
       }
       fileOutput = new FileOutputStream(filePath, false);
       image.compress(IMAGE_PNG_FORMAT, IMAGE_PNG_QUALITY, fileOutput);
     } catch (OutOfMemoryError e) {
-      TLLog.e("TLExplorer / makeImageFile : fileName / " + fileName, e);
+      TLLog.e("TLExplorer / makePngImageFile : fileName / " + fileName, e);
       throw new IOException(e.getMessage());
     } finally {
       try {
@@ -142,21 +191,21 @@ public class TLExplorer
           output.close();
         }
       } catch (IOException e) {
-        TLLog.i("TLExplorer / makeImageFile :", e);
+        TLLog.i("TLExplorer / makePngImageFile :", e);
       }
       try {
         if (fileOutput != null) {
           fileOutput.close();
         }
       } catch (IOException e) {
-        TLLog.i("TLExplorer / makeImageFile :", e);
+        TLLog.i("TLExplorer / makePngImageFile :", e);
       }
       try {
         if (input != null) {
           input.close();
         }
       } catch (IOException e) {
-        TLLog.i("TLExplorer / makeImageFile :", e);
+        TLLog.i("TLExplorer / makePngImageFile :", e);
       }
       if (con != null) {
         con.disconnect();

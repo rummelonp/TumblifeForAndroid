@@ -73,6 +73,8 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
     
     if (dashboard == null) {
       dashboard = new TLDashboard(this, context, handler);
+    } else {
+      dashboard.init(this, context, handler);
     }
     
     webViewClient = new TLWebViewClient(this, context, handler);
@@ -155,13 +157,12 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
         movePost(post);
       }
     } else {
-      TLLog.i("Main / onResume : login.");
+      TLLog.i("Main / onResume : start.");
       setEnabledButtons(false);
       webView.loadUrl(postFactory.getDefaultHtmlUrl());
       setTitle(dashboard.getTitle());
-      showToast(R.string.login);
       setting.loadAccount(context);
-      dashboard.start();
+      start();
     };
   }
   
@@ -493,8 +494,21 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
     dashboard = new TLDashboard(this, context, handler);
     webView.loadUrl(postFactory.getDefaultHtmlUrl());
     setTitle(dashboard.getTitle());
-    showToast(R.string.login);
-    dashboard.start();
+    start();
+  }
+  
+  protected void start()
+  {
+    if (setting.getEmail().length() == 0 ||
+        setting.getPassword().length() == 0)
+    {
+      TLLog.i("Main / start : No account.");
+      noAccount();
+    } else {
+      TLLog.i("Main / start : Login.");
+      showToast(R.string.login);
+      dashboard.start();
+    }
   }
   
   protected void showToast(int resid)
