@@ -104,8 +104,15 @@ public class TLPostFactory
     TLLog.v("TLPostFactory / makeImageFile");
     
     String photoUrl = post.getPhotoUrlMaxWidth400();
-    String imageFileName = post.getImageFileName(photoUrl);
-    String imageFileUrl = TLExplorer.makeImageFile(photoUrl, imageFileName);
+    String imageFileName;
+    String imageFileUrl;
+    if (photoUrl.endsWith(TLExplorer.IMAGE_GIF_EXTENSION)) {
+      imageFileName = TLExplorer.getPreffix(photoUrl) + "." + TLExplorer.IMAGE_GIF_EXTENSION;
+      imageFileUrl = TLExplorer.makeGifImageFile(photoUrl, imageFileName);
+    } else {
+      imageFileName = TLExplorer.getPreffix(photoUrl) + "." + TLExplorer.IMAGE_PNG_EXTENSION;
+      imageFileUrl = TLExplorer.makePngImageFile(photoUrl, imageFileName);
+    }
     post.setImageFileUrl(imageFileUrl);
   }
   
@@ -254,6 +261,7 @@ public class TLPostFactory
           makeHtmlFile(post);
         } catch (TLSDCardNotFoundException e) {
           TLLog.w("TLPostFactory / makePostFiles", e);
+          stop();
         } catch (IOException e) {
           TLLog.w("TLPostFactory / makePostFiles", e);
         }

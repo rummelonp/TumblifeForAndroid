@@ -51,28 +51,8 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
   protected Button             buttonNext;
   protected Button             buttonPin;
 
-  protected AlertDialog        alertNoAccount;
-  protected AlertDialog        alertNoInternet;
-  protected AlertDialog        alertNoSDCard;
-  protected AlertDialog        alertLoginFailure;
-  protected AlertDialog        alertMoveTo;
-  protected AlertDialog        alertAbout;
-  protected AlertDialog        alertLike;
-  protected AlertDialog        alertLikeAll;
-  protected AlertDialog        alertLikeAllFailure;
-  protected AlertDialog        alertReblog;
-  protected AlertDialog        alertReblogAll;
-  protected AlertDialog        alertReblogAllFailure;
-
   protected ProgressDialog     progressLike;
   protected ProgressDialog     progressReblog;
-
-  protected Handler            handlerLike;
-  protected Handler            handlerReblog;
-
-  protected TextView           textViewAbout;
-
-  protected EditText           editTextReblog;
 
   protected boolean            isFinished;
 
@@ -263,53 +243,44 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
   {
     TLLog.i("Main / noAccount");
     
-    if (alertNoAccount == null) {
-      alertNoAccount = new AlertDialog.Builder(context)
-      .setTitle(R.string.login_no_account_title)
-      .setMessage(R.string.login_no_account_message)
-      .setPositiveButton(R.string.button_positive, new OnClickListener() {
-        public void onClick(DialogInterface dialog, int whichButton) {
-          showSetting();
-        }
-      })
-      .setNegativeButton(R.string.button_negative, new OnClickListener() {
-        public void onClick(DialogInterface dialog, int whichButton) { }
-      })
-      .create();
-    }
-    alertNoAccount.show();
+    new AlertDialog.Builder(context)
+    .setTitle(R.string.login_no_account_title)
+    .setMessage(R.string.login_no_account_message)
+    .setPositiveButton(R.string.button_positive, new OnClickListener() {
+      public void onClick(DialogInterface dialog, int whichButton) {
+        showSetting();
+      }
+    })
+    .setNegativeButton(R.string.button_negative, new OnClickListener() {
+      public void onClick(DialogInterface dialog, int whichButton) { }
+    })
+    .show();
   }
   
   public void noInternet()
   {
     TLLog.i("Main / noInternet");
     
-    if (alertNoInternet == null) {
-      alertNoInternet = new AlertDialog.Builder(context)
-      .setTitle(R.string.no_internet_title)
-      .setMessage(R.string.no_internet_message)
-      .setPositiveButton(R.string.button_ok, new OnClickListener() {
-        public void onClick(DialogInterface dialog, int whichButton) {}
-      })
-      .create();
-    }
-    alertNoInternet.show();
+    new AlertDialog.Builder(context)
+    .setTitle(R.string.no_internet_title)
+    .setMessage(R.string.no_internet_message)
+    .setPositiveButton(R.string.button_ok, new OnClickListener() {
+      public void onClick(DialogInterface dialog, int whichButton) {}
+    })
+    .show();
   }
   
   public void noSDCard()
   {
     TLLog.i("Main / noSDCard");
     
-    if (alertNoSDCard == null) {
-      alertNoSDCard = new AlertDialog.Builder(context)
-      .setTitle(R.string.no_sdcard_title)
-      .setMessage(R.string.no_sdcard_message)
-      .setPositiveButton(R.string.button_ok, new OnClickListener() {
-        public void onClick(DialogInterface dialog, int whichButton) {}
-      })
-      .create();
-    }
-    alertNoSDCard.show();
+    new AlertDialog.Builder(context)
+    .setTitle(R.string.no_sdcard_title)
+    .setMessage(R.string.no_sdcard_message)
+    .setPositiveButton(R.string.button_ok, new OnClickListener() {
+      public void onClick(DialogInterface dialog, int whichButton) {}
+    })
+    .show();
   }
   
   public void loginSuccess()
@@ -325,26 +296,23 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
   {
     TLLog.d("Main / loginFailure");
     
-    if (alertLoginFailure == null) {
-      alertLoginFailure = new AlertDialog.Builder(context)
-      .setTitle(R.string.login_failure_title)
-      .setMessage(R.string.login_failure_message)
-      .setPositiveButton(R.string.button_positive, new OnClickListener() {
-        public void onClick(DialogInterface dialog, int whichButton) {
-          showSetting();
-        }
-      })
-      .setNeutralButton(R.string.button_retry, new OnClickListener() {
-        public void onClick(DialogInterface dialog, int whichButton) {
-          reload();
-        }
-      })
-      .setNegativeButton(R.string.button_negative, new OnClickListener() {
-        public void onClick(DialogInterface dialog, int whichButton) { }
-      })
-      .create();
-    }
-    alertLoginFailure.show();
+    new AlertDialog.Builder(context)
+    .setTitle(R.string.login_failure_title)
+    .setMessage(R.string.login_failure_message)
+    .setPositiveButton(R.string.button_positive, new OnClickListener() {
+      public void onClick(DialogInterface dialog, int whichButton) {
+        showSetting();
+      }
+    })
+    .setNeutralButton(R.string.button_retry, new OnClickListener() {
+      public void onClick(DialogInterface dialog, int whichButton) {
+        reload();
+      }
+    })
+    .setNegativeButton(R.string.button_negative, new OnClickListener() {
+      public void onClick(DialogInterface dialog, int whichButton) { }
+    })
+    .show();
   }
   
   public void loading()
@@ -409,22 +377,19 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
       progressLike.dismiss();
     }
     
-    if (alertLikeAllFailure == null) {
-      alertLikeAllFailure = new AlertDialog.Builder(context)
-      .setTitle(R.string.likeall_failure_title)
-      .setPositiveButton(R.string.button_positive, new OnClickListener() {
-        public void onClick(DialogInterface dialog, int which) {
-          likeAll();
-        }
-      })
-      .setNegativeButton(R.string.button_negative, new OnClickListener() {
-        public void onClick(DialogInterface dialog, int which) {
-        }
-      })
-      .create();
-    }
-    alertLikeAllFailure.setMessage(String.format(getString(R.string.likeall_failure_message), dashboard.getPinPostsCount()));
-    alertLikeAllFailure.show();
+    new AlertDialog.Builder(context)
+    .setTitle(R.string.likeall_failure_title)
+    .setMessage(String.format(getString(R.string.likeall_failure_message), dashboard.getPinPostsCount()))
+    .setPositiveButton(R.string.button_positive, new OnClickListener() {
+      public void onClick(DialogInterface dialog, int which) {
+        likeAll();
+      }
+    })
+    .setNegativeButton(R.string.button_negative, new OnClickListener() {
+      public void onClick(DialogInterface dialog, int which) {
+      }
+    })
+    .show();
   }
   
   public void reblogSuccess()
@@ -461,22 +426,19 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
       progressReblog.dismiss();
     }
     
-    if (alertReblogAllFailure == null) {
-      alertReblogAllFailure = new AlertDialog.Builder(context)
-      .setTitle(R.string.reblogall_failure_title)
-      .setPositiveButton(R.string.button_positive, new OnClickListener() {
-        public void onClick(DialogInterface dialog, int which) {
-          reblogAll();
-        }
-      })
-      .setNegativeButton(R.string.button_negative, new OnClickListener() {
-        public void onClick(DialogInterface dialog, int which) {
-        }
-      })
-      .create();
-    }
-    alertReblogAllFailure.setMessage(String.format(getString(R.string.reblogall_failure_message), dashboard.getPinPostsCount()));
-    alertReblogAllFailure.show();
+    new AlertDialog.Builder(context)
+    .setTitle(R.string.reblogall_failure_title)
+    .setMessage(String.format(getString(R.string.reblogall_failure_message), dashboard.getPinPostsCount()))
+    .setPositiveButton(R.string.button_positive, new OnClickListener() {
+      public void onClick(DialogInterface dialog, int which) {
+        reblogAll();
+      }
+    })
+    .setNegativeButton(R.string.button_negative, new OnClickListener() {
+      public void onClick(DialogInterface dialog, int which) {
+      }
+    })
+    .show();
   }
   
   public void writeSuccess()
@@ -559,23 +521,18 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
   {
     TLLog.d("Main / showAbout");
     
-    if (textViewAbout == null) {
-      textViewAbout = new TextView(context);
-      textViewAbout.setTextSize(15);
-      textViewAbout.setAutoLinkMask(Linkify.ALL);
-      textViewAbout.setText(R.string.about_message);
-    }
+    TextView textViewAbout = new TextView(context);
+    textViewAbout.setTextSize(15);
+    textViewAbout.setAutoLinkMask(Linkify.ALL);
+    textViewAbout.setText(R.string.about_message);
     
-    if (alertAbout == null) {
-      alertAbout = new AlertDialog.Builder(context)
-      .setTitle(R.string.about_title)
-      .setView(textViewAbout)
-      .setPositiveButton(R.string.button_ok, new OnClickListener() {
-        public void onClick(DialogInterface dialog, int whichButton) {}
-      })
-      .create();
-    }
-    alertAbout.show();
+    new AlertDialog.Builder(context)
+    .setTitle(R.string.about_title)
+    .setView(textViewAbout)
+    .setPositiveButton(R.string.button_ok, new OnClickListener() {
+      public void onClick(DialogInterface dialog, int whichButton) {}
+    })
+    .show();
   }
   
   protected void movePost(TLPost post)
@@ -615,22 +572,19 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
   {
     TLLog.d("Main / moveTo");
     
-    if (alertMoveTo == null) {
-      alertMoveTo = new AlertDialog.Builder(context)
-      .setTitle(R.string.moveto_title)
-      .setItems(getResources().getStringArray(R.array.moveto_items), new OnClickListener() {
-        public void onClick(DialogInterface dialog, int which) {
-          TLPost post = dashboard.moveTo(which);
-          if (post == null) {
-            showToast(R.string.moveto_failure);
-          } else {
-            movePost(post);
-          }
+    new AlertDialog.Builder(context)
+    .setTitle(R.string.moveto_title)
+    .setItems(getResources().getStringArray(R.array.moveto_items), new OnClickListener() {
+      public void onClick(DialogInterface dialog, int which) {
+        TLPost post = dashboard.moveTo(which);
+        if (post == null) {
+          showToast(R.string.moveto_failure);
+        } else {
+          movePost(post);
         }
-      })
-      .create(); 
-    }
-    alertMoveTo.show();
+      }
+    })
+    .show();
   }
   
   protected void like()
@@ -645,22 +599,19 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
       showToast(R.string.like);
       dashboard.like(currentPost);
     } else {
-      if (alertLike == null) {
-        alertLike = new AlertDialog.Builder(context)
-        .setTitle(R.string.like_title)
-        .setPositiveButton(R.string.button_positive, new OnClickListener() {
-          public void onClick(DialogInterface dialog, int whichButton)
-          {
-            showToast(R.string.like);
-            dashboard.like(currentPost);
-          }
-        })
-        .setNegativeButton(R.string.button_negative, new OnClickListener() {
-          public void onClick(DialogInterface dialog, int whichButton) {}
-        })
-        .create();
-      }
-      alertLike.show();
+      new AlertDialog.Builder(context)
+      .setTitle(R.string.like_title)
+      .setPositiveButton(R.string.button_positive, new OnClickListener() {
+        public void onClick(DialogInterface dialog, int whichButton)
+        {
+          showToast(R.string.like);
+          dashboard.like(currentPost);
+        }
+      })
+      .setNegativeButton(R.string.button_negative, new OnClickListener() {
+        public void onClick(DialogInterface dialog, int whichButton) {}
+      })
+      .show();
     }
   }
   
@@ -680,38 +631,33 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
     progressLike.setSecondaryProgress(0);
     progressLike.setMax(dashboard.getPinPostsCount());
     
-    if (handlerLike == null) {
-      handlerLike = new Handler() {
-        public void handleMessage(Message message) {
-          progressLike.setSecondaryProgress(1);
-          if ((Boolean) message.obj) {
-            progressLike.incrementProgressBy(1);
-          }
+    final Handler handlerLike = new Handler() {
+      public void handleMessage(Message message) {
+        progressLike.setSecondaryProgress(1);
+        if ((Boolean) message.obj) {
+          progressLike.incrementProgressBy(1);
         }
-      };
-    }
+      }
+    };
     
-    if (alertLikeAll == null) {
-      alertLikeAll = new AlertDialog.Builder(context)
-      .setTitle(R.string.likeall_title)
-      .setPositiveButton(R.string.button_positive, new OnClickListener() {
-        public void onClick(DialogInterface dialog, int whichButton) {
-          progressLike.show();
-          dashboard.likeAll(handlerLike);
-        }
-      })
-      .setNeutralButton(R.string.button_likeone, new OnClickListener() {
-        public void onClick(DialogInterface dialog, int whichButton) {
-          like();
-        }
-      })
-      .setNegativeButton(R.string.button_cancel, new OnClickListener() {
-        public void onClick(DialogInterface dialog, int whichButton) {}
-      })
-      .create();
-    }
-    alertLikeAll.setMessage(String.format(getString(R.string.likeall_message), dashboard.getPinPostsCount()));
-    alertLikeAll.show();
+    new AlertDialog.Builder(context)
+    .setTitle(R.string.likeall_title)
+    .setMessage(String.format(getString(R.string.likeall_message), dashboard.getPinPostsCount()))
+    .setPositiveButton(R.string.button_positive, new OnClickListener() {
+      public void onClick(DialogInterface dialog, int whichButton) {
+        progressLike.show();
+        dashboard.likeAll(handlerLike);
+      }
+    })
+    .setNeutralButton(R.string.button_likeone, new OnClickListener() {
+      public void onClick(DialogInterface dialog, int whichButton) {
+        like();
+      }
+    })
+    .setNegativeButton(R.string.button_cancel, new OnClickListener() {
+      public void onClick(DialogInterface dialog, int whichButton) {}
+    })
+    .show();
   }
   
   protected void reblog()
@@ -726,28 +672,22 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
       showToast(R.string.reblog);
       dashboard.reblog(currentPost, null);
     } else {
-      if (editTextReblog == null) {
-        editTextReblog = new EditText(context);
-      }
-      if (alertReblog == null) {
-        alertReblog = new AlertDialog.Builder(context)
-        .setTitle(R.string.reblog_title)
-        .setView(editTextReblog)
-        .setPositiveButton(R.string.button_positive,new OnClickListener() {
-          public void onClick(DialogInterface dialog, int whichButton)
-          {
-            String comment = editTextReblog.getText().toString();
-            showToast(R.string.reblog);
-            dashboard.reblog(currentPost, comment);
-          }
-        })
-        .setNegativeButton(R.string.button_negative, new OnClickListener() {
-          public void onClick(DialogInterface dialog, int whichButton) {}
-        })
-        .create();
-      }
-      editTextReblog.setText("");
-      alertReblog.show();
+      final EditText editTextReblog = new EditText(context);
+      new AlertDialog.Builder(context)
+      .setTitle(R.string.reblog_title)
+      .setView(editTextReblog)
+      .setPositiveButton(R.string.button_positive,new OnClickListener() {
+        public void onClick(DialogInterface dialog, int whichButton)
+        {
+          String comment = editTextReblog.getText().toString();
+          showToast(R.string.reblog);
+          dashboard.reblog(currentPost, comment);
+        }
+      })
+      .setNegativeButton(R.string.button_negative, new OnClickListener() {
+        public void onClick(DialogInterface dialog, int whichButton) {}
+      })
+      .show();
     }
   }
   
@@ -767,38 +707,33 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
     progressReblog.setSecondaryProgress(0);
     progressReblog.setMax(dashboard.getPinPostsCount());
     
-    if (handlerReblog == null) {
-      handlerReblog = new Handler() {
-        public void handleMessage(Message message) {
-          progressReblog.setSecondaryProgress(1);
-          if ((Boolean) message.obj) {
-            progressReblog.incrementProgressBy(1);
-          }
+    final Handler handlerReblog = new Handler() {
+      public void handleMessage(Message message) {
+        progressReblog.setSecondaryProgress(1);
+        if ((Boolean) message.obj) {
+          progressReblog.incrementProgressBy(1);
         }
-      };
-    }
+      }
+    };
     
-    if (alertReblogAll == null) {
-      alertReblogAll = new AlertDialog.Builder(context)
-      .setTitle(R.string.reblogall_title)
-      .setPositiveButton(R.string.button_positive, new OnClickListener() {
-        public void onClick(DialogInterface dialog, int whichButton) {
-          progressReblog.show();
-          dashboard.reblogAll(handlerReblog);
-        }
-      })
-      .setNeutralButton(R.string.button_reblogone, new OnClickListener() {
-        public void onClick(DialogInterface dialog, int whichButton) {
-          reblog();
-        }
-      })
-      .setNegativeButton(R.string.button_cancel, new OnClickListener() {
-        public void onClick(DialogInterface dialog, int whichButton) {}
-      })
-      .create();
-    }
-    alertReblogAll.setMessage(String.format(getString(R.string.reblogall_message), dashboard.getPinPostsCount()));
-    alertReblogAll.show();
+    new AlertDialog.Builder(context)
+    .setTitle(R.string.reblogall_title)
+    .setMessage(String.format(getString(R.string.reblogall_message), dashboard.getPinPostsCount()))
+    .setPositiveButton(R.string.button_positive, new OnClickListener() {
+      public void onClick(DialogInterface dialog, int whichButton) {
+        progressReblog.show();
+        dashboard.reblogAll(handlerReblog);
+      }
+    })
+    .setNeutralButton(R.string.button_reblogone, new OnClickListener() {
+      public void onClick(DialogInterface dialog, int whichButton) {
+        reblog();
+      }
+    })
+    .setNegativeButton(R.string.button_cancel, new OnClickListener() {
+      public void onClick(DialogInterface dialog, int whichButton) {}
+    })
+    .show();
   }
   
   protected void privatePost()

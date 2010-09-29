@@ -5,7 +5,7 @@ import android.util.Log;
 
 public class TLLog
 { 
-  public static final boolean IS_DEBUG  = false;
+  public static final boolean IS_DEBUG  = true;
   
   public static int e(String msg)
   {

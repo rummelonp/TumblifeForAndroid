@@ -500,14 +500,6 @@ public class TLPost extends TLModel
     this.isPhoto = isPhoto;
   }
   
-  public String getImageFileName(String photoUrl)
-  {
-    if (imageFileName == null) {
-      imageFileName = TLExplorer.getPreffix(photoUrl) + "." + TLExplorer.IMAGE_EXTENSION;
-    }
-    return imageFileName;
-  }
-  
   public String getImageFileUrl()
   {
     return imageFileUrl;

@@ -263,6 +263,9 @@ public class TLDashboard implements TLDashboardInterface
   {
     StringBuffer sb = new StringBuffer();
     sb.append(Main.APP_NAME + ": ");
+    if (setting.getDashboardType() != DASHBOARD_TYPE.Default) {
+      sb.append(setting.getDashboardType().getType() + ": ");
+    }
     if (isLogined) {
       if (posts.size() > 0) {
         sb.append((postIndex + 1) + "/" + posts.size());

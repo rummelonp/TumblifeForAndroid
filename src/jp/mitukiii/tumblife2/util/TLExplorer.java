@@ -20,17 +20,22 @@ import android.os.Environment;
 public class TLExplorer
 {
   public static final String         FILE_SCHEME     = "file:";
+  
   public static final String         SD_CARD         = Environment.getExternalStorageDirectory().getPath() + "/";
   public static final String         APP_DIR         = SD_CARD + Main.APP_NAME + "/";
+  
   public static final String         HTML_DIR        = APP_DIR + "html/";
   public static final String         CSS_DIR         = APP_DIR + "css/";
   public static final String         JS_DIR          = APP_DIR + "js/";
   public static final String         IMAGE_DIR       = APP_DIR + "img/";
 
   public static final String         HTML_EXTENSION  = "html";
-  public static final CompressFormat IMAGE_FORMAT    = CompressFormat.PNG;
-  public static final String         IMAGE_EXTENSION = IMAGE_FORMAT.toString().toLowerCase();
-  public static final int            IMAGE_QUALITY   = 100;
+  
+  public static final String         IMAGE_GIF_EXTENSION = "gif";
+  
+  public static final CompressFormat IMAGE_PNG_FORMAT    = CompressFormat.PNG;
+  public static final String         IMAGE_PNG_EXTENSION = IMAGE_PNG_FORMAT.toString().toLowerCase();
+  public static final int            IMAGE_PNG_QUALITY   = 100;
   
   public static final int            IO_BUFFER_SIZE  = 4 * 1024;
   
@@ -83,7 +88,13 @@ public class TLExplorer
     return makeFile(HTML_DIR, fileName, fileString, force);
   }
   
-  public static String makeImageFile(String urlString, String fileName)
+  public static String makeGifImageFile(String urlString, String fileName)
+    throws TLSDCardNotFoundException, MalformedURLException, FileNotFoundException, IOException
+  {
+    return makeFile(IMAGE_DIR, fileName, TLConnection.get(urlString).getInputStream(), false);
+  }
+  
+  public static String makePngImageFile(String urlString, String fileName)
     throws TLSDCardNotFoundException, MalformedURLException, FileNotFoundException, IOException
   {
     if (!isSDCardWriteble() ||
@@ -121,7 +132,7 @@ public class TLExplorer
         throw new FileNotFoundException("Image writing failed.");
       }
       fileOutput = new FileOutputStream(filePath, false);
-      image.compress(IMAGE_FORMAT, IMAGE_QUALITY, fileOutput);
+      image.compress(IMAGE_PNG_FORMAT, IMAGE_PNG_QUALITY, fileOutput);
     } catch (OutOfMemoryError e) {
       TLLog.e("TLExplorer / makeImageFile : fileName / " + fileName, e);
       throw new IOException(e.getMessage());
@@ -155,9 +166,6 @@ public class TLExplorer
   }
   
   public static String getPreffix(String fileName) {
-    if (fileName == null) {
-      return null;
-    }
     fileName = new File(fileName).getName();
     int point = fileName.lastIndexOf(".");
     if (point != -1) {
