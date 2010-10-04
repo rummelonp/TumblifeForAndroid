@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  
+  <!-- Activity Name -->
+    <string name="activity_setting">Tumblife: 設定</string>
+  
+  <!-- Main Activity Menu -->
+    <string name="main_menu_setting">設定</string>
+    <string name="main_menu_exit">終了</string>
+    <string name="main_menu_reload">再読込</string>
+    <string name="main_menu_moveto">移動</string>
+    <string name="main_menu_privatepost">ここまで読んだ</string>
+    <string name="main_menu_about">アプリについて</string>
+  
+  <!-- Alert Button -->
+    <string name="button_retry">リトライ</string>
+    <string name="button_positive">はい</string>
+    <string name="button_negative">いいえ</string>
+    <string name="button_cancel">キャンセル</string>
+    <string name="button_clear">クリア</string>
+    
+    <string name="button_likeone">Like One</string>
+    
+    <string name="button_reblogone">Reblog One</string>
+  
+  <!-- Alert Message -->
+    <string name="no_internet_title">インターネット接続がありません</string>
+    <string name="no_internet_message">インターネットに接続してから再度お試しください</string>
+  
+    <string name="no_sdcard_title">SDCardが見つかりません</string>
+    <string name="no_sdcard_message">Tumblifeを使用するにはSDCardが必要です</string>
+  
+    <string name="login_no_account_title">アカウントが設定されていません</string>
+    <string name="login_no_account_message">設定画面を開きますか？</string>
+  
+    <string name="login_failure_title">ログインに失敗しました</string>
+    <string name="login_failure_message">設定画面を開きますか？</string>
+    
+    <string name="moveto_title">移動</string>
+ 	<string-array name="moveto_items">
+      <item>最初のポスト</item>
+      <item>最後のポス卜</item>
+      <item>前回のポスト</item>
+      <item>次の自分のポスト</item>
+    </string-array>
+    
+    <string name="sendto_title">送信先</string>
+    <string-array name="sendto_items">
+      <item>ブラウザ</item>
+      <item>共有</item>
+    </string-array>
+    
+    <string name="about_title">Tumblife: アプリについて</string>
+  	<string name="about_message">\
+  	  Android用のTumblrクライアント。\n\
+  	  LikeとReblog専用です。\n\
+  	  \n\
+  	  開発者:\n\
+  	  　Kazuya Takeshima\n\
+  	  \n\
+  	  メール:\n\
+  	  　mail@tumblife.com\n\
+  	  　mail@mitukiii.jp\n\
+  	  \n\
+  	  公式サイト:\n\
+  	  　http://tumblife.com\n\
+  	  　http://mitukiii.jp\n
+  	</string>
+  
+  <!-- Setting Activity -->
+  	<string name="setting_title_account">アカウント</string>
+    <string name="setting_title_setting">設定</string>
+  
+    <string name="setting_email_title">メールアドレス</string>
+
+    <string name="setting_password_title">パスワード</string>
+
+    <string name="setting_usessl_title">SSL接続を使用</string>
+    <string name="setting_usessl_summary">オフにすると読み込みが少し早くなります</string>
+
+    <string name="setting_quickpost_title">クイックポスト</string>
+    <string name="setting_quickpost_summary">Like/Reblog時に確認画面/コメント画面を出す</string>
+  
+    <string name="setting_usepin_title">Pinを使用</string>
+    <string name="setting_usepin_summary">Pinを使用すると後からまとめてReblog/Likeすることが出来ます</string>
+  
+    <string name="setting_pinaction_title">Pinの動作</string>
+    <string name="setting_pinaction_summary">Pinボタンを押した時の動作</string>
+    
+    <string name="setting_dashboardtype_title">ダッシュボードタイプ</string>
+  
+    <string name="setting_skipminepost_title">自分のポストをスキップ</string>
+  
+    <string name="setting_skipphotos_title">写真をスキップ</string>
+
+    <string name="setting_savephotos_title">写真を保存</string>
+    <string name="setting_savephotos_summary">オフにするとリモート画像を使用します</string>
+    
+    <string name="setting_sendto_title">送信先</string>
+    <string name="setting_sendto_summary">リンクをクリックした時の送信先</string>
+    <string-array name="setting_sendto_items_title">
+      <item>毎回確認する</item>
+      <item>ブラウザ</item>
+      <item>共有</item>
+    </string-array>
+    
+    <string name="setting_privateposttext_title">ここまで読んだ</string>
+    <string name="setting_privateposttext_summary">ここまで読んだボタンを押した時に投稿するテキスト</string>
+    <string name="setting_privateposttext_default">ここまで読んだ</string>
+
+    <string name="setting_clearcache_title">キャッシュをクリア</string>
+    <string name="setting_clearcache_summary">終了時にキャッシュを削除する</string>
+
+</resources>

@@ -2,11 +2,11 @@
 <resources>
   
   <!-- Application Name -->
-    <string name="app_name">Tumblife2</string>
+    <string name="app_name">Tumblife</string>
   
   <!-- Activity Name -->
-    <string name="activity_main">Tumblife2</string>
-    <string name="activity_setting">Tumblife2: Setting</string>
+    <string name="activity_main">Tumblife</string>
+    <string name="activity_setting">Tumblife: Setting</string>
 
   <!-- Main Activity Button Tumblr -->
     <string name="tumblr_button_like">Like</string>
@@ -14,16 +14,8 @@
     <string name="tumblr_button_back">Back</string>
     <string name="tumblr_button_next">Next</string>
     <string name="tumblr_button_pin">Pin</string>
-  
-  <!-- Main Activity Button Web -->
-    <string name="web_button_open">Open</string>
-    <string name="web_button_stop">Stop</string>
-    <string name="web_button_back">Back</string>
-    <string name="web_button_next">Next</string>
-    <string name="web_button_close">Close</string>
 
   <!-- Main Activity Menu -->
-    <string name="main_menu_account">Account</string>
     <string name="main_menu_setting">Setting</string>
     <string name="main_menu_exit">Exit</string>
     <string name="main_menu_reload">Reload</string>
@@ -152,7 +144,7 @@
     
     <string name="setting_lastpostid_key">lastpostid</string>
 
-    <string name="setting_usessl_key">usessl</string>
+    <string name="setting_usessl_key">use_ssl</string>
     <string name="setting_usessl_title">Use SSL</string>
     <string name="setting_usessl_summary">Using SSL, you will secure connection. When this option is off, load is faster.</string>
     <string name="setting_usessl_default">true</string>
@@ -162,12 +154,12 @@
     <string name="setting_quickpost_summary">Using quick post, you will Like and Reblog without confirmation dialog.</string>
     <string name="setting_quickpost_default">false</string>
   
-    <string name="setting_usepin_key">usepin</string>
+    <string name="setting_usepin_key">use_pin</string>
     <string name="setting_usepin_title">Use Pin</string>
     <string name="setting_usepin_summary">To pin up the post, can Reblog or Like all later.</string>
     <string name="setting_usepin_default">false</string>
   
-    <string name="setting_pinaction_key">pinaction</string>
+    <string name="setting_pinaction_key">pin_action</string>
     <string name="setting_pinaction_title">When Using Pin</string>
     <string name="setting_pinaction_summary">Action when using pin.</string>
     <string-array name="setting_pinaction_items">
@@ -191,15 +183,15 @@
     </string-array>
     <string name="setting_dashboardtype_default">Default</string>
   
-    <string name="setting_skipminepost_key">skipminepost</string>
+    <string name="setting_skipminepost_key">mine_skip</string>
     <string name="setting_skipminepost_title">Skip Mine Post</string>
     <string name="setting_skipminepost_default">false</string>
   
-    <string name="setting_skipphotos_key">skipphotos</string>
+    <string name="setting_skipphotos_key">photo_skip</string>
     <string name="setting_skipphotos_title">Skip Photos</string>
     <string name="setting_skipphotos_default">false</string>
 
-    <string name="setting_savephotos_key">savephotos</string>
+    <string name="setting_savephotos_key">photo_save</string>
     <string name="setting_savephotos_title">Save Photos</string>
     <string name="setting_savephotos_summary">When it is off, use remote images.</string>
     <string name="setting_savephotos_default">true</string>
@@ -207,6 +199,11 @@
     <string name="setting_sendto_key">sendto</string>
     <string name="setting_sendto_title">Send To</string>
     <string name="setting_sendto_summary">When link clicked, where do you send.</string>
+    <string-array name="setting_sendto_items_title">
+      <item>Confirmation</item>
+      <item>Browser</item>
+      <item>Share</item>
+    </string-array>
     <string-array name="setting_sendto_items">
       <item>Confirmation</item>
       <item>Browser</item>
@@ -216,9 +213,10 @@
     
     <string name="setting_privateposttext_key">privateposttext</string>
     <string name="setting_privateposttext_title">Private Post Text</string>
+    <string name="setting_privateposttext_summary"></string>
     <string name="setting_privateposttext_default">Current Page</string>
 
-    <string name="setting_clearcache_key">clearcache</string>
+    <string name="setting_clearcache_key">clear_cache</string>
     <string name="setting_clearcache_title">Clear Cache</string>
     <string name="setting_clearcache_summary">Delete the cache file when finished.</string>
     <string name="setting_clearcache_default">false</string>
