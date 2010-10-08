@@ -182,7 +182,8 @@ public class TLPostFactory
           try {
             Thread.sleep(SLEEP_TIME);
           } catch (InterruptedException e) {
-            TLLog.i("TLPostFactory / start", e);
+            TLLog.i("TLPostFactory / start : interrupted.", e);
+            return;
           }
         }
       }

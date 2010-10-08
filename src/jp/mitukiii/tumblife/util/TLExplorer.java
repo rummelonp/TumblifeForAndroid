@@ -22,7 +22,7 @@ public class TLExplorer
   public static final String         FILE_SCHEME     = "file:";
   
   public static final String         SD_CARD         = Environment.getExternalStorageDirectory().getPath() + "/";
-  public static final String         APP_DIR         = SD_CARD + Main.APP_NAME + "/";
+  public static final String         APP_DIR         = SD_CARD + Main.APP_NAME.replace(" ", "_") + "/";
   
   public static final String         HTML_DIR        = APP_DIR + "html/";
   public static final String         CSS_DIR         = APP_DIR + "css/";

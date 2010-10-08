@@ -42,13 +42,18 @@ public class TLUserParser extends TLParser
           tumblelog.setDraftCount(Integer.valueOf(parser.getAttributeValue(NAME_SPACE, "draft-count")));
           tumblelog.setMessagesCount(Integer.valueOf(parser.getAttributeValue(NAME_SPACE, "messages-count")));
           tumblelog.setQueueCount(Integer.valueOf(parser.getAttributeValue(NAME_SPACE, "queue-count")));
-          tumblelog.setName(parser.getAttributeValue(NAME_SPACE, "name"));
-          tumblelog.setUrl(parser.getAttributeValue(NAME_SPACE, "url"));
           tumblelog.setType(parser.getAttributeValue(NAME_SPACE, "type"));
-          tumblelog.setFollowers(Integer.valueOf(parser.getAttributeValue(NAME_SPACE, "followers")));
-          tumblelog.setAvatarUrl(parser.getAttributeValue(NAME_SPACE, "avatar-url"));
-          tumblelog.setPrimary("yes".equals(parser.getAttributeValue(NAME_SPACE, "is-primary")));
           tumblelog.setBackupPostLimit(Integer.valueOf(parser.getAttributeValue(NAME_SPACE, "backup-post-limit")));
+          if ("private".equals(tumblelog.getType())) {
+            tumblelog.setPrivateId(Integer.valueOf(parser.getAttributeValue(NAME_SPACE, "private-id")));
+            tumblelog.setPrimary(false);
+          } else if ("public".equals(tumblelog.getType())) {
+            tumblelog.setName(parser.getAttributeValue(NAME_SPACE, "name"));
+            tumblelog.setUrl(parser.getAttributeValue(NAME_SPACE, "url"));
+            tumblelog.setFollowers(Integer.valueOf(parser.getAttributeValue(NAME_SPACE, "followers")));
+            tumblelog.setAvatarUrl(parser.getAttributeValue(NAME_SPACE, "avatar-url"));
+            tumblelog.setPrimary("yes".equals(parser.getAttributeValue(NAME_SPACE, "is-primary")));
+          }
           tumblelogs.add(tumblelog);
         }
       }

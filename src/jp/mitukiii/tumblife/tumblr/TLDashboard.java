@@ -145,7 +145,8 @@ public class TLDashboard implements TLDashboardInterface
           try {
             Thread.sleep(SLEEP_TIME);
           } catch (InterruptedException e) {
-            TLLog.i("TLDashboard / start", e);
+            TLLog.i("TLDashboard / start : interrupted.", e);
+            return;
           }
         }
       }

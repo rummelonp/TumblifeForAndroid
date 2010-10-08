@@ -9,6 +9,7 @@ public class TLTumblelog extends TLModel
   protected int     draftCount;
   protected int     messagesCount;
   protected int     queueCount;
+  protected int     privateId;
   protected String  name;
   protected String  url;
   protected String  type;
@@ -85,6 +86,16 @@ public class TLTumblelog extends TLModel
   public void setQueueCount(int queueCount)
   {
     this.queueCount = queueCount;
+  }
+  
+  public int getPrivateId()
+  {
+    return privateId;
+  }
+
+  public void setPrivateId(int privateId)
+  {
+    this.privateId = privateId;
   }
 
   public String getName()

@@ -88,7 +88,7 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
       @Override
       public void onClick(View view) {
         if (dashboard.hasPinPosts()) {
-          likeAll();
+          likeAll(true);
         } else {
           like();
         }
@@ -100,7 +100,7 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
       @Override
       public void onClick(View view) {
         if (dashboard.hasPinPosts()) {
-          reblogAll();
+          reblogAll(true);
         } else {
           reblog();
         }
@@ -384,7 +384,7 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
     .setMessage(String.format(getString(R.string.likeall_failure_message), dashboard.getPinPostsCount()))
     .setPositiveButton(R.string.button_positive, new OnClickListener() {
       public void onClick(DialogInterface dialog, int which) {
-        likeAll();
+        likeAll(false);
       }
     })
     .setNegativeButton(R.string.button_negative, new OnClickListener() {
@@ -433,7 +433,7 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
     .setMessage(String.format(getString(R.string.reblogall_failure_message), dashboard.getPinPostsCount()))
     .setPositiveButton(R.string.button_positive, new OnClickListener() {
       public void onClick(DialogInterface dialog, int which) {
-        reblogAll();
+        reblogAll(false);
       }
     })
     .setNegativeButton(R.string.button_negative, new OnClickListener() {
@@ -630,7 +630,7 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
     }
   }
   
-  protected void likeAll()
+  protected void likeAll(boolean showAlert)
   {
     if (!dashboard.hasPinPosts()) {
       return;
@@ -655,24 +655,29 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
       }
     };
     
-    new AlertDialog.Builder(context)
-    .setTitle(R.string.likeall_title)
-    .setMessage(String.format(getString(R.string.likeall_message), dashboard.getPinPostsCount()))
-    .setPositiveButton(R.string.button_positive, new OnClickListener() {
-      public void onClick(DialogInterface dialog, int whichButton) {
-        progressLike.show();
-        dashboard.likeAll(handlerLike);
-      }
-    })
-    .setNeutralButton(R.string.button_likeone, new OnClickListener() {
-      public void onClick(DialogInterface dialog, int whichButton) {
-        like();
-      }
-    })
-    .setNegativeButton(R.string.button_cancel, new OnClickListener() {
-      public void onClick(DialogInterface dialog, int whichButton) {}
-    })
-    .show();
+    if (showAlert) {
+      new AlertDialog.Builder(context)
+      .setTitle(R.string.likeall_title)
+      .setMessage(String.format(getString(R.string.likeall_message), dashboard.getPinPostsCount()))
+      .setPositiveButton(R.string.button_positive, new OnClickListener() {
+        public void onClick(DialogInterface dialog, int whichButton) {
+          progressLike.show();
+          dashboard.likeAll(handlerLike);
+        }
+      })
+      .setNeutralButton(R.string.button_likeone, new OnClickListener() {
+        public void onClick(DialogInterface dialog, int whichButton) {
+          like();
+        }
+      })
+      .setNegativeButton(R.string.button_cancel, new OnClickListener() {
+        public void onClick(DialogInterface dialog, int whichButton) {}
+      })
+      .show();
+    } else {
+      progressLike.show();
+      dashboard.likeAll(handlerLike);
+    }
   }
   
   protected void reblog()
@@ -706,7 +711,7 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
     }
   }
   
-  protected void reblogAll()
+  protected void reblogAll(boolean showAlert)
   {
     if (!dashboard.hasPinPosts()) {
       return;
@@ -731,24 +736,29 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
       }
     };
     
-    new AlertDialog.Builder(context)
-    .setTitle(R.string.reblogall_title)
-    .setMessage(String.format(getString(R.string.reblogall_message), dashboard.getPinPostsCount()))
-    .setPositiveButton(R.string.button_positive, new OnClickListener() {
-      public void onClick(DialogInterface dialog, int whichButton) {
-        progressReblog.show();
-        dashboard.reblogAll(handlerReblog);
-      }
-    })
-    .setNeutralButton(R.string.button_reblogone, new OnClickListener() {
-      public void onClick(DialogInterface dialog, int whichButton) {
-        reblog();
-      }
-    })
-    .setNegativeButton(R.string.button_cancel, new OnClickListener() {
-      public void onClick(DialogInterface dialog, int whichButton) {}
-    })
-    .show();
+    if (showAlert) {
+      new AlertDialog.Builder(context)
+      .setTitle(R.string.reblogall_title)
+      .setMessage(String.format(getString(R.string.reblogall_message), dashboard.getPinPostsCount()))
+      .setPositiveButton(R.string.button_positive, new OnClickListener() {
+        public void onClick(DialogInterface dialog, int whichButton) {
+          progressReblog.show();
+          dashboard.reblogAll(handlerReblog);
+        }
+      })
+      .setNeutralButton(R.string.button_reblogone, new OnClickListener() {
+        public void onClick(DialogInterface dialog, int whichButton) {
+          reblog();
+        }
+      })
+      .setNegativeButton(R.string.button_cancel, new OnClickListener() {
+        public void onClick(DialogInterface dialog, int whichButton) {}
+      })
+      .show();
+    } else {
+      progressReblog.show();
+      dashboard.reblogAll(handlerReblog);
+    }
   }
   
   protected void privatePost()
