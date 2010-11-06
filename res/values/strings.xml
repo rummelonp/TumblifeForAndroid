@@ -7,6 +7,7 @@
   <!-- Activity Name -->
     <string name="activity_main">Tumblife</string>
     <string name="activity_setting">Tumblife: Setting</string>
+    <string name="activity_hardkey_setting">Tumblife: Hardware Key Setting</string>
 
   <!-- Main Activity Button Tumblr -->
     <string name="tumblr_button_like">Like</string>
@@ -196,6 +197,10 @@
     <string name="setting_savephotos_summary">When it is off, use remote images.</string>
     <string name="setting_savephotos_default">true</string>
     
+    <string name="setting_hardkey_key">hardkey</string>
+    <string name="setting_hardkey_title">Hardware Key Setting</string>
+    <string name="setting_hardkey_summary"></string>
+    
     <string name="setting_sendto_key">sendto</string>
     <string name="setting_sendto_title">Send To</string>
     <string name="setting_sendto_summary">When link clicked, where do you send.</string>
@@ -220,5 +225,25 @@
     <string name="setting_clearcache_title">Clear Cache</string>
     <string name="setting_clearcache_summary">Delete the cache file when finished.</string>
     <string name="setting_clearcache_default">false</string>
-
+    
+  <!-- Hardkey Setting Activity -->
+    <string name="hardkey_setting_hidebuttonbar_key">hidebuttonbar</string>
+    <string name="hardkey_setting_hidebuttonbar_title">Hide Button Bar</string>
+    <string name="hardkey_setting_hidebuttonbar_default">false</string>
+    
+    <string name="hardkey_setting_likebutton_key">likebutton</string>
+  	<string name="hardkey_setting_likebutton_title">Like Button</string>
+    
+	<string name="hardkey_setting_reblogbutton_key">reblog_button</string>
+	<string name="hardkey_setting_reblogbutton_title">Reblog Button</string>
+  	
+  	<string name="hardkey_setting_backbutton_key">backbutton</string>
+  	<string name="hardkey_setting_backbutton_title">Back Button</string>
+  	
+  	<string name="hardkey_setting_nextbutton_key">nextbutton</string>
+  	<string name="hardkey_setting_nextbutton_title">Next Button</string>
+  	
+	<string name="hardkey_setting_pinbutton_key">pinbutton</string>
+	<string name="hardkey_setting_pinbutton_title">Pin Button</string>
+	
 </resources>

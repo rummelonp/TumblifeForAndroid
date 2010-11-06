@@ -6,6 +6,7 @@ import jp.mitukiii.tumblife.model.TLPost;
 import jp.mitukiii.tumblife.model.TLSetting;
 import jp.mitukiii.tumblife.tumblr.TLDashboard;
 import jp.mitukiii.tumblife.tumblr.TLDashboardDelegate;
+import jp.mitukiii.tumblife.tumblr.TLDashboardInterface;
 import jp.mitukiii.tumblife.ui.TLWebViewClient;
 import jp.mitukiii.tumblife.ui.TLWebViewClientDelegate;
 import jp.mitukiii.tumblife.util.TLLog;
@@ -21,6 +22,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.util.Linkify;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -29,33 +31,36 @@ import android.view.Window;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class Main extends Activity implements TLDashboardDelegate, TLWebViewClientDelegate
 {
-  public static String         APP_NAME;
+  public static String                  APP_NAME;
 
-  protected static TLDashboard dashboard;
+  protected static TLDashboardInterface dashboard;
 
-  protected Context            context;
-  protected Handler            handler;
-  protected TLSetting          setting;
-  protected TLPostFactory      postFactory;
-  protected TLPost             currentPost;
-  protected TLWebViewClient    webViewClient;
+  protected TLDashboardDelegate         delegate;
+  protected Context                     context;
+  protected Handler                     handler;
+  protected TLSetting                   setting;
+  protected TLPostFactory               postFactory;
+  protected TLPost                      currentPost;
+  protected TLWebViewClient             webViewClient;
 
-  protected WebView            webView;
-  protected Button             buttonLike;
-  protected Button             buttonReblog;
-  protected Button             buttonBack;
-  protected Button             buttonNext;
-  protected Button             buttonPin;
+  protected WebView                     webView;
+  protected LinearLayout                buttonBar;
+  protected Button                      buttonLike;
+  protected Button                      buttonReblog;
+  protected Button                      buttonBack;
+  protected Button                      buttonNext;
+  protected Button                      buttonPin;
 
-  protected ProgressDialog     progressLike;
-  protected ProgressDialog     progressReblog;
+  protected ProgressDialog              progressLike;
+  protected ProgressDialog              progressReblog;
 
-  protected boolean            isFinished;
+  protected boolean                     isFinished;
 
   @Override
   protected void onCreate(Bundle savedInstanceState)
@@ -67,21 +72,24 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
     requestWindowFeature(Window.FEATURE_RIGHT_ICON);
     setContentView(R.layout.main);
     
-    context = this;
-    handler = new Handler();
-    setting = TLSetting.getSharedInstance(context);
+    delegate = this;
+    context  = this;
+    handler  = new Handler();
+    setting  = TLSetting.getSharedInstance(context);
     postFactory = TLPostFactory.getSharedInstance(context);
     
     if (dashboard == null) {
       dashboard = new TLDashboard(this, context, handler);
     } else {
-      dashboard.init(this, context, handler);
+      dashboard.init(delegate, context, handler);
     }
     
     webViewClient = new TLWebViewClient(this, context, handler);
     webView = (WebView)findViewById(R.id.web_view);
     webView.setWebViewClient(webViewClient);
     webView.getSettings().setJavaScriptEnabled(true);
+    
+    buttonBar = (LinearLayout)findViewById(R.id.tumblr_buttons);
     
     buttonLike = (Button)findViewById(R.id.tumblr_button_like);
     buttonLike.setOnClickListener(new View.OnClickListener() {
@@ -145,6 +153,12 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
     } else {
       buttonPin.setVisibility(View.GONE);
       buttonPin.setEnabled(false);
+    }
+    
+    if (setting.hideButtonBar()) {
+      buttonBar.setVisibility(View.GONE);
+    } else {
+      buttonBar.setVisibility(View.VISIBLE);
     }
     
     if (dashboard.isLogined()) {
@@ -239,6 +253,56 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
     }
     
     return super.onOptionsItemSelected(item);
+  }
+  
+  @Override
+  public boolean dispatchKeyEvent(KeyEvent event)
+  {
+    int keyCode = event.getKeyCode();
+    if (event.getAction() == KeyEvent.ACTION_DOWN) {
+      if (keyCode == setting.getKeyCodeBackButton()) {
+        movePost(dashboard.postBack());
+        return true;
+      } else if (keyCode == setting.getKeyCodeNextButton()) {
+        movePost(dashboard.postNext());
+        return true;
+      } else if (keyCode == setting.getKeyCodePinButton()) {
+        TLPost post = dashboard.postPin(currentPost);
+        if (post == null) {
+          post = currentPost;
+        }
+        movePost(post);
+        return true;
+      } else if (keyCode == setting.getKeyCodeLikeButton()) {
+        if (dashboard.hasPinPosts()) {
+          likeAll(true);
+        } else {
+          like();
+        }
+        return true;
+      } else if (keyCode == setting.getKeyCodeReblogButton()) {
+        if (dashboard.hasPinPosts()) {
+          reblogAll(true);
+        } else {
+          reblog();
+        }
+        return true;
+      }
+    } else {
+      if (keyCode == setting.getKeyCodeBackButton()) {
+        return true;
+      } else if (keyCode == setting.getKeyCodeNextButton()) {
+        return true;
+      } else if (keyCode == setting.getKeyCodePinButton()) {
+        return true;
+      } else if (keyCode == setting.getKeyCodeLikeButton()) {
+        return true;
+      } else if (keyCode == setting.getKeyCodeReblogButton()) {
+        return true;
+      }
+    }
+    
+    return super.dispatchKeyEvent(event);
   }
   
   public void noAccount()

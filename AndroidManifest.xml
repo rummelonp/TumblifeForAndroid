@@ -18,5 +18,8 @@
     <activity android:name="jp.mitukiii.tumblife.Setting"
       android:label="@string/activity_setting">
     </activity>
+    <activity android:name="jp.mitukiii.tumblife.HardkeySetting"
+      android:label="@string/activity_hardkey_setting">
+    </activity>
   </application>
 </manifest> 

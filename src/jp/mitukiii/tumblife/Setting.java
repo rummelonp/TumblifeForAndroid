@@ -4,6 +4,7 @@ import jp.mitukiii.tumblife.R;
 import jp.mitukiii.tumblife.model.TLSetting.DASHBOARD_TYPE;
 import jp.mitukiii.tumblife.util.TLLog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
@@ -49,10 +50,14 @@ public class Setting extends PreferenceActivity
   @Override
   public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference)
   {
-    togglePreference(preference);
+    if (getString(R.string.setting_hardkey_key).equals(preference.getKey())) {
+      Intent intent = new Intent(context, HardkeySetting.class);
+      startActivity(intent);      
+    } else {
+      togglePreference(preference);
+    }
     return super.onPreferenceTreeClick(preferenceScreen, preference);
   }
-  
   
   protected void togglePreference(Preference preference)
   {

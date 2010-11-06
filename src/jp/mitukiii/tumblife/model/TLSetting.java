@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.preference.PreferenceManager;
+import android.view.KeyEvent;
 
 public class TLSetting extends TLModel
 {
@@ -79,9 +80,16 @@ public class TLSetting extends TLModel
   protected boolean          useSkipMinePost;
   protected boolean          useSkipPhotos;
   protected boolean          useSavePhotos;
+  protected boolean          hideButtonBar;
   protected SEND_TO          sendTo;
   protected String           privatePostText;
   protected boolean          useClearCache;
+  
+  protected int              keyCodeLikeButton;
+  protected int              keyCodeReblogButton;
+  protected int              keyCodeBackButton;
+  protected int              keyCodeNextButton;
+  protected int              keyCodePinButton;
   
   protected TLSetting(Context context)
   {
@@ -147,6 +155,10 @@ public class TLSetting extends TLModel
         context.getString(R.string.setting_savephotos_key),
         Boolean.valueOf(context.getString(R.string.setting_savephotos_default)));
     
+    hideButtonBar = preferences.getBoolean(
+        context.getString(R.string.hardkey_setting_hidebuttonbar_key),
+        Boolean.valueOf(context.getString(R.string.hardkey_setting_hidebuttonbar_default)));
+    
     privatePostText = preferences.getString(
         context.getString(R.string.setting_privateposttext_key),
         context.getString(R.string.setting_privateposttext_default));
@@ -164,6 +176,26 @@ public class TLSetting extends TLModel
         context.getString(R.string.setting_sendto_key),
         context.getString(R.string.setting_sendto_default));
     sendTo = SEND_TO.valueOf(sendToString);
+    
+    keyCodeLikeButton = preferences.getInt(
+        context.getString(R.string.hardkey_setting_likebutton_key),
+        KeyEvent.KEYCODE_UNKNOWN);
+    
+    keyCodeReblogButton = preferences.getInt(
+        context.getString(R.string.hardkey_setting_reblogbutton_key),
+        KeyEvent.KEYCODE_UNKNOWN);
+    
+    keyCodeBackButton = preferences.getInt(
+        context.getString(R.string.hardkey_setting_backbutton_key),
+        KeyEvent.KEYCODE_UNKNOWN);
+    
+    keyCodeNextButton = preferences.getInt(
+        context.getString(R.string.hardkey_setting_nextbutton_key),
+        KeyEvent.KEYCODE_UNKNOWN);
+    
+    keyCodePinButton = preferences.getInt(
+        context.getString(R.string.hardkey_setting_pinbutton_key),
+        KeyEvent.KEYCODE_UNKNOWN);
   }
 
   public String getEmail()
@@ -234,6 +266,11 @@ public class TLSetting extends TLModel
     return useSavePhotos;
   }
   
+  public boolean hideButtonBar()
+  {
+    return hideButtonBar;
+  }
+  
   public SEND_TO getSendTo()
   {
     return sendTo;
@@ -247,5 +284,30 @@ public class TLSetting extends TLModel
   public boolean useClearCache()
   {
     return useClearCache;
+  }
+  
+  public int getKeyCodeLikeButton()
+  {
+    return keyCodeLikeButton;
+  }
+  
+  public int getKeyCodeReblogButton()
+  {
+    return keyCodeReblogButton;
+  }
+  
+  public int getKeyCodeBackButton()
+  {
+    return keyCodeBackButton;
+  }
+  
+  public int getKeyCodeNextButton()
+  {
+    return keyCodeNextButton;
+  }
+  
+  public int getKeyCodePinButton()
+  {
+    return keyCodePinButton;
   }
 }

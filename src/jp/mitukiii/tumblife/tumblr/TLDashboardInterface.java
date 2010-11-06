@@ -1,11 +1,14 @@
 package jp.mitukiii.tumblife.tumblr;
 
 import java.util.HashMap;
+import android.content.Context;
 import android.os.Handler;
 import jp.mitukiii.tumblife.model.TLPost;
 
 public interface TLDashboardInterface
 {
+  public void init(TLDashboardDelegate delegate, Context context, Handler handler);
+  
   public void start();
   
   public String getTitle();

@@ -35,6 +35,10 @@
       android:entries="@array/setting_pinaction_items"
       android:entryValues="@array/setting_pinaction_items"
       android:defaultValue="@string/setting_pinaction_default" />
+    <PreferenceScreen
+      android:key="@string/setting_hardkey_key"
+  	  android:title="@string/setting_hardkey_title"
+  	  android:summary="@string/setting_hardkey_summary" />
     <ListPreference
       android:key="@string/setting_dashboardtype_key"
       android:title="@string/setting_dashboardtype_title"

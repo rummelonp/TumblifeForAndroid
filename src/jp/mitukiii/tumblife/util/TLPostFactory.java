@@ -237,7 +237,7 @@ public class TLPostFactory
       TLLog.w("TLPostFactory / copyAssetHeaderFiles", e);
     }
     try {
-      fileUrl = TLExplorer.makeFile(TLExplorer.JS_DIR, "application.js", manager.open("default.css"), true);
+      fileUrl = TLExplorer.makeFile(TLExplorer.JS_DIR, "application.js", manager.open("application.js"), true);
       sb.append("<script src=\"" + fileUrl + "\" type=\"text/javascript\"></script>\n");
     } catch (IOException e) {
       TLLog.w("TLPostFactory / copyAssetHeaderFiles", e);

@@ -3,6 +3,7 @@
   
   <!-- Activity Name -->
     <string name="activity_setting">Tumblife: 設定</string>
+    <string name="activity_hardkey_setting">Tumblife: ハードウェアキー設定</string>
   
   <!-- Main Activity Menu -->
     <string name="main_menu_setting">設定</string>
@@ -96,6 +97,9 @@
     <string name="setting_savephotos_title">写真を保存</string>
     <string name="setting_savephotos_summary">オフにするとリモート画像を使用します</string>
     
+    <string name="setting_hardkey_title">ハードウェアキー設定</string>
+    <string name="setting_hardkey_summary"></string>
+    
     <string name="setting_sendto_title">送信先</string>
     <string name="setting_sendto_summary">リンクをクリックした時の送信先</string>
     <string-array name="setting_sendto_items_title">
@@ -110,5 +114,8 @@
 
     <string name="setting_clearcache_title">キャッシュをクリア</string>
     <string name="setting_clearcache_summary">終了時にキャッシュを削除する</string>
+    
+  <!-- Hardkey Setting Activity -->
+    <string name="hardkey_setting_hidebuttonbar_title">ボタンを隠す</string>
 
 </resources>
