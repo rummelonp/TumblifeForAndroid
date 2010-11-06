@@ -59,6 +59,8 @@
       Post #%s (%s)\
     </string>
   	<string name="new_posts">%s New Posts.</string>
+  	
+  	<string name="hardkey_setting_menu">Can\'t hardware key assign to menu button.</string>
   
   <!-- Alert Button -->
     <string name="button_ok">OK</string>

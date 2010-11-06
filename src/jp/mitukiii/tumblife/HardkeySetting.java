@@ -1,5 +1,7 @@
 package jp.mitukiii.tumblife;
 
+import jp.mitukiii.tumblife.R;
+import jp.mitukiii.tumblife.util.TLLog;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -13,6 +15,7 @@ import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
 import android.view.KeyEvent;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class HardkeySetting extends PreferenceActivity
 {
@@ -63,8 +66,13 @@ public class HardkeySetting extends PreferenceActivity
     
     AlertDialog dialog = new AlertDialog(context) {
       public boolean dispatchKeyEvent(KeyEvent event) {
-        editor.putInt(preference.getKey(), event.getKeyCode());
-        textView.setText(KeyCodeMap.valueOf(event.getKeyCode()).getName());
+        int keyCode = event.getKeyCode();
+        if (keyCode == KeyEvent.KEYCODE_MENU) {
+          showToast(R.string.hardkey_setting_menu);
+        } else {
+          editor.putInt(preference.getKey(), keyCode);
+          textView.setText(KeyCodeMap.valueOf(keyCode).getName());
+        }
         return true;
       }
     };
@@ -93,5 +101,17 @@ public class HardkeySetting extends PreferenceActivity
     dialog.show();
     
     return super.onPreferenceTreeClick(preferenceScreen, preference);
+  }
+  
+  protected void showToast(int resid)
+  {
+    showToast(getString(resid));
+  }
+  
+  protected void showToast(String text)
+  {
+    TLLog.d("HardkeySetting / showToast : " + text);
+    
+    Toast.makeText(context, text, Toast.LENGTH_SHORT).show();
   }
 }

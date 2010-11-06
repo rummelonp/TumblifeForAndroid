@@ -12,6 +12,9 @@
     <string name="main_menu_moveto">移動</string>
     <string name="main_menu_privatepost">ここまで読んだ</string>
     <string name="main_menu_about">アプリについて</string>
+    
+  <!-- Toast Message -->
+    <string name="hardkey_setting_menu">MENUに割り当てることは出来ません</string>
   
   <!-- Alert Button -->
     <string name="button_retry">リトライ</string>
