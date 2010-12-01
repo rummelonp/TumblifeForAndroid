@@ -26,12 +26,6 @@ public class TLUserParser extends TLParser
       if (e == XmlPullParser.START_TAG) {
         String tag = parser.getName();
         if ("user".equals(tag)) {
-          user.setDefaultPostFormat(parser.getAttributeValue(NAME_SPACE, "default-post-format"));
-          user.setCanUploadAudio("1".equals(parser.getAttributeValue(NAME_SPACE, "can-upload-audio")));
-          user.setCanUploadAiff("1".equals(parser.getAttributeValue(NAME_SPACE, "can-upload-aiff")));
-          user.setCanAskQuestion("1".equals(parser.getAttributeValue(NAME_SPACE, "can-ask-question")));
-          user.setCanUploadVideo("1".equals(parser.getAttributeValue(NAME_SPACE, "can-upload-video")));
-          user.setMaxVideoBytesUploaded(Integer.valueOf(parser.getAttributeValue(NAME_SPACE, "max-video-bytes-uploaded")));
           user.setLikedPostCount(Integer.valueOf(parser.getAttributeValue(NAME_SPACE, "liked-post-count")));
         } else if ("tumblelog".equals(tag)) {
           TLTumblelog tumblelog = new TLTumblelog();
@@ -39,11 +33,7 @@ public class TLUserParser extends TLParser
           tumblelog.setAdmin("1".equals(parser.getAttributeValue(NAME_SPACE, "is-admin")));
           tumblelog.setPosts(Integer.valueOf(parser.getAttributeValue(NAME_SPACE, "posts")));
           tumblelog.setTwitterEnabled("1".equals(parser.getAttributeValue(NAME_SPACE, "twitter-enabled")));
-          tumblelog.setDraftCount(Integer.valueOf(parser.getAttributeValue(NAME_SPACE, "draft-count")));
-          tumblelog.setMessagesCount(Integer.valueOf(parser.getAttributeValue(NAME_SPACE, "messages-count")));
-          tumblelog.setQueueCount(Integer.valueOf(parser.getAttributeValue(NAME_SPACE, "queue-count")));
           tumblelog.setType(parser.getAttributeValue(NAME_SPACE, "type"));
-          tumblelog.setBackupPostLimit(Integer.valueOf(parser.getAttributeValue(NAME_SPACE, "backup-post-limit")));
           if ("private".equals(tumblelog.getType())) {
             tumblelog.setPrivateId(Integer.valueOf(parser.getAttributeValue(NAME_SPACE, "private-id")));
             tumblelog.setPrimary(false);
