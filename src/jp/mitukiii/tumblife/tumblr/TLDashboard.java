@@ -59,41 +59,42 @@ public class TLDashboard implements TLDashboardInterface
     }
   }
   
-  protected static final String      HTTP_SCHEME   = "http://";
-  protected static final String      HTTPS_SCHEME  = "https://";
-  protected static final String      TUMBLR_URL    = "www.tumblr.com";
-  protected static final String      AUTH_URL      = "/api/authenticate";
-  protected static final String      DASHBOARD_URL = "/api/dashboard";
-  protected static final String      LIKE_URL      = "/api/like";
-  protected static final String      REBLOG_URL    = "/api/reblog";
-  protected static final String      WRITE_URL     = "/api/write";
+  protected static final String   HTTP_SCHEME       = "http://";
+  protected static final String   HTTPS_SCHEME      = "https://";
+  protected static final String   TUMBLR_URL        = "www.tumblr.com";
+  protected static final String   AUTH_URL          = "/api/authenticate";
+  protected static final String   DASHBOARD_URL     = "/api/dashboard";
+  protected static final String   LIKE_URL          = "/api/like";
+  protected static final String   REBLOG_URL        = "/api/reblog";
+  protected static final String   WRITE_URL         = "/api/write";
 
-  protected static final int         SLEEP_TIME    = 2 * 1000;
-  protected static final int         DURATION_TIME = 10 * 1000;
-  protected static final int         START_MAX     = 250;
-  protected static final int         LOAD_NUM      = 50;
-  protected static final int         CALLBACK_NUM  = 5;
+  protected static final int      SLEEP_TIME        = 2 * 1000;
+  protected static final int      DURATION_TIME     = 10 * 1000;
+  protected static final int      FAILURE_COUNT_MAX = 10;
+  protected static final int      START_MAX         = 250;
+  protected static final int      LOAD_NUM          = 50;
+  protected static final int      CALLBACK_NUM      = 5;
 
-  protected TLDashboardDelegate      delegate;
-  protected Context                  context;
-  protected Handler                  handler;
+  protected TLDashboardDelegate   delegate;
+  protected Context               context;
+  protected Handler               handler;
 
-  protected List<TLPost>             posts         = new ArrayList<TLPost>(300);
-  protected int                      postIndex     = 0;
-  protected int                      containsPostCount = 0;
-  protected HashMap<Long, TLPost>    pinPosts      = new HashMap<Long, TLPost>();
-  protected TLPostFactory            postFactory;
-  protected TLSetting                setting;
-  protected TLUser                   user;
-  protected TLTumblelog              tumblelog;
+  protected List<TLPost>          posts             = new ArrayList<TLPost>(300);
+  protected int                   postIndex         = 0;
+  protected int                   containsPostCount = 0;
+  protected HashMap<Long, TLPost> pinPosts          = new HashMap<Long, TLPost>();
+  protected TLPostFactory         postFactory;
+  protected TLSetting             setting;
+  protected TLUser                user;
+  protected TLTumblelog           tumblelog;
 
-  protected boolean                  isLastPostLoaded;
-  protected int                      lastPostIndex;
-  
-  protected boolean                  isRunned;
-  protected boolean                  isLogined;
-  protected boolean                  isStoped;
-  protected boolean                  isDestroyed;
+  protected boolean               isLastPostLoaded;
+  protected int                   lastPostIndex;
+
+  protected boolean               isRunned;
+  protected boolean               isLogined;
+  protected boolean               isStoped;
+  protected boolean               isDestroyed;
 
   public TLDashboard(TLDashboardDelegate delegate, Context context, Handler handler)
   {
@@ -133,7 +134,7 @@ public class TLDashboard implements TLDashboardInterface
             return;
           } else if (isStoped) {
             TLLog.d("TLDashboard / start : stoped.");
-          } else if (failureCount >= 10) {
+          } else if (failureCount >= FAILURE_COUNT_MAX) {
             handler.post(new Runnable() { public void run() { delegate.loadError(); } });
             isRunned = false;
             return;
