@@ -90,6 +90,7 @@ public class TLDashboard implements TLDashboardInterface
   protected boolean                  isLastPostLoaded;
   protected int                      lastPostIndex;
   
+  protected boolean                  isRunned;
   protected boolean                  isLogined;
   protected boolean                  isStoped;
   protected boolean                  isDestroyed;
@@ -112,6 +113,11 @@ public class TLDashboard implements TLDashboardInterface
   {
     TLLog.i("TLDashboard / start");
     
+    if (isRunned) {
+      return;
+    }
+    isRunned = true;
+    
     new Thread() {
       public void run() {
         if (!login()) {
@@ -119,26 +125,36 @@ public class TLDashboard implements TLDashboardInterface
           return;
         }
         Long beforeTime = null;
+        int failureCount = 0;
         while (true) {
           if (isDestroyed) {
             TLLog.d("TLDashboard / start : destroyed.");
+            isRunned = false;
             return;
           } else if (isStoped) {
             TLLog.d("TLDashboard / start : stoped.");
+          } else if (failureCount >= 10) {
+            handler.post(new Runnable() { public void run() { delegate.loadError(); } });
+            isRunned = false;
+            return;
           } else if (posts.size() > START_MAX) {
             TLLog.d("TLDashboard / start : All posts loaded.");
             handler.post(new Runnable() { public void run() { delegate.loadAllSuccess(); } });
             if (!isLastPostLoaded) {
               handler.post(new Runnable() { public void run() { delegate.showNewPosts(posts.size() + "+"); } });
             }
+            isRunned = false;
             return;
           } else if (beforeTime == null || System.currentTimeMillis() - beforeTime > DURATION_TIME) {
             beforeTime = System.currentTimeMillis();
             try {
-              load();
+              if (!load()) {
+                failureCount += 1;
+              }
             } catch (TLSDCardNotFoundException e) {
               TLLog.i("TLDashboard / start", e);
               handler.post(new Runnable() { public void run() { delegate.noSDCard(); } });
+              isRunned = false;
               return;
             }
           }
@@ -146,6 +162,7 @@ public class TLDashboard implements TLDashboardInterface
             Thread.sleep(SLEEP_TIME);
           } catch (InterruptedException e) {
             TLLog.i("TLDashboard / start : interrupted.", e);
+            isRunned = false;
             return;
           }
         }
@@ -157,10 +174,15 @@ public class TLDashboard implements TLDashboardInterface
   {
     TLLog.i("TLDashboard / login");
     
+    if (isLogined) {
+      return isLogined;
+    }
+    
     isLogined = false;
     HttpURLConnection con = null;
     try {
       con = TLConnection.post(getTumblrUrl(AUTH_URL), getAccountParameters());
+      TLLog.i("TLDashboard / login : ResnponseCode / " + con.getResponseCode());
       if (con.getResponseCode() != HttpURLConnection.HTTP_OK) {
         throw new TLAuthenticationFailureException();
       }
@@ -188,11 +210,12 @@ public class TLDashboard implements TLDashboardInterface
     return isLogined;
   }
   
-  protected void load()
+  protected boolean load()
     throws TLSDCardNotFoundException
   {
     TLLog.i("TLDashboard / load");
     
+    boolean result = false;
     HttpURLConnection con = null;
     try {
       HashMap<String, String> parameters = getAccountParameters();
@@ -203,6 +226,7 @@ public class TLDashboard implements TLDashboardInterface
         parameters.put("type", type);
       }
       con = TLConnection.get(getTumblrUrl(DASHBOARD_URL), parameters);
+      TLLog.i("TLDashboard / load : ResnponseCode / " + con.getResponseCode());
       if (con.getResponseCode() != HttpURLConnection.HTTP_OK) {
         throw new TLAuthenticationFailureException();
       }
@@ -215,7 +239,7 @@ public class TLDashboard implements TLDashboardInterface
       }
       for (final TLPost post: _posts) {
         if (isDestroyed) {
-          return;
+          return false;
         }
         if (posts.contains(post)) {
           containsPostCount += 1;
@@ -239,6 +263,7 @@ public class TLDashboard implements TLDashboardInterface
           }
         }
       }
+      result = true;
       handler.post(new Runnable() { public void run(){ delegate.loadSuccess(); } });
     } catch (TLSDCardNotFoundException e) {
       throw e;
@@ -256,6 +281,7 @@ public class TLDashboard implements TLDashboardInterface
         con.disconnect();
       }
     }
+    return result;
   }
   
   public String getTitle()

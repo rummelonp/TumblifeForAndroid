@@ -20,6 +20,8 @@ public interface TLDashboardDelegate
   
   public void loadFailure();
   
+  public void loadError();
+  
   public void likeSuccess();
   
   public void likeFailure();

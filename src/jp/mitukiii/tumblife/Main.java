@@ -82,6 +82,7 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
       dashboard = new TLDashboard(this, context, handler);
     } else {
       dashboard.init(delegate, context, handler);
+      dashboard.restart();
     }
     
     webViewClient = new TLWebViewClient(this, context, handler);
@@ -194,9 +195,10 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
   {
     super.onDestroy();
     
+    dashboard.stop();
+    
     if (isFinished) {
       TLLog.i("Main / onDestroy : Finished.");
-      dashboard.stop();
       dashboard.destroy();
       postFactory.stop();
       postFactory.deleteFiles();
@@ -407,6 +409,25 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
     TLLog.d("Main / loadFailure");
     
     showToast(R.string.load_failure);
+  }
+  
+  public void loadError()
+  {
+    TLLog.d("Main / loadError");
+    
+    new AlertDialog.Builder(context)
+    .setTitle(R.string.load_error_title)
+    .setMessage(R.string.load_error_message)
+    .setPositiveButton(R.string.button_positive, new OnClickListener() {
+      public void onClick(DialogInterface dialog, int which) {
+        dashboard.start();
+      }
+    })
+    .setNegativeButton(R.string.button_negative, new OnClickListener() {
+      public void onClick(DialogInterface dialog, int which) {
+      }
+    })
+    .show();
   }
   
   public void likeSuccess()
