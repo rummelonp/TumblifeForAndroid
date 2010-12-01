@@ -87,6 +87,9 @@
     <string name="login_failure_title">Login Failure.</string>
     <string name="login_failure_message">Show setting?</string>
     
+    <string name="load_error_title">Error occurred.</string>
+    <string name="load_error_message">Error occurred in Tumbler, or no network connection. Failed to load 10 times, therefore stop load of dashbord. Do you reload?</string>    
+    
     <string name="moveto_title">Move To</string>
  	<string-array name="moveto_items">
       <item>First Post</item>

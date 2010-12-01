@@ -45,8 +45,8 @@ public final class R {
         public static final int setting=0x7f030003;
     }
     public static final class string {
-        public static final int about_message=0x7f040044;
-        public static final int about_title=0x7f040043;
+        public static final int about_message=0x7f040046;
+        public static final int about_title=0x7f040045;
         public static final int activity_hardkey_setting=0x7f040003;
         /**  Activity Name 
          */
@@ -69,38 +69,40 @@ public final class R {
         /**  Alert Button 
          */
         public static final int button_retry=0x7f040026;
-        public static final int hardkey_setting_backbutton_key=0x7f04007f;
-        public static final int hardkey_setting_backbutton_title=0x7f040080;
-        public static final int hardkey_setting_hidebuttonbar_default=0x7f04007a;
+        public static final int hardkey_setting_backbutton_key=0x7f040081;
+        public static final int hardkey_setting_backbutton_title=0x7f040082;
+        public static final int hardkey_setting_hidebuttonbar_default=0x7f04007c;
         /**  Hardkey Setting Activity 
          */
-        public static final int hardkey_setting_hidebuttonbar_key=0x7f040078;
+        public static final int hardkey_setting_hidebuttonbar_key=0x7f04007a;
         /**  Hardkey Setting Activity 
          */
-        public static final int hardkey_setting_hidebuttonbar_title=0x7f040079;
-        public static final int hardkey_setting_likebutton_key=0x7f04007b;
-        public static final int hardkey_setting_likebutton_title=0x7f04007c;
+        public static final int hardkey_setting_hidebuttonbar_title=0x7f04007b;
+        public static final int hardkey_setting_likebutton_key=0x7f04007d;
+        public static final int hardkey_setting_likebutton_title=0x7f04007e;
         /**  Toast Message 
          */
         public static final int hardkey_setting_menu=0x7f040024;
-        public static final int hardkey_setting_nextbutton_key=0x7f040081;
-        public static final int hardkey_setting_nextbutton_title=0x7f040082;
-        public static final int hardkey_setting_pinbutton_key=0x7f040083;
-        public static final int hardkey_setting_pinbutton_title=0x7f040084;
-        public static final int hardkey_setting_reblogbutton_key=0x7f04007d;
-        public static final int hardkey_setting_reblogbutton_title=0x7f04007e;
+        public static final int hardkey_setting_nextbutton_key=0x7f040083;
+        public static final int hardkey_setting_nextbutton_title=0x7f040084;
+        public static final int hardkey_setting_pinbutton_key=0x7f040085;
+        public static final int hardkey_setting_pinbutton_title=0x7f040086;
+        public static final int hardkey_setting_reblogbutton_key=0x7f04007f;
+        public static final int hardkey_setting_reblogbutton_title=0x7f040080;
         public static final int last_post=0x7f040022;
         public static final int like=0x7f040016;
         public static final int like_failure=0x7f040018;
         public static final int like_success=0x7f040017;
-        public static final int like_title=0x7f040036;
-        public static final int likeall_failure_message=0x7f04003a;
-        public static final int likeall_failure_title=0x7f040039;
-        public static final int likeall_message=0x7f040038;
-        public static final int likeall_progress_title=0x7f04003b;
+        public static final int like_title=0x7f040038;
+        public static final int likeall_failure_message=0x7f04003c;
+        public static final int likeall_failure_title=0x7f04003b;
+        public static final int likeall_message=0x7f04003a;
+        public static final int likeall_progress_title=0x7f04003d;
         public static final int likeall_success=0x7f040019;
-        public static final int likeall_title=0x7f040037;
+        public static final int likeall_title=0x7f040039;
         public static final int load=0x7f040011;
+        public static final int load_error_message=0x7f040036;
+        public static final int load_error_title=0x7f040035;
         public static final int load_failure=0x7f040013;
         public static final int load_success=0x7f040012;
         public static final int loadall_success=0x7f040014;
@@ -122,7 +124,7 @@ public final class R {
          */
         public static final int main_menu_setting=0x7f040009;
         public static final int moveto_failure=0x7f040015;
-        public static final int moveto_title=0x7f040035;
+        public static final int moveto_title=0x7f040037;
         public static final int new_posts=0x7f040023;
         public static final int no_internet_message=0x7f04002e;
         /**  Alert Message 
@@ -134,68 +136,68 @@ public final class R {
         public static final int reblog=0x7f04001a;
         public static final int reblog_failure=0x7f04001c;
         public static final int reblog_success=0x7f04001b;
-        public static final int reblog_title=0x7f04003c;
-        public static final int reblogall_failure_message=0x7f040040;
-        public static final int reblogall_failure_title=0x7f04003f;
-        public static final int reblogall_message=0x7f04003e;
-        public static final int reblogall_progress_title=0x7f040041;
+        public static final int reblog_title=0x7f04003e;
+        public static final int reblogall_failure_message=0x7f040042;
+        public static final int reblogall_failure_title=0x7f040041;
+        public static final int reblogall_message=0x7f040040;
+        public static final int reblogall_progress_title=0x7f040043;
         public static final int reblogall_success=0x7f04001d;
-        public static final int reblogall_title=0x7f04003d;
-        public static final int sendto_title=0x7f040042;
-        public static final int setting_clearcache_default=0x7f040077;
-        public static final int setting_clearcache_key=0x7f040074;
-        public static final int setting_clearcache_summary=0x7f040076;
-        public static final int setting_clearcache_title=0x7f040075;
-        public static final int setting_dashboardtype_default=0x7f04005e;
-        public static final int setting_dashboardtype_key=0x7f04005c;
-        public static final int setting_dashboardtype_title=0x7f04005d;
-        public static final int setting_email_key=0x7f040047;
-        public static final int setting_email_title=0x7f040048;
-        public static final int setting_hardkey_key=0x7f040069;
-        public static final int setting_hardkey_summary=0x7f04006b;
-        public static final int setting_hardkey_title=0x7f04006a;
-        public static final int setting_lastpostid_key=0x7f04004b;
-        public static final int setting_password_key=0x7f040049;
-        public static final int setting_password_title=0x7f04004a;
-        public static final int setting_pinaction_default=0x7f04005b;
-        public static final int setting_pinaction_key=0x7f040058;
-        public static final int setting_pinaction_summary=0x7f04005a;
-        public static final int setting_pinaction_title=0x7f040059;
-        public static final int setting_privateposttext_default=0x7f040073;
-        public static final int setting_privateposttext_key=0x7f040070;
-        public static final int setting_privateposttext_summary=0x7f040072;
-        public static final int setting_privateposttext_title=0x7f040071;
-        public static final int setting_quickpost_default=0x7f040053;
-        public static final int setting_quickpost_key=0x7f040050;
-        public static final int setting_quickpost_summary=0x7f040052;
-        public static final int setting_quickpost_title=0x7f040051;
-        public static final int setting_savephotos_default=0x7f040068;
-        public static final int setting_savephotos_key=0x7f040065;
-        public static final int setting_savephotos_summary=0x7f040067;
-        public static final int setting_savephotos_title=0x7f040066;
-        public static final int setting_sendto_default=0x7f04006f;
-        public static final int setting_sendto_key=0x7f04006c;
-        public static final int setting_sendto_summary=0x7f04006e;
-        public static final int setting_sendto_title=0x7f04006d;
-        public static final int setting_skipminepost_default=0x7f040061;
-        public static final int setting_skipminepost_key=0x7f04005f;
-        public static final int setting_skipminepost_title=0x7f040060;
-        public static final int setting_skipphotos_default=0x7f040064;
-        public static final int setting_skipphotos_key=0x7f040062;
-        public static final int setting_skipphotos_title=0x7f040063;
+        public static final int reblogall_title=0x7f04003f;
+        public static final int sendto_title=0x7f040044;
+        public static final int setting_clearcache_default=0x7f040079;
+        public static final int setting_clearcache_key=0x7f040076;
+        public static final int setting_clearcache_summary=0x7f040078;
+        public static final int setting_clearcache_title=0x7f040077;
+        public static final int setting_dashboardtype_default=0x7f040060;
+        public static final int setting_dashboardtype_key=0x7f04005e;
+        public static final int setting_dashboardtype_title=0x7f04005f;
+        public static final int setting_email_key=0x7f040049;
+        public static final int setting_email_title=0x7f04004a;
+        public static final int setting_hardkey_key=0x7f04006b;
+        public static final int setting_hardkey_summary=0x7f04006d;
+        public static final int setting_hardkey_title=0x7f04006c;
+        public static final int setting_lastpostid_key=0x7f04004d;
+        public static final int setting_password_key=0x7f04004b;
+        public static final int setting_password_title=0x7f04004c;
+        public static final int setting_pinaction_default=0x7f04005d;
+        public static final int setting_pinaction_key=0x7f04005a;
+        public static final int setting_pinaction_summary=0x7f04005c;
+        public static final int setting_pinaction_title=0x7f04005b;
+        public static final int setting_privateposttext_default=0x7f040075;
+        public static final int setting_privateposttext_key=0x7f040072;
+        public static final int setting_privateposttext_summary=0x7f040074;
+        public static final int setting_privateposttext_title=0x7f040073;
+        public static final int setting_quickpost_default=0x7f040055;
+        public static final int setting_quickpost_key=0x7f040052;
+        public static final int setting_quickpost_summary=0x7f040054;
+        public static final int setting_quickpost_title=0x7f040053;
+        public static final int setting_savephotos_default=0x7f04006a;
+        public static final int setting_savephotos_key=0x7f040067;
+        public static final int setting_savephotos_summary=0x7f040069;
+        public static final int setting_savephotos_title=0x7f040068;
+        public static final int setting_sendto_default=0x7f040071;
+        public static final int setting_sendto_key=0x7f04006e;
+        public static final int setting_sendto_summary=0x7f040070;
+        public static final int setting_sendto_title=0x7f04006f;
+        public static final int setting_skipminepost_default=0x7f040063;
+        public static final int setting_skipminepost_key=0x7f040061;
+        public static final int setting_skipminepost_title=0x7f040062;
+        public static final int setting_skipphotos_default=0x7f040066;
+        public static final int setting_skipphotos_key=0x7f040064;
+        public static final int setting_skipphotos_title=0x7f040065;
         /**  Setting Activity 
  Setting Activity 
          */
-        public static final int setting_title_account=0x7f040045;
-        public static final int setting_title_setting=0x7f040046;
-        public static final int setting_usepin_default=0x7f040057;
-        public static final int setting_usepin_key=0x7f040054;
-        public static final int setting_usepin_summary=0x7f040056;
-        public static final int setting_usepin_title=0x7f040055;
-        public static final int setting_usessl_default=0x7f04004f;
-        public static final int setting_usessl_key=0x7f04004c;
-        public static final int setting_usessl_summary=0x7f04004e;
-        public static final int setting_usessl_title=0x7f04004d;
+        public static final int setting_title_account=0x7f040047;
+        public static final int setting_title_setting=0x7f040048;
+        public static final int setting_usepin_default=0x7f040059;
+        public static final int setting_usepin_key=0x7f040056;
+        public static final int setting_usepin_summary=0x7f040058;
+        public static final int setting_usepin_title=0x7f040057;
+        public static final int setting_usessl_default=0x7f040051;
+        public static final int setting_usessl_key=0x7f04004e;
+        public static final int setting_usessl_summary=0x7f040050;
+        public static final int setting_usessl_title=0x7f04004f;
         public static final int startactivity_failure=0x7f040021;
         public static final int tumblr_button_back=0x7f040006;
         /**  Main Activity Button Tumblr 

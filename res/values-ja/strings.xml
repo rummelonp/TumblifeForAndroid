@@ -40,6 +40,9 @@
     <string name="login_failure_title">ログインに失敗しました</string>
     <string name="login_failure_message">設定画面を開きますか？</string>
     
+    <string name="load_error_title">エラーが発生しました。</string>
+    <string name="load_error_message">Tumblrでエラーが発生しているか、インターネット接続がありません。続きから再読込しますか？</string>    
+    
     <string name="moveto_title">移動</string>
  	<string-array name="moveto_items">
       <item>最初のポスト</item>
