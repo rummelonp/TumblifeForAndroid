@@ -183,7 +183,7 @@ public class TLDashboard implements TLDashboardInterface
     HttpURLConnection con = null;
     try {
       con = TLConnection.post(getTumblrUrl(AUTH_URL), getAccountParameters());
-      TLLog.i("TLDashboard / login : ResnponseCode / " + con.getResponseCode());
+      TLLog.i("TLDashboard / login : ResnponseCode / " + String.valueOf(con.getResponseCode()));
       if (con.getResponseCode() != HttpURLConnection.HTTP_OK) {
         throw new TLAuthenticationFailureException();
       }
@@ -227,7 +227,7 @@ public class TLDashboard implements TLDashboardInterface
         parameters.put("type", type);
       }
       con = TLConnection.get(getTumblrUrl(DASHBOARD_URL), parameters);
-      TLLog.i("TLDashboard / load : ResnponseCode / " + con.getResponseCode());
+      TLLog.i("TLDashboard / load : ResnponseCode / " + String.valueOf(con.getResponseCode()));
       if (con.getResponseCode() != HttpURLConnection.HTTP_OK) {
         throw new TLAuthenticationFailureException();
       }
@@ -474,6 +474,7 @@ public class TLDashboard implements TLDashboardInterface
       parameters.put("post-id", String.valueOf(post.getId()));
       parameters.put("reblog-key", post.getReblogKey());
       con = TLConnection.get(getTumblrUrl(LIKE_URL), parameters);
+      TLLog.i("TLDashboard / like : ResnponseCode / " + String.valueOf(con.getResponseCode()));
       if (con.getResponseCode() != HttpURLConnection.HTTP_OK) {
         throw new TLAuthenticationFailureException();
       }
@@ -550,6 +551,7 @@ public class TLDashboard implements TLDashboardInterface
         parameters.put("comment", comment);
       }
       con = TLConnection.post(getTumblrUrl(REBLOG_URL), parameters);
+      TLLog.i("TLDashboard / reblog : ResnponseCode / " + String.valueOf(con.getResponseCode()));
       if (con.getResponseCode() != HttpURLConnection.HTTP_CREATED) {
         throw new TLAuthenticationFailureException();
       }
@@ -620,7 +622,7 @@ public class TLDashboard implements TLDashboardInterface
       return;
     }
     
-    TLLog.d("TLDashboard / write : title / " + title + " : body / " + body);
+    TLLog.d("TLDashboard / writeRegular : title / " + title + " : body / " + body);
     
     new Thread() {
       public void run() {
@@ -636,12 +638,13 @@ public class TLDashboard implements TLDashboardInterface
             parameters.put("bodt", body);
           }
           con = TLConnection.get(getTumblrUrl(WRITE_URL), parameters);
+          TLLog.i("TLDashboard / writeRegular : ResnponseCode / " + String.valueOf(con.getResponseCode()));
           if (con.getResponseCode() != HttpURLConnection.HTTP_CREATED) {
             throw new TLAuthenticationFailureException();
           }
           handler.post(new Runnable() { public void run() { delegate.writeSuccess(); }});
         } catch (IOException e) {
-          TLLog.e("TLDashboard / write", e);
+          TLLog.e("TLDashboard / writeRegular", e);
           handler.post(new Runnable() { public void run() { delegate.writeFailure(); }});
         } finally {
           if (con != null) {
