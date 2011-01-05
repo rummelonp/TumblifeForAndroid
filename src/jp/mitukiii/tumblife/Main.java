@@ -662,7 +662,10 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
     webView.loadUrl(post.getFileUrl());
     
     if (post.getId() == setting.getLastPostId()) {
-      showToast(String.format(getString(R.string.last_post), post.getIndex() + 1, post.getId()));
+      String text = getString(R.string.last_post);
+      text = text.replace(":index", String.valueOf(post.getIndex() + 1));
+      text = text.replace(":id", String.valueOf(post.getId()));
+      showToast(text);
     }
     
     currentPost = post;

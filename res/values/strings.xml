@@ -56,7 +56,7 @@
     
     <string name="last_post">\
       Last Post in Last Session.\n\
-      Post #%s (%s)\
+      Post #:index (:id)\
     </string>
   	<string name="new_posts">%s New Posts.</string>
   	
