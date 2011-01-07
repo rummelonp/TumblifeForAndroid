@@ -8,7 +8,7 @@ public class TLAuthenticationFailureException extends TLFailureException
   {
     super("Authentication failed.");
   }
-  
+
   public TLAuthenticationFailureException(String message)
   {
     super(message);

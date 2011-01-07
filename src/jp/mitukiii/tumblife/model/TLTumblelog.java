@@ -87,7 +87,7 @@ public class TLTumblelog extends TLModel
   {
     this.queueCount = queueCount;
   }
-  
+
   public int getPrivateId()
   {
     return privateId;

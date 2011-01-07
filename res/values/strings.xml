@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  
+
   <!-- Application Name -->
     <string name="app_name">Tumblife</string>
-  
+
   <!-- Activity Name -->
     <string name="activity_main">Tumblife</string>
     <string name="activity_setting">Tumblife: Setting</string>
@@ -23,46 +23,46 @@
     <string name="main_menu_moveto">Move To</string>
     <string name="main_menu_privatepost">Private Post</string>
     <string name="main_menu_about">About</string>
-  
+
   <!-- Toast Message -->
     <string name="login">Login...</string>
     <string name="login_success">Login Done.</string>
-  
+
     <string name="load">Loading...</string>
     <string name="load_success">Load Done.</string>
     <string name="load_failure">Load Failure, Retry...</string>
-    
+
     <string name="loadall_success">All Post Loaded.</string>
-    
+
     <string name="moveto_failure">Post Has Not Found.</string>
-  
+
     <string name="like">Like...</string>
     <string name="like_success">Like Done.</string>
     <string name="like_failure">Like Failure.</string>
     <string name="like_minepost">Can\'t Like My Post.</string>
-    
-  	<string name="likeall_success">Like All Done.</string>
-  
+
+    <string name="likeall_success">Like All Done.</string>
+
     <string name="reblog">Reblog...</string>
     <string name="reblog_success">Reblog Done.</string>
     <string name="reblog_failure">Reblog Failure.</string>
-    
-  	<string name="reblogall_success">Reblog All Done.</string>
-  	
-  	<string name="write">Posting...</string>
-  	<string name="write_success">Post Done.</string>
-  	<string name="write_failure">Post Failure.</string>
-    
+
+    <string name="reblogall_success">Reblog All Done.</string>
+
+    <string name="write">Posting...</string>
+    <string name="write_success">Post Done.</string>
+    <string name="write_failure">Post Failure.</string>
+
     <string name="startactivity_failure">Client Not Found.</string>
-    
+
     <string name="last_post">\
       Last Post in Last Session.\n\
       Post #:index (:id)\
     </string>
-  	<string name="new_posts">%s New Posts.</string>
-  	
-  	<string name="hardkey_setting_menu">Can\'t hardware key assign to menu button.</string>
-  
+    <string name="new_posts">%s New Posts.</string>
+
+    <string name="hardkey_setting_menu">Can\'t hardware key assign to menu button.</string>
+
   <!-- Alert Button -->
     <string name="button_ok">OK</string>
     <string name="button_retry">Retry</string>
@@ -70,85 +70,85 @@
     <string name="button_negative">No</string>
     <string name="button_cancel">Cancel</string>
     <string name="button_clear">Clear</string>
-    
+
     <string name="button_likeone">Like One</string>
-    
+
     <string name="button_reblogone">Reblog One</string>
-  
+
   <!-- Alert Message -->
     <string name="no_internet_title">No Network Connection.</string>
     <string name="no_internet_message">No network connection. The page will continue loading after connection has been restored.</string>
-  
+
     <string name="no_sdcard_title">SD Card Not Found.</string>
     <string name="no_sdcard_message">SD card not found. To use Tumblife, SD card required.</string>
-  
+
     <string name="login_no_account_title">No Account.</string>
     <string name="login_no_account_message">Show setting?</string>
-  
+
     <string name="login_failure_title">Login Failure.</string>
     <string name="login_failure_message">Show setting?</string>
-    
+
     <string name="load_error_title">Error occurred.</string>
     <string name="load_error_message">Error occurred in Tumbler, or no network connection. Failed to load 10 times, therefore stop load of dashbord. Do you reload?</string>    
-    
+
     <string name="moveto_title">Move To</string>
- 	<string-array name="moveto_items">
+    <string-array name="moveto_items">
       <item>First Post</item>
       <item>Last Post</item>
       <item>Last Session</item>
       <item>Next My Post</item>
     </string-array>
-    
+
     <string name="like_title">Like This?</string>
-    
+
     <string name="likeall_title">Like All Pin Posts?</string>
-  	<string name="likeall_message">You have %s items. Like all pin posts, or Like a current post.</string>
-  	<string name="likeall_failure_title">Like All Failure.</string>
-  	<string name="likeall_failure_message">%s items left. retry Like all, or cancel.</string>
-  	
-  	<string name="likeall_progress_title">Like All...</string>
-    
+    <string name="likeall_message">You have %s items. Like all pin posts, or Like a current post.</string>
+    <string name="likeall_failure_title">Like All Failure.</string>
+    <string name="likeall_failure_message">%s items left. retry Like all, or cancel.</string>
+
+    <string name="likeall_progress_title">Like All...</string>
+
     <string name="reblog_title">Reblog Comment</string>
-    
+
     <string name="reblogall_title">Reblog All Pin Posts?</string>
-  	<string name="reblogall_message">You have %s items. Reblog all pin posts, or Reblog a current post.</string>
-  	<string name="reblogall_failure_title">Reblog All Failure.</string>
-  	<string name="reblogall_failure_message">%s items left. retry Reblog all, or cancel.</string>
-  	
-  	<string name="reblogall_progress_title">Reblog All...</string>
-    
+    <string name="reblogall_message">You have %s items. Reblog all pin posts, or Reblog a current post.</string>
+    <string name="reblogall_failure_title">Reblog All Failure.</string>
+    <string name="reblogall_failure_message">%s items left. retry Reblog all, or cancel.</string>
+
+    <string name="reblogall_progress_title">Reblog All...</string>
+
     <string name="sendto_title">Send To</string>
     <string-array name="sendto_items">
       <item>Browser</item>
       <item>Share</item>
     </string-array>
-    
+
     <string name="about_title">Tumblife: About</string>
-  	<string name="about_message">\
-  	  Tumblr client for Android.\n\
-  	  Like and Reblog only.\n\
-  	  \n\
-  	  Developer:\n\
-  	  　Kazuya Takeshima\n\
-  	  \n\
-  	  E-Mail:\n\
-  	  　mail@tumblife.com\n\
-  	  \n\
-  	  Official Web Site:\n\
-  	  　http://tumblife.com\n\
-  	  　http://mitukiii.jp\n
-  	</string>
-  
+    <string name="about_message">\
+      Tumblr client for Android.\n\
+      Like and Reblog only.\n\
+      \n\
+      Developer:\n\
+      　Kazuya Takeshima\n\
+      \n\
+      E-Mail:\n\
+      　mail@tumblife.com\n\
+      \n\
+      Official Web Site:\n\
+      　http://tumblife.com\n\
+      　http://mitukiii.jp\n
+    </string>
+
   <!-- Setting Activity -->
-  	<string name="setting_title_account">Account</string>
+    <string name="setting_title_account">Account</string>
     <string name="setting_title_setting">Setting</string>
-  
+
     <string name="setting_email_key">email</string>
     <string name="setting_email_title">E-mail address</string>
 
     <string name="setting_password_key">password</string>
     <string name="setting_password_title">Password</string>
-    
+
     <string name="setting_lastpostid_key">lastpostid</string>
 
     <string name="setting_usessl_key">use_ssl</string>
@@ -160,12 +160,12 @@
     <string name="setting_quickpost_title">Use Quick Post</string>
     <string name="setting_quickpost_summary">Using quick post, you will Like and Reblog without confirmation dialog.</string>
     <string name="setting_quickpost_default">false</string>
-  
+
     <string name="setting_usepin_key">use_pin</string>
     <string name="setting_usepin_title">Use Pin</string>
     <string name="setting_usepin_summary">To pin up the post, can Reblog or Like all later.</string>
     <string name="setting_usepin_default">false</string>
-  
+
     <string name="setting_pinaction_key">pin_action</string>
     <string name="setting_pinaction_title">When Using Pin</string>
     <string name="setting_pinaction_summary">Action when using pin.</string>
@@ -175,7 +175,7 @@
       <item>Next</item>
     </string-array>
     <string name="setting_pinaction_default">None</string>
-    
+
     <string name="setting_dashboardtype_key">dashboardtype</string>
     <string name="setting_dashboardtype_title">Dashboard Type</string>
     <string-array name="setting_dashboardtype_items">
@@ -189,11 +189,11 @@
       <item>Audio</item>
     </string-array>
     <string name="setting_dashboardtype_default">Default</string>
-  
+
     <string name="setting_skipminepost_key">mine_skip</string>
     <string name="setting_skipminepost_title">Skip Mine Post</string>
     <string name="setting_skipminepost_default">false</string>
-  
+
     <string name="setting_skipphotos_key">photo_skip</string>
     <string name="setting_skipphotos_title">Skip Photos</string>
     <string name="setting_skipphotos_default">false</string>
@@ -202,11 +202,11 @@
     <string name="setting_savephotos_title">Save Photos</string>
     <string name="setting_savephotos_summary">When it is off, use remote images.</string>
     <string name="setting_savephotos_default">true</string>
-    
+
     <string name="setting_hardkey_key">hardkey</string>
     <string name="setting_hardkey_title">Hardware Key Setting</string>
     <string name="setting_hardkey_summary"></string>
-    
+
     <string name="setting_sendto_key">sendto</string>
     <string name="setting_sendto_title">Send To</string>
     <string name="setting_sendto_summary">When link clicked, where do you send.</string>
@@ -221,7 +221,7 @@
       <item>Share</item>
     </string-array>
     <string name="setting_sendto_default">Confirmation</string>
-    
+
     <string name="setting_privateposttext_key">privateposttext</string>
     <string name="setting_privateposttext_title">Private Post Text</string>
     <string name="setting_privateposttext_summary"></string>
@@ -231,25 +231,25 @@
     <string name="setting_clearcache_title">Clear Cache</string>
     <string name="setting_clearcache_summary">Delete the cache file when finished.</string>
     <string name="setting_clearcache_default">false</string>
-    
+
   <!-- Hardkey Setting Activity -->
     <string name="hardkey_setting_hidebuttonbar_key">hidebuttonbar</string>
     <string name="hardkey_setting_hidebuttonbar_title">Hide Button Bar</string>
     <string name="hardkey_setting_hidebuttonbar_default">false</string>
-    
+
     <string name="hardkey_setting_likebutton_key">likebutton</string>
-  	<string name="hardkey_setting_likebutton_title">Like Button</string>
-    
-	<string name="hardkey_setting_reblogbutton_key">reblog_button</string>
-	<string name="hardkey_setting_reblogbutton_title">Reblog Button</string>
-  	
-  	<string name="hardkey_setting_backbutton_key">backbutton</string>
-  	<string name="hardkey_setting_backbutton_title">Back Button</string>
-  	
-  	<string name="hardkey_setting_nextbutton_key">nextbutton</string>
-  	<string name="hardkey_setting_nextbutton_title">Next Button</string>
-  	
-	<string name="hardkey_setting_pinbutton_key">pinbutton</string>
-	<string name="hardkey_setting_pinbutton_title">Pin Button</string>
-	
+    <string name="hardkey_setting_likebutton_title">Like Button</string>
+
+    <string name="hardkey_setting_reblogbutton_key">reblog_button</string>
+    <string name="hardkey_setting_reblogbutton_title">Reblog Button</string>
+
+    <string name="hardkey_setting_backbutton_key">backbutton</string>
+    <string name="hardkey_setting_backbutton_title">Back Button</string>
+
+    <string name="hardkey_setting_nextbutton_key">nextbutton</string>
+    <string name="hardkey_setting_nextbutton_title">Next Button</string>
+
+    <string name="hardkey_setting_pinbutton_key">pinbutton</string>
+    <string name="hardkey_setting_pinbutton_title">Pin Button</string>
+
 </resources>

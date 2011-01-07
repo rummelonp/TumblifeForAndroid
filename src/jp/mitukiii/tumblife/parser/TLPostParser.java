@@ -15,7 +15,7 @@ public class TLPostParser extends TLParser
   {
     super(input);
   }
-  
+
   public List<TLPost> parse()
     throws NumberFormatException, XmlPullParserException, IOException
   {

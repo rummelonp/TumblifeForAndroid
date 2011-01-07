@@ -67,31 +67,31 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
   {
     APP_NAME = getString(R.string.app_name);
     TLLog.i("Main / onCreate");
-    
+
     super.onCreate(savedInstanceState);
     requestWindowFeature(Window.FEATURE_RIGHT_ICON);
     setContentView(R.layout.main);
-    
+
     delegate = this;
     context  = this;
     handler  = new Handler();
     setting  = TLSetting.getSharedInstance(context);
     postFactory = TLPostFactory.getSharedInstance(context);
-    
+
     if (dashboard == null) {
       dashboard = new TLDashboard(this, context, handler);
     } else {
       dashboard.init(delegate, context, handler);
       dashboard.restart();
     }
-    
+
     webViewClient = new TLWebViewClient(this, context, handler);
     webView = (WebView)findViewById(R.id.web_view);
     webView.setWebViewClient(webViewClient);
     webView.getSettings().setJavaScriptEnabled(true);
-    
+
     buttonBar = (LinearLayout)findViewById(R.id.tumblr_buttons);
-    
+
     buttonLike = (Button)findViewById(R.id.tumblr_button_like);
     buttonLike.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -103,7 +103,7 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
         }
       }
     });
-    
+
     buttonReblog = (Button)findViewById(R.id.tumblr_button_reblog);
     buttonReblog.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -115,19 +115,19 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
         }
       }
     });
-    
+
     buttonBack = (Button)findViewById(R.id.tumblr_button_back);
     buttonBack.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) { movePost(dashboard.postBack()); }
     });
-    
+
     buttonNext = (Button)findViewById(R.id.tumblr_button_next);
     buttonNext.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) { movePost(dashboard.postNext()); }
     });
-    
+
     buttonPin = (Button)findViewById(R.id.tumblr_button_pin);
     buttonPin.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -140,14 +140,14 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
       }
     });
   }
-  
+
   @Override
   protected void onResume()
   {
     super.onResume();
-    
+
     setting.loadSetting(context);
-    
+
     if (setting.usePin()) {
       buttonPin.setVisibility(View.VISIBLE);
       buttonPin.setEnabled(true);
@@ -155,13 +155,13 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
       buttonPin.setVisibility(View.GONE);
       buttonPin.setEnabled(false);
     }
-    
+
     if (setting.hideButtonBar()) {
       buttonBar.setVisibility(View.GONE);
     } else {
       buttonBar.setVisibility(View.VISIBLE);
     }
-    
+
     if (dashboard.isLogined()) {
       TLLog.i("Main / onResume : Logined.");
       TLPost post = dashboard.postCurrent();
@@ -181,22 +181,22 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
       start();
     };
   }
-  
+
   @Override
   protected void onStop()
   {
     TLLog.i("Main / onStop");
-    
+
     super.onStop();
   }
-  
+
   @Override
   protected void onDestroy()
   {
     super.onDestroy();
-    
+
     dashboard.stop();
-    
+
     if (isFinished) {
       TLLog.i("Main / onDestroy : Finished.");
       dashboard.destroy();
@@ -208,30 +208,30 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
       TLLog.i("Main / onDestroy : Maintain dashboard.");
     }
   }
-  
+
   @Override
   public boolean onCreateOptionsMenu(Menu menu)
   {
     TLLog.d("Main / onCreateOptionsMenu");
-    
+
     MenuInflater inflater = getMenuInflater();
     inflater.inflate(R.layout.main_menu, menu);
     return super.onCreateOptionsMenu(menu);
   }
-  
+
   @Override
   public boolean onMenuOpened(int featureId, Menu menu)
   {
     TLLog.d("Main / onMenuOpened");
-    
+
     return super.onMenuOpened(featureId, menu);
   }
-  
+
   @Override
   public boolean onOptionsItemSelected(MenuItem item)
   {
     TLLog.d("Main / onOptionsItemSelected");
-    
+
     switch (item.getItemId()) {
       case R.id.main_menu_setting:
         showSetting();
@@ -253,10 +253,10 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
         privatePost();
         break;
     }
-    
+
     return super.onOptionsItemSelected(item);
   }
-  
+
   @Override
   public boolean dispatchKeyEvent(KeyEvent event)
   {
@@ -303,14 +303,14 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
         return true;
       }
     }
-    
+
     return super.dispatchKeyEvent(event);
   }
-  
+
   public void noAccount()
   {
     TLLog.i("Main / noAccount");
-    
+
     new AlertDialog.Builder(context)
     .setTitle(R.string.login_no_account_title)
     .setMessage(R.string.login_no_account_message)
@@ -324,11 +324,11 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
     })
     .show();
   }
-  
+
   public void noInternet()
   {
     TLLog.i("Main / noInternet");
-    
+
     new AlertDialog.Builder(context)
     .setTitle(R.string.no_internet_title)
     .setMessage(R.string.no_internet_message)
@@ -337,11 +337,11 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
     })
     .show();
   }
-  
+
   public void noSDCard()
   {
     TLLog.i("Main / noSDCard");
-    
+
     new AlertDialog.Builder(context)
     .setTitle(R.string.no_sdcard_title)
     .setMessage(R.string.no_sdcard_message)
@@ -350,20 +350,20 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
     })
     .show();
   }
-  
+
   public void loginSuccess()
   {
     TLLog.d("Main / loginSuccess");
-    
+
     showToast(R.string.login_success);
     showToast(R.string.load);
     setTitle(dashboard.getTitle());
   }
-  
+
   public void loginFailure()
   {
     TLLog.d("Main / loginFailure");
-    
+
     new AlertDialog.Builder(context)
     .setTitle(R.string.login_failure_title)
     .setMessage(R.string.login_failure_message)
@@ -382,39 +382,39 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
     })
     .show();
   }
-  
+
   public void loading()
   {
     TLLog.v("Main / loading");
-    
+
     movePost(dashboard.postCurrent(false));
   }
-  
+
   public void loadSuccess()
   {
     TLLog.d("Main / loadSuccess");
-    
+
     showToast(R.string.load_success);
   }
-  
+
   public void loadAllSuccess()
   {
     TLLog.d("Main / loadAllSuccess");
-    
+
     showToast(R.string.loadall_success);
   }
-  
+
   public void loadFailure()
   {
     TLLog.d("Main / loadFailure");
-    
+
     showToast(R.string.load_failure);
   }
-  
+
   public void loadError()
   {
     TLLog.d("Main / loadError");
-    
+
     new AlertDialog.Builder(context)
     .setTitle(R.string.load_error_title)
     .setMessage(R.string.load_error_message)
@@ -429,21 +429,21 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
     })
     .show();
   }
-  
+
   public void likeSuccess()
   {
     TLLog.d("Main / likeSuccess");
-    
+
     showToast(R.string.like_success);
   }
-  
+
   public void likeFailure()
   {
     TLLog.d("Main / likeFailure");
-    
+
     showToast(R.string.like_failure);
   }
-  
+
   public void likeMinePost()
   {
     TLLog.d("Main / likeMinePost");
@@ -454,23 +454,23 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
   public void likeAllSuccess()
   {
     TLLog.d("Main / likeAllSuccess");
-    
+
     setTitle(dashboard.getTitle());
     if (progressLike != null) {
       progressLike.dismiss();
     }
     showToast(R.string.likeall_success);
   }
-  
+
   public void likeAllFailure()
   {
     TLLog.d("Main / likeAllFailure");
-    
+
     setTitle(dashboard.getTitle());
     if (progressLike != null) {
       progressLike.dismiss();
     }
-    
+
     new AlertDialog.Builder(context)
     .setTitle(R.string.likeall_failure_title)
     .setMessage(String.format(getString(R.string.likeall_failure_message), dashboard.getPinPostsCount()))
@@ -485,41 +485,41 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
     })
     .show();
   }
-  
+
   public void reblogSuccess()
   {
     TLLog.d("Main / reblogSuccess");
-    
+
     showToast(R.string.reblog_success);
   }
-  
+
   public void reblogFailure()
   {
     TLLog.d("Main / reblogFailure");
-    
+
     showToast(R.string.reblog_failure);
   }
-  
+
   public void reblogAllSuccess()
   {
     TLLog.d("Main / reblogAllSuccess");
-    
+
     setTitle(dashboard.getTitle());
     if (progressReblog != null) {
       progressReblog.dismiss();
     }
     showToast(R.string.reblogall_success);
   }
-  
+
   public void reblogAllFailure()
   {
     TLLog.d("Main / reblogAllFailure");
-    
+
     setTitle(dashboard.getTitle());
     if (progressReblog != null) {
       progressReblog.dismiss();
     }
-    
+
     new AlertDialog.Builder(context)
     .setTitle(R.string.reblogall_failure_title)
     .setMessage(String.format(getString(R.string.reblogall_failure_message), dashboard.getPinPostsCount()))
@@ -534,32 +534,32 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
     })
     .show();
   }
-  
+
   public void writeSuccess()
   {
     TLLog.d("Main / writeSuccess");
-    
+
     showToast(R.string.write_success);
   }
-  
+
   public void writeFailure()
   {
     TLLog.d("Main / writeFailure");
-    
+
     showToast(R.string.write_failure);
   }
-  
+
   public void startActivityFailure()
   {
     TLLog.d("Main / startActivityFailure");
-    
+
     showToast(R.string.startactivity_failure);
   }
-  
+
   public void showNewPosts(String text)
   {
     TLLog.d("Main / showNewPosts");
-    
+
     showToast(String.format(getString(R.string.new_posts), text));
   }
 
@@ -581,11 +581,11 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
     buttonNext.setEnabled(enabled);
     buttonPin.setEnabled(enabled);
   }
-  
+
   protected void reload()
   {
     TLLog.d("Main / reload");
-    
+
     setEnabledButtons(false);
     setting.loadAccount(context);
     setting.loadSetting(context);
@@ -599,7 +599,7 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
     setTitle(dashboard.getTitle());
     start();
   }
-  
+
   protected void start()
   {
     if (setting.getEmail().length() == 0 ||
@@ -613,36 +613,36 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
       dashboard.start();
     }
   }
-  
+
   protected void showToast(int resid)
   {
     showToast(getString(resid));
   }
-  
+
   protected void showToast(String text)
   {
     TLLog.d("Main / showToast : " + text);
-    
+
     Toast.makeText(context, text, Toast.LENGTH_SHORT).show();
   }
-  
+
   protected void showSetting()
   {
     TLLog.d("Main / showSetting");
-    
+
     Intent intent = new Intent(context, Setting.class);
     startActivity(intent);
   }
-  
+
   protected void showAbout()
   {
     TLLog.d("Main / showAbout");
-    
+
     TextView textViewAbout = new TextView(context);
     textViewAbout.setTextSize(15);
     textViewAbout.setAutoLinkMask(Linkify.ALL);
     textViewAbout.setText(R.string.about_message);
-    
+
     new AlertDialog.Builder(context)
     .setTitle(R.string.about_title)
     .setView(textViewAbout)
@@ -651,40 +651,40 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
     })
     .show();
   }
-  
+
   protected void movePost(TLPost post)
   {
     setTitle(dashboard.getTitle());
-    
+
     if (post == null) {
       return;
     }
-    
+
     setEnabledButtons(true);
-    
+
     if (dashboard.isPinPost(post)) {
       getWindow().setFeatureDrawableResource(Window.FEATURE_RIGHT_ICON, R.drawable.pin);
     } else {
       getWindow().setFeatureDrawableResource(Window.FEATURE_RIGHT_ICON, R.drawable.none);
     }
-    
+
     if (post == currentPost ||
         post.getFileUrl().equals(webView.getUrl()))
     {
       return;
     }
-    
+
     TLLog.d("Main / movePost : index / " + post.getIndex());
-    
+
     webView.loadUrl(post.getFileUrl());
 
     currentPost = post;
   }
-  
+
   protected void moveTo()
   {
     TLLog.d("Main / moveTo");
-    
+
     new AlertDialog.Builder(context)
     .setTitle(R.string.moveto_title)
     .setItems(getResources().getStringArray(R.array.moveto_items), new OnClickListener() {
@@ -699,13 +699,13 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
     })
     .show();
   }
-  
+
   protected void like()
   {
     if (currentPost == null) {
       return;
     }
-    
+
     if (currentPost.getTumblelogName() != null &&
         currentPost.getTumblelogName().equals(dashboard.getTumblelog().getName()))
     {
@@ -714,7 +714,7 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
     }
 
     TLLog.d("Main / like : index / " + currentPost.getIndex());
-    
+
     if (setting.useQuickpost()) {
       showToast(R.string.like);
       dashboard.like(currentPost);
@@ -734,15 +734,15 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
       .show();
     }
   }
-  
+
   protected void likeAll(boolean showAlert)
   {
     if (!dashboard.hasPinPosts()) {
       return;
     }
-    
+
     TLLog.d("Main / likeAll");
-    
+
     progressLike = new ProgressDialog(context);
     progressLike.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
     progressLike.setTitle(R.string.likeall_progress_title);
@@ -750,7 +750,7 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
     progressLike.incrementProgressBy(0);
     progressLike.setSecondaryProgress(0);
     progressLike.setMax(dashboard.getPinPostsCount());
-    
+
     final Handler handlerLike = new Handler() {
       public void handleMessage(Message message) {
         progressLike.setSecondaryProgress(1);
@@ -759,7 +759,7 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
         }
       }
     };
-    
+
     if (showAlert) {
       new AlertDialog.Builder(context)
       .setTitle(R.string.likeall_title)
@@ -784,15 +784,15 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
       dashboard.likeAll(handlerLike);
     }
   }
-  
+
   protected void reblog()
   {
     if (currentPost == null) {
       return;
     }
-    
+
     TLLog.d("Main / reblog : index / " + currentPost.getIndex());
-    
+
     if (setting.useQuickpost()) {
       showToast(R.string.reblog);
       dashboard.reblog(currentPost, null);
@@ -815,15 +815,15 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
       .show();
     }
   }
-  
+
   protected void reblogAll(boolean showAlert)
   {
     if (!dashboard.hasPinPosts()) {
       return;
     }
-    
+
     TLLog.d("Main / reblogAll");
-    
+
     progressReblog = new ProgressDialog(context);
     progressReblog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
     progressReblog.setTitle(R.string.reblogall_progress_title);
@@ -831,7 +831,7 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
     progressReblog.incrementProgressBy(0);
     progressReblog.setSecondaryProgress(0);
     progressReblog.setMax(dashboard.getPinPostsCount());
-    
+
     final Handler handlerReblog = new Handler() {
       public void handleMessage(Message message) {
         progressReblog.setSecondaryProgress(1);
@@ -840,7 +840,7 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
         }
       }
     };
-    
+
     if (showAlert) {
       new AlertDialog.Builder(context)
       .setTitle(R.string.reblogall_title)
@@ -865,15 +865,15 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
       dashboard.reblogAll(handlerReblog);
     }
   }
-  
+
   protected void privatePost()
   {
     if (!dashboard.isLogined()) {
       return;
     }
-    
+
     TLLog.d("Main / privatePost");
-    
+
     String text = setting.getPrivatePostText();
     if (text == null || text.length() == 0) {
       text = getString(R.string.setting_privateposttext_default);

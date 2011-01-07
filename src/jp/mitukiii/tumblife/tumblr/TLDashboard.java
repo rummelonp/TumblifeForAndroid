@@ -35,19 +35,19 @@ public class TLDashboard implements TLDashboardInterface
     LastPost (1),
     LastSession (2),
     NextMyPost (3);
-    
+
     private int which;
-    
+
     private MOVE_TO(int which)
     {
       this.which = which;
     }
-    
+
     public int getWhich()
     {
       return which;
     }
-    
+
     public static MOVE_TO valueOf(int which)
     {
       for (MOVE_TO item: values()) {
@@ -58,7 +58,7 @@ public class TLDashboard implements TLDashboardInterface
       return null;
     }
   }
-  
+
   protected static final String   HTTP_SCHEME       = "http://";
   protected static final String   HTTPS_SCHEME      = "https://";
   protected static final String   TUMBLR_URL        = "www.tumblr.com";
@@ -100,7 +100,7 @@ public class TLDashboard implements TLDashboardInterface
   {
     init(delegate, context, handler);
   }
-  
+
   public void init(TLDashboardDelegate delegate, Context context, Handler handler)
   {
     this.delegate = delegate;
@@ -109,16 +109,16 @@ public class TLDashboard implements TLDashboardInterface
     postFactory   = TLPostFactory.getSharedInstance(context);
     setting       = TLSetting.getSharedInstance(context);
   }
-  
+
   public void start()
   {
     TLLog.i("TLDashboard / start");
-    
+
     if (isRunned) {
       return;
     }
     isRunned = true;
-    
+
     new Thread() {
       public void run() {
         if (!login()) {
@@ -170,15 +170,15 @@ public class TLDashboard implements TLDashboardInterface
       }
     }.start();
   }
-  
+
   protected boolean login()
   {
     TLLog.i("TLDashboard / login");
-    
+
     if (isLogined) {
       return isLogined;
     }
-    
+
     isLogined = false;
     HttpURLConnection con = null;
     try {
@@ -210,12 +210,12 @@ public class TLDashboard implements TLDashboardInterface
     }
     return isLogined;
   }
-  
+
   protected boolean load()
     throws TLSDCardNotFoundException
   {
     TLLog.i("TLDashboard / load");
-    
+
     boolean result = false;
     HttpURLConnection con = null;
     try {
@@ -284,7 +284,7 @@ public class TLDashboard implements TLDashboardInterface
     }
     return result;
   }
-  
+
   public String getTitle()
   {
     StringBuffer sb = new StringBuffer();
@@ -306,7 +306,7 @@ public class TLDashboard implements TLDashboardInterface
     }
     return sb.toString();
   }
-  
+
   public TLTumblelog getTumblelog()
   {
     return tumblelog;
@@ -320,7 +320,7 @@ public class TLDashboard implements TLDashboardInterface
   public TLPost postCurrent(boolean showLastPost)
   {
     TLLog.v("TLDashboard / postCurrent");
-    
+
     TLPost post = null;
     int _postIndex = postIndex;
     while (posts.size() > postIndex) {
@@ -339,11 +339,11 @@ public class TLDashboard implements TLDashboardInterface
     postIndex = _postIndex;
     return null;
   }
-  
+
   public TLPost postNext()
   {
     TLLog.v("TLDashboard / postNext");
-    
+
     TLPost post = null;
     int _postIndex = postIndex;
     postIndex += 1;
@@ -361,11 +361,11 @@ public class TLDashboard implements TLDashboardInterface
     postIndex = _postIndex;
     return null;
   }
-  
+
   public TLPost postBack()
   {
     TLLog.v("TLDashboard / postBack");
-    
+
     TLPost post = null;
     int _postIndex = postIndex;
     postIndex -= 1;
@@ -383,19 +383,19 @@ public class TLDashboard implements TLDashboardInterface
     postIndex = _postIndex;
     return null;
   }
-  
+
   public TLPost postPin(TLPost post)
   {
     if (post == null) {
       return null;
     }
-    
+
     if (pinPosts.containsKey(post.getId())) {
       pinPosts.remove(post.getId());
     } else {
       pinPosts.put(post.getId(), post);
     }
-    
+
     switch (setting.getPinAction()) {
       case Back:
         return postBack();
@@ -407,7 +407,7 @@ public class TLDashboard implements TLDashboardInterface
         return postCurrent();
     }
   }
-  
+
   public TLPost moveTo(int which)
   {
     switch (MOVE_TO.valueOf(which)) {
@@ -439,28 +439,28 @@ public class TLDashboard implements TLDashboardInterface
     }
     return null;
   }
-  
+
   public int getPinPostsCount()
   {
     TLLog.v("TLDashboard / getPinPostsCount");
-    
+
     return pinPosts.size();
   }
-  
+
   public boolean hasPinPosts()
   {
     TLLog.v("TLDashboard / hasPinPosts");
-    
+
     return !pinPosts.isEmpty();
   }
-  
+
   public boolean isPinPost(TLPost post)
   {
     TLLog.v("TLDashboard / isPinPost");
-    
+
     return pinPosts.containsKey(post.getId());
   }
-  
+
   protected void showLastPost(final TLPost post)
   {
     if (post.getId() == setting.getLastPostId()) {
@@ -488,11 +488,11 @@ public class TLDashboard implements TLDashboardInterface
     }
     return false;
   }
-  
+
   protected boolean like(TLPost post, boolean retry)
   {
     TLLog.d("TLDashboard / like : index / " + post.getIndex());
-    
+
     boolean result;
     HttpURLConnection con = null;
     try {
@@ -521,7 +521,7 @@ public class TLDashboard implements TLDashboardInterface
       return false;
     }
   }
-  
+
   public void like(final TLPost post)
   {
     new Thread() {
@@ -534,7 +534,7 @@ public class TLDashboard implements TLDashboardInterface
       }
     }.start();
   }
-  
+
   public void likeAll(final Handler progressHandler)
   {
     new Thread()
@@ -572,11 +572,11 @@ public class TLDashboard implements TLDashboardInterface
       }
     }.start();
   }
-  
+
   protected boolean reblog(TLPost post, String comment, boolean retry)
   {
     TLLog.d("TLDashboard / reblog : index / " + post.getIndex() + " : comment / " + comment);
-    
+
     boolean result;
     HttpURLConnection con = null;
     try {
@@ -608,7 +608,7 @@ public class TLDashboard implements TLDashboardInterface
       return false;
     }
   }
-  
+
   public void reblog(final TLPost post, final String comment)
   {
     new Thread() {
@@ -621,7 +621,7 @@ public class TLDashboard implements TLDashboardInterface
       }
     }.start();
   }
-  
+
   public void reblogAll(final Handler progressHandler)
   {
     new Thread()
@@ -649,7 +649,7 @@ public class TLDashboard implements TLDashboardInterface
       }
     }.start();
   }
-  
+
   public void writeRegular(final String title, final String body, final HashMap<String, String> options)
   {
     if ((title == null || title.length() == 0) &&
@@ -657,9 +657,9 @@ public class TLDashboard implements TLDashboardInterface
     {
       return;
     }
-    
+
     TLLog.d("TLDashboard / writeRegular : title / " + title + " : body / " + body);
-    
+
     new Thread() {
       public void run() {
         HttpURLConnection con = null;
@@ -690,49 +690,49 @@ public class TLDashboard implements TLDashboardInterface
       }
     }.start();
   }
-  
+
   public void restart()
   {
     TLLog.i("TLDashboard / restart");
-    
+
     isStoped = false;
   }
-  
+
   public void stop()
   {
     TLLog.i("TLDashboard / stop");
-    
+
     isStoped = true;
   }
-  
+
   public void destroy()
   {
     TLLog.i("TLDashboard / destroy");
-    
+
     isDestroyed = true;
   }
-  
+
   public boolean isLogined()
   {
     return isLogined;
   }
-  
+
   public boolean isStoped()
   {
     return isStoped;
   }
-  
+
   public boolean isDestroyed()
   {
     return isDestroyed;
   }
-  
+
   protected String getTumblrUrl(String url)
   {
     String scheme = setting.useSsl()? HTTPS_SCHEME: HTTP_SCHEME;
     return scheme + TUMBLR_URL + url;
   }
-  
+
   protected HashMap<String, String> getAccountParameters()
   {
     HashMap<String, String> parameters = new HashMap<String, String>();

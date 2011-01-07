@@ -8,7 +8,7 @@ public class TLParserException extends TLFailureException
   {
     super("Parsing failed.");
   }
-  
+
   public TLParserException(String message)
   {
     super(message);

@@ -94,26 +94,26 @@ public enum KeyCodeMap
   KEYCODE_MEDIA_REWIND ("MEDIA_REWIND", 89),
   KEYCODE_MEDIA_FAST_FORWARD ("MEDIA_FAST_FORWARD", 90),
   KEYCODE_MUTE ("MUTE", 91);
-  
+
   private String name;
   private int keyCode;
-  
+
   private KeyCodeMap(String name, int keyCode)
   {
     this.name = name;
     this.keyCode = keyCode;
   }
-  
+
   public String getName()
   {
     return name;
   }
-  
+
   public int getKeyCode()
   {
     return keyCode;
   }
-  
+
   public static KeyCodeMap valueOf(int keyCode)
   {
     for (KeyCodeMap keyCodeMap : values()) {

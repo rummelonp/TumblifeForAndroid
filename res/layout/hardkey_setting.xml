@@ -6,23 +6,23 @@
     android:title="@string/hardkey_setting_hidebuttonbar_title"
     />
   <PreferenceScreen
-  	android:key="@string/hardkey_setting_likebutton_key"
+    android:key="@string/hardkey_setting_likebutton_key"
     android:title="@string/hardkey_setting_likebutton_title"
     />
   <PreferenceScreen
-  	android:key="@string/hardkey_setting_reblogbutton_key"
+    android:key="@string/hardkey_setting_reblogbutton_key"
     android:title="@string/hardkey_setting_reblogbutton_title"
     />
   <PreferenceScreen
-  	android:key="@string/hardkey_setting_backbutton_key"
+    android:key="@string/hardkey_setting_backbutton_key"
     android:title="@string/hardkey_setting_backbutton_title"
     />
   <PreferenceScreen
-  	android:key="@string/hardkey_setting_nextbutton_key"
+    android:key="@string/hardkey_setting_nextbutton_key"
     android:title="@string/hardkey_setting_nextbutton_title"
     />
   <PreferenceScreen
-  	android:key="@string/hardkey_setting_pinbutton_key"
+    android:key="@string/hardkey_setting_pinbutton_key"
     android:title="@string/hardkey_setting_pinbutton_title"
     />
 </PreferenceScreen>

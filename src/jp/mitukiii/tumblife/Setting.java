@@ -16,15 +16,15 @@ import android.preference.Preference.OnPreferenceChangeListener;
 public class Setting extends PreferenceActivity
 { 
   protected Context context;
-  
+
   @Override
   protected void onCreate(Bundle savedInstanceState)
   {
     super.onCreate(savedInstanceState);
     addPreferencesFromResource(R.layout.setting);
-    
+
     context = this;
-    
+
     ListPreference viewMode = (ListPreference) findPreference(getString(R.string.setting_dashboardtype_key));
     viewMode.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
       @Override
@@ -38,7 +38,7 @@ public class Setting extends PreferenceActivity
       }
     });
   }
-  
+
   @Override
   protected void onResume()
   {
@@ -46,7 +46,7 @@ public class Setting extends PreferenceActivity
     togglePreference(findPreference(getString(R.string.setting_usepin_key)));
     togglePreference(findPreference(getString(R.string.setting_dashboardtype_key)));
   }
-  
+
   @Override
   public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference)
   {
@@ -58,7 +58,7 @@ public class Setting extends PreferenceActivity
     }
     return super.onPreferenceTreeClick(preferenceScreen, preference);
   }
-  
+
   protected void togglePreference(Preference preference)
   {
     String key = preference.getKey();

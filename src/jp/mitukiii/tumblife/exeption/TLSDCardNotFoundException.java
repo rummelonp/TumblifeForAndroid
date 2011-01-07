@@ -8,7 +8,7 @@ public class TLSDCardNotFoundException extends TLFailureException
   {
     super("SDCard not found.");
   }
-  
+
   public TLSDCardNotFoundException(String message)
   {
     super(message);

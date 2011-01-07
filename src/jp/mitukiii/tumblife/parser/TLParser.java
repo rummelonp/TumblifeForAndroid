@@ -8,9 +8,9 @@ import org.xmlpull.v1.XmlPullParserFactory;
 abstract public class TLParser
 {
   protected XmlPullParser parser;
-  
+
   public static final String NAME_SPACE = null;
-  
+
   public TLParser(InputStream input)
     throws XmlPullParserException
   {

@@ -53,7 +53,7 @@ public class TLPost extends TLModel
   protected String           downloadUrl;
   protected String           regularTitle;
   protected String           regularBody;
-  
+
   protected int              index;
   protected String           fileName;
   protected String           fileUrl;
@@ -212,7 +212,7 @@ public class TLPost extends TLModel
   {
     this.tumblelogTimezone = tumblelogTimezone;
   }
-  
+
   public String getTag()
   {
     return tag;
@@ -252,7 +252,7 @@ public class TLPost extends TLModel
   {
     this.photoCaption = photoCaption;
   }
-  
+
   public String getPhotoLinkUrl()
   {
     return photoLinkUrl;
@@ -352,7 +352,7 @@ public class TLPost extends TLModel
   {
     this.linkDescription = linkDescription;
   }
-  
+
   public String getConversationTitle()
   {
     return conversationTitle;
@@ -382,7 +382,7 @@ public class TLPost extends TLModel
   {
     this.conversation = conversation;
   }
-  
+
   public String getVideoCaption()
   {
     return videoCaption;
@@ -461,17 +461,17 @@ public class TLPost extends TLModel
   {
     this.regularBody = regularBody;
   }
-  
+
   public int getIndex()
   {
     return index;
   }
-  
+
   public void setIndex(int index)
   {
     this.index = index;
   }
-  
+
   public String getFileName()
   {
     if (fileName == null) {
@@ -479,37 +479,37 @@ public class TLPost extends TLModel
     }
     return fileName;
   }
-  
+
   public String getFileUrl()
   {
     return fileUrl;
   }
-  
+
   public void setFileUrl(String fileUrl)
   {
     this.fileUrl = fileUrl;
   }
-  
+
   public boolean isPhoto()
   {
     return isPhoto;
   }
-  
+
   public void setPhoto(boolean isPhoto)
   {
     this.isPhoto = isPhoto;
   }
-  
+
   public String getImageFileUrl()
   {
     return imageFileUrl;
   }
-  
+
   public void setImageFileUrl(String imageFileUrl)
   {
     this.imageFileUrl = imageFileUrl;
   }
-  
+
   public String getHtml(String header)
   {
     if (html != null && !isPhoto()) {

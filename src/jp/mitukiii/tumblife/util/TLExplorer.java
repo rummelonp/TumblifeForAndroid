@@ -20,25 +20,25 @@ import android.os.Environment;
 public class TLExplorer
 {
   public static final String         FILE_SCHEME     = "file:";
-  
+
   public static final String         SD_CARD         = Environment.getExternalStorageDirectory().getPath() + "/";
   public static final String         APP_DIR         = SD_CARD + Main.APP_NAME.replace(" ", "_") + "/";
-  
+
   public static final String         HTML_DIR        = APP_DIR + "html/";
   public static final String         CSS_DIR         = APP_DIR + "css/";
   public static final String         JS_DIR          = APP_DIR + "js/";
   public static final String         IMAGE_DIR       = APP_DIR + "img/";
 
   public static final String         HTML_EXTENSION  = "html";
-  
+
   public static final String         IMAGE_GIF_EXTENSION = "gif";
-  
+
   public static final CompressFormat IMAGE_PNG_FORMAT    = CompressFormat.PNG;
   public static final String         IMAGE_PNG_EXTENSION = IMAGE_PNG_FORMAT.toString().toLowerCase();
   public static final int            IMAGE_PNG_QUALITY   = 100;
-  
+
   public static final int            IO_BUFFER_SIZE  = 4 * 1024;
-  
+
   public static String makeFile(String fileDir, String fileName, String fileString, boolean force)
     throws TLSDCardNotFoundException, FileNotFoundException, IOException
   {
@@ -72,7 +72,7 @@ public class TLExplorer
     }
     return fileUrl;
   }
-  
+
   public static String makeFile(String fileDir, String fileName, InputStream fileInput, boolean force)
     throws TLSDCardNotFoundException, FileNotFoundException, IOException
   {
@@ -81,13 +81,13 @@ public class TLExplorer
     String fileString = new String(bytes); 
     return makeFile(fileDir, fileName, fileString, force);
   }
-  
+
   public static String makeHtmlFile(String fileName, String fileString, boolean force)
     throws TLSDCardNotFoundException, FileNotFoundException, IOException
   {
     return makeFile(HTML_DIR, fileName, fileString, force);
   }
-  
+
   public static String makeGifImageFile(String urlString, String fileName)
     throws TLSDCardNotFoundException, MalformedURLException, FileNotFoundException, IOException
   {
@@ -142,7 +142,7 @@ public class TLExplorer
     }
     return fileUrl;
   }
-  
+
   public static String makePngImageFile(String urlString, String fileName)
     throws TLSDCardNotFoundException, MalformedURLException, FileNotFoundException, IOException
   {
@@ -213,7 +213,7 @@ public class TLExplorer
     }
     return fileUrl;
   }
-  
+
   public static String getPreffix(String fileName) {
     fileName = new File(fileName).getName();
     int point = fileName.lastIndexOf(".");
@@ -222,12 +222,12 @@ public class TLExplorer
     } 
     return fileName;
   }
-  
+
   public static boolean isSDCardWriteble()
   {
     return Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
   }
-  
+
   protected static boolean makeDirectory(File dir)
   {
     if (dir.exists()) {
@@ -236,11 +236,11 @@ public class TLExplorer
       return dir.mkdir();
     }
   }
-  
+
   protected static void deleteFiles(File file)
   {
     TLLog.i("TLExplorer / deleteFiles : fileName /" + file.getPath());
-    
+
     if (!file.exists()) {
       return;
     }

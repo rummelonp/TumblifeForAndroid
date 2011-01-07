@@ -20,18 +20,18 @@ public class TLPostFactory
   protected List<TLPost>         posts            = new LinkedList<TLPost>();
   protected TLSetting            setting;
   protected Context              context;
-  
+
   protected String               postHeaders;
-  
+
   protected String               defaultHtmlName = "default.html";
   protected String               defaultHtmlUrl;
   protected String               defaultHtml;
-  
+
   protected int                  threadCount;
 
   protected boolean              isStoped;
   protected boolean              isDestroyed;
-  
+
   protected TLPostFactory(Context context)
   {
     this.context = context;
@@ -39,7 +39,7 @@ public class TLPostFactory
     copyAssetHeaderFiles();
     start();
   }
-  
+
   public static TLPostFactory getSharedInstance(Context context)
   {
     if (postFactory == null) {
@@ -47,18 +47,18 @@ public class TLPostFactory
     }
     return postFactory;
   }
-  
+
   public String getDefaultHtmlName()
   {
     TLLog.v("TLPostFactory / getDefaultHtmlName");
-    
+
     return defaultHtmlName;
   }
-  
+
   public String getDefaultHtml()
   {
     TLLog.v("TLPostFactory / getDefaultHtml");
-    
+
     if (defaultHtml != null) {
       return defaultHtml;
     }
@@ -73,36 +73,36 @@ public class TLPostFactory
                 "</html>";
     return defaultHtml;
   }
-  
+
   public String getDefaultHtmlUrl()
   {
     TLLog.v("TLPostFactory / getDefaultHtmlUrl");
-    
+
     return defaultHtmlUrl;
   }
-  
+
   public void makeHtmlFile(TLPost post)
     throws TLSDCardNotFoundException, IOException
   {
     if (post == null) {
       return;
     }
-    
+
     TLLog.v("TLPostFactory / makeHtmlFile");
-    
+
     String fileUrl = TLExplorer.makeHtmlFile(post.getFileName(), post.getHtml(postHeaders), post.isPhoto());
     post.setFileUrl(fileUrl);
   }
-  
+
   public void makeImageFile(TLPost post)
     throws TLSDCardNotFoundException, IOException
   {
     if (post == null || !post.isPhoto()) {
       return;
     }
-    
+
     TLLog.v("TLPostFactory / makeImageFile");
-    
+
     String photoUrl = post.getPhotoUrlMaxWidth400();
     String imageFileName;
     String imageFileUrl;
@@ -115,12 +115,12 @@ public class TLPostFactory
     }
     post.setImageFileUrl(imageFileUrl);
   }
-  
+
   public void addQueue(TLPost post)
   {
     addQueueToLast(post);
   }
-  
+
   public void addQueueToFirst(TLPost post)
   {
     if (!setting.useSavePhotos() ||
@@ -130,9 +130,9 @@ public class TLPostFactory
     {
       return;
     }
-    
+
     TLLog.v("TLPostFactory / addQueueToFirst");
-    
+
     if (posts.contains(post)) {
       posts.remove(post);
     }
@@ -148,19 +148,19 @@ public class TLPostFactory
     {
       return;
     }
-    
+
     TLLog.v("TLPostFactory / addQueueToLast");
-    
+
     if (posts.contains(post)) {
       posts.remove(post);
     }
     posts.add(post);
   }
-  
+
   public void start()
   {
     TLLog.d("TLPostFactory / start");
-    
+
     new Thread() {
       public void run() {
         while (true) {
@@ -189,38 +189,38 @@ public class TLPostFactory
       }
     }.start();
   }
-  
+
   public void stop()
   {
     TLLog.d("TLPostFactory / stop");
-    
+
     isStoped = true;
   }
-  
+
   public void destroy()
   {
     TLLog.d("TLPostFactory / destroy");
-    
+
     isDestroyed = true;
     postFactory = null;
   }
-  
+
   public void deleteFiles()
   { 
     if (!setting.useClearCache()) {
       return;
     }
-    
+
     TLLog.d("TLPostFactory / deleteFiles");
-    
+
     TLExplorer.deleteFiles(new File(TLExplorer.HTML_DIR));
     TLExplorer.deleteFiles(new File(TLExplorer.IMAGE_DIR));
   }
-  
+
   protected void copyAssetHeaderFiles()
   {
     TLLog.d("TLPostFactory / copyAssetHeaderFiles");
-    
+
     AssetManager manager = context.getAssets();
     String fileUrl;
     StringBuffer sb = new StringBuffer();
@@ -243,18 +243,18 @@ public class TLPostFactory
       TLLog.w("TLPostFactory / copyAssetHeaderFiles", e);
     }
     postHeaders = sb.toString();
-    
+
     try {
       defaultHtmlUrl = TLExplorer.makeHtmlFile(getDefaultHtmlName(), getDefaultHtml(), true);
     } catch (IOException e) {
       TLLog.w("TLPostFactory / copyAssetHeaderFiles", e);
     }
   }
-  
+
   protected void makePostFiles(final TLPost post)
   {
     TLLog.v("TLPostFactory / makePostFiles : Thread count / " + threadCount);
-    
+
     new Thread() {
       public void run() {
         try {

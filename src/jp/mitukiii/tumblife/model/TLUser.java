@@ -23,7 +23,7 @@ public class TLUser extends TLModel
     }
     return null;
   }
-  
+
   public List<TLTumblelog> getTumblelogs()
   {
     return tumblelogs;
@@ -33,7 +33,7 @@ public class TLUser extends TLModel
   {
     this.tumblelogs = tumblelogs;
   }
-  
+
   public String getDefaultPostFormat()
   {
     return defaultPostFormat;

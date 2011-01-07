@@ -14,7 +14,7 @@ public class TLSetting extends TLModel
     Back,
     Next
   };
-  
+
   public static enum DASHBOARD_TYPE {
     Default (null),
     Quote ("quote"),
@@ -24,37 +24,37 @@ public class TLSetting extends TLModel
     Chat ("chat"),
     Video ("video"),
     Audio ("audio");
-    
+
     private String type;
-    
+
     private DASHBOARD_TYPE(String type)
     {
       this.type = type;
     }
-    
+
     public String getType()
     {
       return type;
     }
   };
-  
+
   public static enum SEND_TO {
     Confirmation (2),
     Browser (0),
     Share (1);
-    
+
     private int which;
-    
+
     private SEND_TO(int which)
     {
       this.which = which;
     }
-    
+
     public int getWhich()
     {
       return which;
     }
-    
+
     public static SEND_TO valueOf(int which)
     {
       for (SEND_TO item: values()) {
@@ -65,7 +65,7 @@ public class TLSetting extends TLModel
       return null;
     }
   };
-  
+
   protected static TLSetting settingManager;
 
   protected String           email;
@@ -84,19 +84,19 @@ public class TLSetting extends TLModel
   protected SEND_TO          sendTo;
   protected String           privatePostText;
   protected boolean          useClearCache;
-  
+
   protected int              keyCodeLikeButton;
   protected int              keyCodeReblogButton;
   protected int              keyCodeBackButton;
   protected int              keyCodeNextButton;
   protected int              keyCodePinButton;
-  
+
   protected TLSetting(Context context)
   {
     loadAccount(context);
     loadSetting(context);
   }
-  
+
   public static TLSetting getSharedInstance(Context context)
   {
     if (settingManager == null) {
@@ -104,95 +104,95 @@ public class TLSetting extends TLModel
     }
     return settingManager;
   }
-  
+
   public void loadAccount(Context context)
   {
     SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-    
+
     email = preferences.getString(
         context.getString(R.string.setting_email_key),
         "");
-    
+
     password = preferences.getString(
         context.getString(R.string.setting_password_key),
         "");
-    
+
     lastPostId = preferences.getLong(
         context.getString(R.string.setting_lastpostid_key),
         0);
-    
+
     String viewModeString = preferences.getString(
         context.getString(R.string.setting_dashboardtype_key),
         context.getString(R.string.setting_dashboardtype_default));
     dashboardType = DASHBOARD_TYPE.valueOf(viewModeString);
   }
-  
+
   public void loadSetting(Context context)
   {
     SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-    
+
     useSsl = preferences.getBoolean(
         context.getString(R.string.setting_usessl_key),
         Boolean.valueOf(context.getString(R.string.setting_usessl_default)));
-    
+
     useQuickpost = preferences.getBoolean(
         context.getString(R.string.setting_quickpost_key),
         Boolean.valueOf(context.getString(R.string.setting_quickpost_default)));
-    
+
     usePin = preferences.getBoolean(
         context.getString(R.string.setting_usepin_key),
         Boolean.valueOf(context.getString(R.string.setting_usepin_default)));
-    
+
     useSkipMinePost = preferences.getBoolean(
         context.getString(R.string.setting_skipminepost_key),
         Boolean.valueOf(context.getString(R.string.setting_skipminepost_default)));
-    
+
     useSkipPhotos = preferences.getBoolean(
         context.getString(R.string.setting_skipphotos_key),
         Boolean.valueOf(context.getString(R.string.setting_skipphotos_default)));
-    
+
     useSavePhotos = preferences.getBoolean(
         context.getString(R.string.setting_savephotos_key),
         Boolean.valueOf(context.getString(R.string.setting_savephotos_default)));
-    
+
     hideButtonBar = preferences.getBoolean(
         context.getString(R.string.hardkey_setting_hidebuttonbar_key),
         Boolean.valueOf(context.getString(R.string.hardkey_setting_hidebuttonbar_default)));
-    
+
     privatePostText = preferences.getString(
         context.getString(R.string.setting_privateposttext_key),
         context.getString(R.string.setting_privateposttext_default));
-    
+
     useClearCache = preferences.getBoolean(
         context.getString(R.string.setting_clearcache_key),
         Boolean.valueOf(context.getString(R.string.setting_clearcache_default)));
-    
+
     String pinActionString = preferences.getString(
         context.getString(R.string.setting_pinaction_key),
         context.getString(R.string.setting_pinaction_default));
     pinAction = PIN_ACTION.valueOf(pinActionString);
-    
+
     String sendToString = preferences.getString(
         context.getString(R.string.setting_sendto_key),
         context.getString(R.string.setting_sendto_default));
     sendTo = SEND_TO.valueOf(sendToString);
-    
+
     keyCodeLikeButton = preferences.getInt(
         context.getString(R.string.hardkey_setting_likebutton_key),
         KeyEvent.KEYCODE_UNKNOWN);
-    
+
     keyCodeReblogButton = preferences.getInt(
         context.getString(R.string.hardkey_setting_reblogbutton_key),
         KeyEvent.KEYCODE_UNKNOWN);
-    
+
     keyCodeBackButton = preferences.getInt(
         context.getString(R.string.hardkey_setting_backbutton_key),
         KeyEvent.KEYCODE_UNKNOWN);
-    
+
     keyCodeNextButton = preferences.getInt(
         context.getString(R.string.hardkey_setting_nextbutton_key),
         KeyEvent.KEYCODE_UNKNOWN);
-    
+
     keyCodePinButton = preferences.getInt(
         context.getString(R.string.hardkey_setting_pinbutton_key),
         KeyEvent.KEYCODE_UNKNOWN);
@@ -207,17 +207,17 @@ public class TLSetting extends TLModel
   {
     return password;
   }
-  
+
   public long getLastPostId()
   {
     return lastPostId;
   }
-  
+
   public void setLastPostId(long lastPostId)
   {
     this.lastPostId = lastPostId;
   }
-  
+
   public boolean saveLastPostId(Context context, long lastPostId)
   {
     SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
@@ -265,17 +265,17 @@ public class TLSetting extends TLModel
   {
     return useSavePhotos;
   }
-  
+
   public boolean hideButtonBar()
   {
     return hideButtonBar;
   }
-  
+
   public SEND_TO getSendTo()
   {
     return sendTo;
   }
-  
+
   public String getPrivatePostText()
   {
     return privatePostText;
@@ -285,27 +285,27 @@ public class TLSetting extends TLModel
   {
     return useClearCache;
   }
-  
+
   public int getKeyCodeLikeButton()
   {
     return keyCodeLikeButton;
   }
-  
+
   public int getKeyCodeReblogButton()
   {
     return keyCodeReblogButton;
   }
-  
+
   public int getKeyCodeBackButton()
   {
     return keyCodeBackButton;
   }
-  
+
   public int getKeyCodeNextButton()
   {
     return keyCodeNextButton;
   }
-  
+
   public int getKeyCodePinButton()
   {
     return keyCodePinButton;

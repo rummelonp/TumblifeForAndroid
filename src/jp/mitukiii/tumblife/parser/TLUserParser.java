@@ -16,7 +16,7 @@ public class TLUserParser extends TLParser
   {
     super(input);
   }
-  
+
   public TLUser parse()
     throws XmlPullParserException, IOException
   {

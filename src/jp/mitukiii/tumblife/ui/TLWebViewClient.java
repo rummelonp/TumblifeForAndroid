@@ -21,7 +21,7 @@ public class TLWebViewClient extends WebViewClient
   protected Handler                 handler;
 
   protected TLSetting               setting;
-  
+
   public TLWebViewClient(TLWebViewClientDelegate delegate, Context context, Handler handler)
   {
     this.delegate = delegate;
@@ -29,7 +29,7 @@ public class TLWebViewClient extends WebViewClient
     this.handler = handler;
     setting = TLSetting.getSharedInstance(context);
   }
-  
+
   @Override
   public boolean shouldOverrideUrlLoading(WebView view, String url) {
     TLLog.v("TLMain / WebViewClient / shouldOverrideUrlLoading : url / " + url);
@@ -49,11 +49,11 @@ public class TLWebViewClient extends WebViewClient
     }
     return super.shouldOverrideUrlLoading(view, url);
   }
-  
+
   protected void alertSendTo(final String url)
   {
     TLLog.d("TLWebViewClient / alertSendTo : url / " + url);
-    
+
     new AlertDialog.Builder(context)
     .setTitle(R.string.sendto_title)
     .setItems(context.getResources().getStringArray(R.array.sendto_items), new OnClickListener() {
@@ -73,25 +73,25 @@ public class TLWebViewClient extends WebViewClient
     })
     .show();
   }
-  
+
   protected void sendToView(String url)
   {
     TLLog.d("TLWebViewClient / sendToView : url / " + url);
-    
+
     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
     startActivity(intent);
   }
-  
+
   protected void sendToShare(String url)
   {
     TLLog.d("TLWebViewClient / sendToShare : url / " + url);
-    
+
     Intent intent = new Intent(Intent.ACTION_SEND);
     intent.setType("text/plain");
     intent.putExtra(Intent.EXTRA_TEXT, url);    
     startActivity(intent);
   }
-  
+
   protected void startActivity(Intent intent)
   {
     try {
