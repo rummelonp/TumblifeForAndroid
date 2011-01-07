@@ -706,6 +706,13 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
       return;
     }
     
+    if (currentPost.getTumblelogName() != null &&
+        currentPost.getTumblelogName().equals(dashboard.getTumblelog().getName()))
+    {
+      likeMinePost();
+      return;
+    }
+
     TLLog.d("Main / like : index / " + currentPost.getIndex());
     
     if (setting.useQuickpost()) {

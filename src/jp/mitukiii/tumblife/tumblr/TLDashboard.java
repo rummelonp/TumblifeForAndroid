@@ -546,7 +546,17 @@ public class TLDashboard implements TLDashboardInterface
           long key = (long) iterator.next();
           TLPost post = pinPosts.get(key);
           Message message = new Message();
-          if (like(post, false)) {
+          if (post.getTumblelogName() != null &&
+              post.getTumblelogName().equals(tumblelog.getName()))
+          {
+            handler.post(new Runnable() {
+              public void run() {
+                delegate.likeMinePost();
+              }
+            });
+            message.obj = true;
+            iterator.remove();
+          } else if (like(post, false)) {
             message.obj = true;
             iterator.remove();
           } else {
