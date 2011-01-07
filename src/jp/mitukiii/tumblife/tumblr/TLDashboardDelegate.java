@@ -1,5 +1,7 @@
 package jp.mitukiii.tumblife.tumblr;
 
+import jp.mitukiii.tumblife.model.TLPost;
+
 public interface TLDashboardDelegate
 {
   public void noInternet();
@@ -43,4 +45,6 @@ public interface TLDashboardDelegate
   public void writeFailure();
   
   public void showNewPosts(String text);
+
+  public void showLastPost(TLPost post);
 }

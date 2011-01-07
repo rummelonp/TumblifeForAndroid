@@ -309,12 +309,20 @@ public class TLDashboard implements TLDashboardInterface
   
   public TLPost postCurrent()
   {
+    return postCurrent(true);
+  }
+
+  public TLPost postCurrent(boolean showLastPost)
+  {
     TLLog.v("TLDashboard / postCurrent");
     
     TLPost post = null;
     int _postIndex = postIndex;
     while (posts.size() > postIndex) {
       post = posts.get(postIndex);
+      if (showLastPost) {
+        showLastPost(post);
+      }
       if (!isSkipPost(post)) {
         if (posts.size() > postIndex + 1) {
           postFactory.addQueueToFirst(posts.get(postIndex + 1));
@@ -336,6 +344,7 @@ public class TLDashboard implements TLDashboardInterface
     postIndex += 1;
     while (posts.size() > postIndex) {
       post = posts.get(postIndex);
+      showLastPost(post);
       if (!isSkipPost(post)) {
         if (posts.size() > postIndex + 1) {
           postFactory.addQueueToFirst(posts.get(postIndex + 1));
@@ -357,6 +366,7 @@ public class TLDashboard implements TLDashboardInterface
     postIndex -= 1;
     while (posts.size() > 0 && postIndex >= 0) {
       post = posts.get(postIndex);
+      showLastPost(post);
       if (!isSkipPost(post)) {
         if (postIndex - 1 >= 0) {
           postFactory.addQueueToFirst(posts.get(postIndex - 1));
@@ -446,6 +456,17 @@ public class TLDashboard implements TLDashboardInterface
     return pinPosts.containsKey(post.getId());
   }
   
+  protected void showLastPost(final TLPost post)
+  {
+    if (post.getId() == setting.getLastPostId()) {
+      handler.post(new Runnable() {
+        public void run() {
+          delegate.showLastPost(post);
+        }
+      });
+    }
+  }
+
   protected boolean isSkipPost(TLPost post)
   {
     if (setting.useSkipMinePost()) {

@@ -15,6 +15,8 @@ public interface TLDashboardInterface
   
   public TLPost postCurrent();
   
+  public TLPost postCurrent(boolean showLastPost);
+
   public TLPost postNext();
   
   public TLPost postBack();

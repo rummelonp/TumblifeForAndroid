@@ -387,7 +387,7 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
   {
     TLLog.v("Main / loading");
     
-    movePost(dashboard.postCurrent());
+    movePost(dashboard.postCurrent(false));
   }
   
   public void loadSuccess()
@@ -555,7 +555,17 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
     
     showToast(String.format(getString(R.string.new_posts), text));
   }
-  
+
+  public void showLastPost(TLPost post)
+  {
+    TLLog.d("Main / showLastPost");
+
+    String text = getString(R.string.last_post);
+    text = text.replace(":index", String.valueOf(post.getIndex() + 1));
+    text = text.replace(":id", String.valueOf(post.getId()));
+    showToast(text);
+  }
+
   protected void setEnabledButtons(boolean enabled)
   {
     buttonLike.setEnabled(enabled);
@@ -660,14 +670,7 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
     TLLog.d("Main / movePost : index / " + post.getIndex());
     
     webView.loadUrl(post.getFileUrl());
-    
-    if (post.getId() == setting.getLastPostId()) {
-      String text = getString(R.string.last_post);
-      text = text.replace(":index", String.valueOf(post.getIndex() + 1));
-      text = text.replace(":id", String.valueOf(post.getId()));
-      showToast(text);
-    }
-    
+
     currentPost = post;
   }
   
