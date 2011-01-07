@@ -27,6 +27,8 @@ public interface TLDashboardDelegate
   public void likeSuccess();
   
   public void likeFailure();
+
+  public void likeMinePost();
   
   public void likeAllSuccess();
   

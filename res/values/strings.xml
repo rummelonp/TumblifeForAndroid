@@ -39,6 +39,7 @@
     <string name="like">Like...</string>
     <string name="like_success">Like Done.</string>
     <string name="like_failure">Like Failure.</string>
+    <string name="like_minepost">Can\'t Like My Post.</string>
     
   	<string name="likeall_success">Like All Done.</string>
   

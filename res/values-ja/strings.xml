@@ -14,6 +14,7 @@
     <string name="main_menu_about">アプリについて</string>
     
   <!-- Toast Message -->
+    <string name="like_minepost">自分のポストをLikeすることは出来ません</string>
     <string name="hardkey_setting_menu">MENUに割り当てることは出来ません</string>
   
   <!-- Alert Button -->

@@ -444,6 +444,13 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
     showToast(R.string.like_failure);
   }
   
+  public void likeMinePost()
+  {
+    TLLog.d("Main / likeMinePost");
+
+    showToast(R.string.like_minepost);
+  }
+
   public void likeAllSuccess()
   {
     TLLog.d("Main / likeAllSuccess");
