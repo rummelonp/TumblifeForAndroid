@@ -307,6 +307,11 @@ public class TLDashboard implements TLDashboardInterface
     return sb.toString();
   }
   
+  public TLTumblelog getTumblelog()
+  {
+    return tumblelog;
+  }
+
   public TLPost postCurrent()
   {
     return postCurrent(true);

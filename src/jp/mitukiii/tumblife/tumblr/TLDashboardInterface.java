@@ -4,6 +4,7 @@ import java.util.HashMap;
 import android.content.Context;
 import android.os.Handler;
 import jp.mitukiii.tumblife.model.TLPost;
+import jp.mitukiii.tumblife.model.TLTumblelog;
 
 public interface TLDashboardInterface
 {
@@ -13,6 +14,8 @@ public interface TLDashboardInterface
   
   public String getTitle();
   
+  public TLTumblelog getTumblelog();
+
   public TLPost postCurrent();
   
   public TLPost postCurrent(boolean showLastPost);
