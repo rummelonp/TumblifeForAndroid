@@ -193,6 +193,8 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
   {
     TLLog.i("Main / onStop");
 
+    dashboard.serialize();
+
     super.onStop();
   }
 
@@ -396,8 +398,6 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
   public void loadSuccess()
   {
     TLLog.d("Main / loadSuccess");
-
-    dashboard.serialize();
 
     showToast(R.string.load_success);
   }
