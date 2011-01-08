@@ -227,6 +227,11 @@
     <string name="setting_privateposttext_summary"></string>
     <string name="setting_privateposttext_default">Current Page</string>
 
+    <string name="setting_savestate_key">savestate</string>
+    <string name="setting_savestate_title">Save Dashboard State</string>
+    <string name="setting_savestate_summary">Restore the previous state on start.</string>
+    <string name="setting_savestate_default">true</string>
+
     <string name="setting_clearcache_key">clear_cache</string>
     <string name="setting_clearcache_title">Clear Cache</string>
     <string name="setting_clearcache_summary">Delete the cache file when finished.</string>

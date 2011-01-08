@@ -68,24 +68,24 @@ public final class R {
         /**  Alert Button 
          */
         public static final int button_retry=0x7f040027;
-        public static final int hardkey_setting_backbutton_key=0x7f040082;
-        public static final int hardkey_setting_backbutton_title=0x7f040083;
-        public static final int hardkey_setting_hidebuttonbar_default=0x7f04007d;
+        public static final int hardkey_setting_backbutton_key=0x7f040086;
+        public static final int hardkey_setting_backbutton_title=0x7f040087;
+        public static final int hardkey_setting_hidebuttonbar_default=0x7f040081;
         /**  Hardkey Setting Activity 
          */
-        public static final int hardkey_setting_hidebuttonbar_key=0x7f04007b;
+        public static final int hardkey_setting_hidebuttonbar_key=0x7f04007f;
         /**  Hardkey Setting Activity 
          */
-        public static final int hardkey_setting_hidebuttonbar_title=0x7f04007c;
-        public static final int hardkey_setting_likebutton_key=0x7f04007e;
-        public static final int hardkey_setting_likebutton_title=0x7f04007f;
+        public static final int hardkey_setting_hidebuttonbar_title=0x7f040080;
+        public static final int hardkey_setting_likebutton_key=0x7f040082;
+        public static final int hardkey_setting_likebutton_title=0x7f040083;
         public static final int hardkey_setting_menu=0x7f040025;
-        public static final int hardkey_setting_nextbutton_key=0x7f040084;
-        public static final int hardkey_setting_nextbutton_title=0x7f040085;
-        public static final int hardkey_setting_pinbutton_key=0x7f040086;
-        public static final int hardkey_setting_pinbutton_title=0x7f040087;
-        public static final int hardkey_setting_reblogbutton_key=0x7f040080;
-        public static final int hardkey_setting_reblogbutton_title=0x7f040081;
+        public static final int hardkey_setting_nextbutton_key=0x7f040088;
+        public static final int hardkey_setting_nextbutton_title=0x7f040089;
+        public static final int hardkey_setting_pinbutton_key=0x7f04008a;
+        public static final int hardkey_setting_pinbutton_title=0x7f04008b;
+        public static final int hardkey_setting_reblogbutton_key=0x7f040084;
+        public static final int hardkey_setting_reblogbutton_title=0x7f040085;
         public static final int last_post=0x7f040023;
         public static final int like=0x7f040016;
         public static final int like_failure=0x7f040018;
@@ -144,10 +144,10 @@ public final class R {
         public static final int reblogall_success=0x7f04001e;
         public static final int reblogall_title=0x7f040040;
         public static final int sendto_title=0x7f040045;
-        public static final int setting_clearcache_default=0x7f04007a;
-        public static final int setting_clearcache_key=0x7f040077;
-        public static final int setting_clearcache_summary=0x7f040079;
-        public static final int setting_clearcache_title=0x7f040078;
+        public static final int setting_clearcache_default=0x7f04007e;
+        public static final int setting_clearcache_key=0x7f04007b;
+        public static final int setting_clearcache_summary=0x7f04007d;
+        public static final int setting_clearcache_title=0x7f04007c;
         public static final int setting_dashboardtype_default=0x7f040061;
         public static final int setting_dashboardtype_key=0x7f04005f;
         public static final int setting_dashboardtype_title=0x7f040060;
@@ -175,6 +175,10 @@ public final class R {
         public static final int setting_savephotos_key=0x7f040068;
         public static final int setting_savephotos_summary=0x7f04006a;
         public static final int setting_savephotos_title=0x7f040069;
+        public static final int setting_savestate_default=0x7f04007a;
+        public static final int setting_savestate_key=0x7f040077;
+        public static final int setting_savestate_summary=0x7f040079;
+        public static final int setting_savestate_title=0x7f040078;
         public static final int setting_sendto_default=0x7f040072;
         public static final int setting_sendto_key=0x7f04006f;
         public static final int setting_sendto_summary=0x7f040071;

@@ -66,6 +66,11 @@
       android:entryValues="@array/setting_sendto_items"
       android:defaultValue="@string/setting_sendto_default" />
     <CheckBoxPreference
+      android:key="@string/setting_savestate_key"
+      android:title="@string/setting_savestate_title"
+      android:summary="@string/setting_savestate_summary"
+      android:defaultValue="@string/setting_savestate_default" />
+    <CheckBoxPreference
       android:key="@string/setting_clearcache_key"
       android:title="@string/setting_clearcache_title"
       android:summary="@string/setting_clearcache_summary"

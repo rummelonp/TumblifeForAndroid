@@ -119,6 +119,9 @@
     <string name="setting_privateposttext_summary">ここまで読んだボタンを押した時に投稿するテキスト</string>
     <string name="setting_privateposttext_default">ここまで読んだ</string>
 
+    <string name="setting_savestate_title">状態を保存する</string>
+    <string name="setting_savestate_summary">起動時に前回の状態を復元する</string>
+
     <string name="setting_clearcache_title">キャッシュをクリア</string>
     <string name="setting_clearcache_summary">終了時にキャッシュを削除する</string>
 
