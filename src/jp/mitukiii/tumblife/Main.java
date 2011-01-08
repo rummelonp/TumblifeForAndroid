@@ -586,6 +586,7 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
   {
     TLLog.d("Main / reload");
 
+    getWindow().setFeatureDrawableResource(Window.FEATURE_RIGHT_ICON, R.drawable.none);
     setEnabledButtons(false);
     setting.loadAccount(context);
     setting.loadSetting(context);
