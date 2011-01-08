@@ -36,6 +36,8 @@ public interface TLDashboardInterface
 
   public boolean isPinPost(TLPost post);
 
+  public void addQueues();
+
   public void like(TLPost post);
 
   public void likeAll(Handler progressHandler);

@@ -139,7 +139,6 @@ public class TLDashboard implements TLDashboardInterface, Serializable
     try {
       dashboard = (TLDashboard) TLExplorer.readSerializeFile(DATA_NAME);
       dashboard.init(delegate, context, handler);
-      dashboard.start();
     } catch (Exception e) {
       TLLog.e("TLDashboard / deserialize", e);
       dashboard = new TLDashboard(delegate, context, handler);
@@ -496,6 +495,13 @@ public class TLDashboard implements TLDashboardInterface, Serializable
     TLLog.v("TLDashboard / isPinPost");
 
     return pinPosts.containsKey(post.getId());
+  }
+
+  public void addQueues()
+  {
+    TLLog.v("TLDashboard / addQueues");
+
+    postFactory.addQueues(posts);
   }
 
   protected void showLastPost(final TLPost post)

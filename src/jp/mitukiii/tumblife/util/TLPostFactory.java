@@ -157,6 +157,26 @@ public class TLPostFactory
     posts.add(post);
   }
 
+  public void addQueues(List<TLPost> _posts)
+  {
+    if (!setting.useSavePhotos() ||
+        _posts == null) {
+      return;
+    }
+
+    TLLog.v("TLPostFactory / addQueues");
+
+    for (TLPost post: _posts) {
+      if (post.isPhoto() &&
+          post.getImageFileUrl() == null)
+      {
+        if (!posts.contains(post)) {
+          posts.add(post);
+        }
+      }
+    }
+  }
+
   public void start()
   {
     TLLog.d("TLPostFactory / start");
