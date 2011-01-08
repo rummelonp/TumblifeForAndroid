@@ -25,10 +25,9 @@ public final class R {
     }
     public static final class id {
         public static final int main_menu_about=0x7f060008;
-        public static final int main_menu_exit=0x7f060009;
-        public static final int main_menu_moveto=0x7f06000b;
-        public static final int main_menu_privatepost=0x7f06000c;
-        public static final int main_menu_reload=0x7f06000a;
+        public static final int main_menu_exit=0x7f06000b;
+        public static final int main_menu_moveto=0x7f06000a;
+        public static final int main_menu_reload=0x7f060009;
         public static final int main_menu_setting=0x7f060007;
         public static final int tumblr_button_back=0x7f060004;
         public static final int tumblr_button_like=0x7f060002;

@@ -249,9 +249,6 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
       case R.id.main_menu_moveto:
         moveTo();
         break;
-      case R.id.main_menu_privatepost:
-        privatePost();
-        break;
     }
 
     return super.onOptionsItemSelected(item);
