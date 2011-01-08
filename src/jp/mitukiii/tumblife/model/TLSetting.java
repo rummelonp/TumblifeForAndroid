@@ -83,6 +83,7 @@ public class TLSetting extends TLModel
   protected boolean          hideButtonBar;
   protected SEND_TO          sendTo;
   protected String           privatePostText;
+  protected boolean          useSaveState;
   protected boolean          useClearCache;
 
   protected int              keyCodeLikeButton;
@@ -162,6 +163,10 @@ public class TLSetting extends TLModel
     privatePostText = preferences.getString(
         context.getString(R.string.setting_privateposttext_key),
         context.getString(R.string.setting_privateposttext_default));
+
+    useSaveState = preferences.getBoolean(
+        context.getString(R.string.setting_savestate_key),
+        Boolean.valueOf(context.getString(R.string.setting_savestate_default)));
 
     useClearCache = preferences.getBoolean(
         context.getString(R.string.setting_clearcache_key),
@@ -279,6 +284,11 @@ public class TLSetting extends TLModel
   public String getPrivatePostText()
   {
     return privatePostText;
+  }
+
+  public boolean useSaveState()
+  {
+    return useSaveState;
   }
 
   public boolean useClearCache()
