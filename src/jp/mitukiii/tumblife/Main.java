@@ -79,7 +79,7 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
     postFactory = TLPostFactory.getSharedInstance(context);
 
     if (dashboard == null) {
-      dashboard = new TLDashboard(this, context, handler);
+      dashboard = TLDashboard.deserialize(this, context, handler);
     } else {
       dashboard.init(delegate, context, handler);
       dashboard.restart();
@@ -390,6 +390,8 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
   public void loadSuccess()
   {
     TLLog.d("Main / loadSuccess");
+
+    dashboard.serialize();
 
     showToast(R.string.load_success);
   }

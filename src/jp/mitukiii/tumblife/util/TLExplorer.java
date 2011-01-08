@@ -4,10 +4,13 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import jp.mitukiii.tumblife.Main;
@@ -24,6 +27,7 @@ public class TLExplorer
   public static final String         SD_CARD         = Environment.getExternalStorageDirectory().getPath() + "/";
   public static final String         APP_DIR         = SD_CARD + Main.APP_NAME.replace(" ", "_") + "/";
 
+  public static final String         DATA_DIR        = APP_DIR + "data/";
   public static final String         HTML_DIR        = APP_DIR + "html/";
   public static final String         CSS_DIR         = APP_DIR + "css/";
   public static final String         JS_DIR          = APP_DIR + "js/";
@@ -38,6 +42,73 @@ public class TLExplorer
   public static final int            IMAGE_PNG_QUALITY   = 100;
 
   public static final int            IO_BUFFER_SIZE  = 4 * 1024;
+
+  public static String makeSerializeFile(String fileName, Object object)
+    throws TLSDCardNotFoundException, FileNotFoundException, IOException
+  {
+    if (!isSDCardWriteble() ||
+        !makeDirectory(new File(APP_DIR)) ||
+        !makeDirectory(new File(DATA_DIR)))
+    {
+      throw new TLSDCardNotFoundException();
+    }
+    String filePath = DATA_DIR + fileName;
+    FileOutputStream fileOutput = null;
+    ObjectOutputStream objectOutput = null;
+    try {
+      fileOutput = new FileOutputStream(filePath);
+      objectOutput = new ObjectOutputStream(fileOutput);
+      objectOutput.writeObject(object);
+      objectOutput.close();
+    } finally {
+      if (fileOutput != null) {
+        try {
+          fileOutput.close();
+        } catch (IOException e) {
+          TLLog.i("TLExplorer / makeSerializeFile :", e);
+        }
+      }
+      if (objectOutput != null) {
+        try {
+          objectOutput.close();
+        } catch (IOException e) {
+          TLLog.i("TLExplorer / makeSerializeFile :", e);
+        }
+      }
+    }
+    return filePath;
+  }
+
+  public static Object readSerializeFile(String fileName)
+    throws FileNotFoundException, IOException, ClassNotFoundException
+  {
+    String filePath = DATA_DIR + fileName;
+    FileInputStream fileInput = null;
+    ObjectInputStream objectInput = null;
+    Object object = null;
+    try {
+      fileInput = new FileInputStream(filePath);
+      objectInput = new ObjectInputStream(fileInput);
+      object = objectInput.readObject();
+    } finally {
+      if (fileInput != null) {
+        try {
+          fileInput.close();
+        } catch (IOException e) {
+          TLLog.i("TLExplorer / readSerializeFile :", e);
+        }
+      }
+      if (objectInput != null) {
+        try {
+          objectInput.close();
+        } catch (IOException e) {
+          TLLog.i("TLExplorer / readSerializeFile :", e);
+        }
+      }
+    }
+    objectInput.close();
+    return object;
+  }
 
   public static String makeFile(String fileDir, String fileName, String fileString, boolean force)
     throws TLSDCardNotFoundException, FileNotFoundException, IOException

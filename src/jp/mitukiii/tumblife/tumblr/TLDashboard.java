@@ -1,6 +1,7 @@
 package jp.mitukiii.tumblife.tumblr;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.SocketException;
 import java.net.UnknownHostException;
@@ -25,11 +26,14 @@ import jp.mitukiii.tumblife.model.TLSetting.DASHBOARD_TYPE;
 import jp.mitukiii.tumblife.parser.TLPostParser;
 import jp.mitukiii.tumblife.parser.TLUserParser;
 import jp.mitukiii.tumblife.util.TLConnection;
+import jp.mitukiii.tumblife.util.TLExplorer;
 import jp.mitukiii.tumblife.util.TLLog;
 import jp.mitukiii.tumblife.util.TLPostFactory;
 
-public class TLDashboard implements TLDashboardInterface
+public class TLDashboard implements TLDashboardInterface, Serializable
 {
+  private static final long serialVersionUID = 4862774823853769174L;
+
   public static enum MOVE_TO {
     FirstPost (0),
     LastPost (1),
@@ -59,42 +63,46 @@ public class TLDashboard implements TLDashboardInterface
     }
   }
 
-  protected static final String   HTTP_SCHEME       = "http://";
-  protected static final String   HTTPS_SCHEME      = "https://";
-  protected static final String   TUMBLR_URL        = "www.tumblr.com";
-  protected static final String   AUTH_URL          = "/api/authenticate";
-  protected static final String   DASHBOARD_URL     = "/api/dashboard";
-  protected static final String   LIKE_URL          = "/api/like";
-  protected static final String   REBLOG_URL        = "/api/reblog";
-  protected static final String   WRITE_URL         = "/api/write";
+  protected static final String           HTTP_SCHEME       = "http://";
+  protected static final String           HTTPS_SCHEME      = "https://";
+  protected static final String           TUMBLR_URL        = "www.tumblr.com";
+  protected static final String           AUTH_URL          = "/api/authenticate";
+  protected static final String           DASHBOARD_URL     = "/api/dashboard";
+  protected static final String           LIKE_URL          = "/api/like";
+  protected static final String           REBLOG_URL        = "/api/reblog";
+  protected static final String           WRITE_URL         = "/api/write";
 
-  protected static final int      SLEEP_TIME        = 2 * 1000;
-  protected static final int      DURATION_TIME     = 10 * 1000;
-  protected static final int      FAILURE_COUNT_MAX = 10;
-  protected static final int      START_MAX         = 250;
-  protected static final int      LOAD_NUM          = 50;
-  protected static final int      CALLBACK_NUM      = 5;
+  protected static final String           DATA_NAME         = "dashboard.dat";
 
-  protected TLDashboardDelegate   delegate;
-  protected Context               context;
-  protected Handler               handler;
+  protected static final int              SLEEP_TIME        = 2 * 1000;
+  protected static final int              DURATION_TIME     = 10 * 1000;
+  protected static final int              FAILURE_COUNT_MAX = 10;
+  protected static final int              START_MAX         = 250;
+  protected static final int              LOAD_NUM          = 50;
+  protected static final int              CALLBACK_NUM      = 5;
 
-  protected List<TLPost>          posts             = new ArrayList<TLPost>(300);
-  protected int                   postIndex         = 0;
-  protected int                   containsPostCount = 0;
-  protected HashMap<Long, TLPost> pinPosts          = new HashMap<Long, TLPost>();
-  protected TLPostFactory         postFactory;
-  protected TLSetting             setting;
-  protected TLUser                user;
-  protected TLTumblelog           tumblelog;
+  protected transient TLDashboardDelegate delegate;
+  protected transient Context             context;
+  protected transient Handler             handler;
 
-  protected boolean               isLastPostLoaded;
-  protected int                   lastPostIndex;
+  protected transient TLPostFactory       postFactory;
+  protected transient TLSetting           setting;
 
-  protected boolean               isRunned;
-  protected boolean               isLogined;
-  protected boolean               isStoped;
-  protected boolean               isDestroyed;
+  protected List<TLPost>                  posts             = new ArrayList<TLPost>(300);
+  protected int                           postIndex         = 0;
+  protected int                           containsPostCount = 0;
+  protected HashMap<Long, TLPost>         pinPosts          = new HashMap<Long, TLPost>();
+  protected TLUser                        user;
+  protected TLTumblelog                   tumblelog;
+
+  protected boolean                       isLastPostLoaded;
+  protected int                           lastPostIndex;
+
+  protected boolean                       isLogined;
+
+  protected transient boolean             isRunned;
+  protected transient boolean             isStoped;
+  protected transient boolean             isDestroyed;
 
   public TLDashboard(TLDashboardDelegate delegate, Context context, Handler handler)
   {
@@ -108,6 +116,35 @@ public class TLDashboard implements TLDashboardInterface
     this.handler  = handler;
     postFactory   = TLPostFactory.getSharedInstance(context);
     setting       = TLSetting.getSharedInstance(context);
+  }
+
+  public boolean serialize()
+  {
+    TLLog.i("TLDashboard / serialize");
+
+    try {
+      TLExplorer.makeSerializeFile(DATA_NAME, this);
+      return true;
+    } catch (IOException e) {
+      TLLog.e("TLDashboard / serialize", e);
+      return false;
+    }
+  }
+
+  public static TLDashboard deserialize(TLDashboardDelegate delegate, Context context, Handler handler)
+  {
+    TLLog.i("TLDashboard / deserialize");
+
+    TLDashboard dashboard = null;
+    try {
+      dashboard = (TLDashboard) TLExplorer.readSerializeFile(DATA_NAME);
+      dashboard.init(delegate, context, handler);
+      dashboard.start();
+    } catch (Exception e) {
+      TLLog.e("TLDashboard / deserialize", e);
+      dashboard = new TLDashboard(delegate, context, handler);
+    }
+    return dashboard;
   }
 
   public void start()

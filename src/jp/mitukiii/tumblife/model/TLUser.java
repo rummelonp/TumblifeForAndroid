@@ -1,9 +1,12 @@
 package jp.mitukiii.tumblife.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class TLUser extends TLModel
+public class TLUser extends TLModel implements Serializable
 {
+  private static final long serialVersionUID = -105340118971840100L;
+
   protected List<TLTumblelog> tumblelogs;
 
   protected String            defaultPostFormat;

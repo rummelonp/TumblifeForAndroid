@@ -1,7 +1,11 @@
 package jp.mitukiii.tumblife.model;
 
-public class TLTumblelog extends TLModel
+import java.io.Serializable;
+
+public class TLTumblelog extends TLModel implements Serializable
 {
+  private static final long serialVersionUID = 4700140126971213055L;
+
   protected String  title;
   protected boolean isAdmin;
   protected int     posts;

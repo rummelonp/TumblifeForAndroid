@@ -12,6 +12,8 @@ public interface TLDashboardInterface
 
   public void start();
 
+  public boolean serialize();
+
   public String getTitle();
 
   public TLTumblelog getTumblelog();

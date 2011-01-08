@@ -1,10 +1,13 @@
 package jp.mitukiii.tumblife.model;
 
+import java.io.Serializable;
 import jp.mitukiii.tumblife.util.TLExplorer;
 import jp.mitukiii.tumblife.util.TLLog;
 
-public class TLPost extends TLModel
+public class TLPost extends TLModel implements Serializable
 {
+  private static final long serialVersionUID = -7040021309142170021L;
+
   public static final String TYPE_QUOTE   = "quote";
   public static final String TYPE_PHOTO   = "photo";
   public static final String TYPE_REGULAR = "regular";
@@ -60,7 +63,7 @@ public class TLPost extends TLModel
   protected boolean          isPhoto;
   protected String           imageFileName;
   protected String           imageFileUrl;
-  protected String           html;
+  protected transient String html;
 
   public long getId()
   {
