@@ -227,7 +227,8 @@ public class TLPostFactory
 
   public void deleteFiles()
   { 
-    if (!setting.useClearCache()) {
+    if (setting.useSaveState() ||
+        !setting.useClearCache()) {
       return;
     }
 
