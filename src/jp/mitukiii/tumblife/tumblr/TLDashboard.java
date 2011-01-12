@@ -506,7 +506,7 @@ public class TLDashboard implements TLDashboardInterface, Serializable
 
   protected void showLastPost(final TLPost post)
   {
-    if (post.getId() == setting.getLastPostId()) {
+    if (post.getIndex() == lastPostIndex) {
       handler.post(new Runnable() {
         public void run() {
           delegate.showLastPost(post);
