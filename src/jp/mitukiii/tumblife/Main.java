@@ -208,7 +208,7 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
       dashboard.destroy();
       dashboard.deleteFiles();
       postFactory.destroy();
-      System.exit(0);
+      System.exit(RESULT_OK);
     } else {
       TLLog.i("Main / onDestroy : Maintain dashboard.");
     }
