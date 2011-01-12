@@ -10,6 +10,8 @@ public interface TLDashboardInterface
 {
   public void init(TLDashboardDelegate delegate, Context context, Handler handler);
 
+  public void reinit(TLDashboardDelegate delegate, Context context, Handler handler);
+
   public void start();
 
   public void serialize();

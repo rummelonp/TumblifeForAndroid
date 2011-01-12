@@ -119,6 +119,11 @@ public class TLDashboard implements TLDashboardInterface, Serializable
     setting       = TLSetting.getSharedInstance(context);
   }
 
+  public void reinit(TLDashboardDelegate delegate, Context context, Handler handler)
+  {
+    init(delegate, context, handler);
+  }
+
   public void serialize()
   {
     TLLog.i("TLDashboard / serialize");
