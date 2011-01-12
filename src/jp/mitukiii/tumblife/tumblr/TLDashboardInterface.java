@@ -54,6 +54,8 @@ public interface TLDashboardInterface
 
   public void destroy();
 
+  public void deleteFiles();
+
   public boolean isLogined();
 
   public boolean isStoped();

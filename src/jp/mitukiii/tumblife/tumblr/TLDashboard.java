@@ -1,5 +1,6 @@
 package jp.mitukiii.tumblife.tumblr;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.HttpURLConnection;
@@ -753,6 +754,19 @@ public class TLDashboard implements TLDashboardInterface, Serializable
     TLLog.i("TLDashboard / destroy");
 
     isDestroyed = true;
+  }
+
+  public void deleteFiles()
+  {
+    if (setting.useSaveState() ||
+        !setting.useClearCache()) {
+      return;
+    }
+
+    TLLog.d("TLDashboard / deleteFiles");
+
+    TLExplorer.deleteFiles(new File(TLExplorer.HTML_DIR));
+    TLExplorer.deleteFiles(new File(TLExplorer.IMAGE_DIR));
   }
 
   public boolean isLogined()

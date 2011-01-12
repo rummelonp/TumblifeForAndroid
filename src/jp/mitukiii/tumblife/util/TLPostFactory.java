@@ -1,6 +1,5 @@
 package jp.mitukiii.tumblife.util;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
@@ -223,19 +222,6 @@ public class TLPostFactory
 
     isDestroyed = true;
     postFactory = null;
-  }
-
-  public void deleteFiles()
-  { 
-    if (setting.useSaveState() ||
-        !setting.useClearCache()) {
-      return;
-    }
-
-    TLLog.d("TLPostFactory / deleteFiles");
-
-    TLExplorer.deleteFiles(new File(TLExplorer.HTML_DIR));
-    TLExplorer.deleteFiles(new File(TLExplorer.IMAGE_DIR));
   }
 
   protected void copyAssetHeaderFiles()
