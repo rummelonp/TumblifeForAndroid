@@ -21,7 +21,6 @@ import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.text.util.Linkify;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -32,7 +31,6 @@ import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class Main extends Activity implements TLDashboardDelegate, TLWebViewClientDelegate
@@ -59,6 +57,8 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
 
   protected ProgressDialog              progressLike;
   protected ProgressDialog              progressReblog;
+
+  protected WebView                     aboutWebView;
 
   protected boolean                     isFinished;
 
@@ -644,14 +644,14 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
   {
     TLLog.d("Main / showAbout");
 
-    TextView textViewAbout = new TextView(context);
-    textViewAbout.setTextSize(15);
-    textViewAbout.setAutoLinkMask(Linkify.ALL);
-    textViewAbout.setText(R.string.about_message);
+    if (aboutWebView == null) {
+      aboutWebView = new WebView(this);
+      aboutWebView.loadUrl("file:///android_asset/about.html");
+    }
 
     new AlertDialog.Builder(context)
     .setTitle(R.string.about_title)
-    .setView(textViewAbout)
+    .setView(aboutWebView)
     .setPositiveButton(R.string.button_ok, new OnClickListener() {
       public void onClick(DialogInterface dialog, int whichButton) {}
     })

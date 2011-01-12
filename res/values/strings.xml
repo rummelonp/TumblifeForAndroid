@@ -124,20 +124,6 @@
     </string-array>
 
     <string name="about_title">Tumblife: About</string>
-    <string name="about_message">\
-      Tumblr client for Android.\n\
-      Like and Reblog only.\n\
-      \n\
-      Developer:\n\
-      　Kazuya Takeshima\n\
-      \n\
-      E-Mail:\n\
-      　mail@tumblife.com\n\
-      \n\
-      Official Web Site:\n\
-      　http://tumblife.com\n\
-      　http://mitukiii.jp\n
-    </string>
 
   <!-- Setting Activity -->
     <string name="setting_title_account">Account</string>

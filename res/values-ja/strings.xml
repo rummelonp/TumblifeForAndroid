@@ -59,21 +59,6 @@
     </string-array>
 
     <string name="about_title">Tumblife: アプリについて</string>
-    <string name="about_message">\
-      Android用のTumblrクライアント。\n\
-      LikeとReblog専用です。\n\
-      \n\
-      開発者:\n\
-      　Kazuya Takeshima\n\
-      \n\
-      メール:\n\
-      　mail@tumblife.com\n\
-      　mail@mitukiii.jp\n\
-      \n\
-      公式サイト:\n\
-      　http://tumblife.com\n\
-      　http://mitukiii.jp\n
-    </string>
 
   <!-- Setting Activity -->
     <string name="setting_title_account">アカウント</string>
