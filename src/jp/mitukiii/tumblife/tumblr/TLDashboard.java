@@ -1,6 +1,7 @@
 package jp.mitukiii.tumblife.tumblr;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.HttpURLConnection;
@@ -135,19 +136,12 @@ public class TLDashboard implements TLDashboardInterface, Serializable
     }
   }
 
-  public static TLDashboard deserialize(TLDashboardDelegate delegate, Context context, Handler handler)
+  public static TLDashboard deserialize()
+    throws FileNotFoundException, IOException, ClassNotFoundException
   {
     TLLog.i("TLDashboard / deserialize");
 
-    TLDashboard dashboard = null;
-    try {
-      dashboard = (TLDashboard) TLExplorer.readSerializeFile(DATA_NAME);
-      dashboard.init(delegate, context, handler);
-    } catch (Exception e) {
-      TLLog.e("TLDashboard / deserialize", e);
-      dashboard = new TLDashboard(delegate, context, handler);
-    }
-    return dashboard;
+    return (TLDashboard)TLExplorer.readSerializeFile(DATA_NAME);
   }
 
   public void start()

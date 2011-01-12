@@ -78,14 +78,20 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
 
     if (dashboard == null) {
       if (setting.useSaveState()) {
-        dashboard = TLDashboard.deserialize(this, context, handler);
-        dashboard.addQueues();
-        dashboard.start();
+        try {
+          dashboard = TLDashboard.deserialize();
+          dashboard.reinit(delegate, context, handler);
+          dashboard.addQueues();
+          dashboard.start();
+        } catch (Exception e) {
+          TLLog.i("Main / onCreate", e);
+          dashboard = new TLDashboard(delegate, context, handler);
+        }
       } else {
-        dashboard = new TLDashboard(this, context, handler);
+        dashboard = new TLDashboard(delegate, context, handler);
       }
     } else {
-      dashboard.init(delegate, context, handler);
+      dashboard.reinit(delegate, context, handler);
       dashboard.restart();
     }
 
