@@ -299,7 +299,7 @@ public class TLExplorer
     return Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
   }
 
-  protected static boolean makeDirectory(File dir)
+  public static boolean makeDirectory(File dir)
   {
     if (dir.exists()) {
       return dir.isDirectory();
@@ -308,7 +308,7 @@ public class TLExplorer
     }
   }
 
-  protected static void deleteFiles(File file)
+  public static void deleteFiles(File file)
   {
     TLLog.i("TLExplorer / deleteFiles : fileName /" + file.getPath());
 
