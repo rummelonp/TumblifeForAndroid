@@ -59,6 +59,7 @@
     </string-array>
 
     <string name="about_title">Tumblife: アプリについて</string>
+    <string name="about_filepath">file:///android_asset/about_ja.html</string>
 
   <!-- Setting Activity -->
     <string name="setting_title_account">アカウント</string>

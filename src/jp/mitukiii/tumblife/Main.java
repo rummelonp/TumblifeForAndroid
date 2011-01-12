@@ -646,7 +646,7 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
 
     if (aboutWebView == null) {
       aboutWebView = new WebView(this);
-      aboutWebView.loadUrl("file:///android_asset/about.html");
+      aboutWebView.loadUrl(getString(R.string.about_filepath));
     }
 
     new AlertDialog.Builder(context)
