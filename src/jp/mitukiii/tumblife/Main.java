@@ -58,8 +58,6 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
   protected ProgressDialog              progressLike;
   protected ProgressDialog              progressReblog;
 
-  protected WebView                     aboutWebView;
-
   protected boolean                     isFinished;
 
   @Override
@@ -644,10 +642,8 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
   {
     TLLog.d("Main / showAbout");
 
-    if (aboutWebView == null) {
-      aboutWebView = new WebView(this);
-      aboutWebView.loadUrl(getString(R.string.about_filepath));
-    }
+    WebView aboutWebView = new WebView(this);
+    aboutWebView.loadUrl(getString(R.string.about_filepath));
 
     new AlertDialog.Builder(context)
     .setTitle(R.string.about_title)
