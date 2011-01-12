@@ -53,6 +53,7 @@ public class TLExplorer
       throw new TLSDCardNotFoundException();
     }
     String filePath = DATA_DIR + fileName;
+    TLLog.d("TLExplorer / makeSerializeFile : fileName / " + fileName);
     FileOutputStream fileOutput = null;
     ObjectOutputStream objectOutput = null;
     try {
@@ -83,6 +84,7 @@ public class TLExplorer
     throws FileNotFoundException, IOException, ClassNotFoundException
   {
     String filePath = DATA_DIR + fileName;
+    TLLog.d("TLExplorer / readSerializeFile : fileName / " + fileName);
     FileInputStream fileInput = null;
     ObjectInputStream objectInput = null;
     Object object = null;
