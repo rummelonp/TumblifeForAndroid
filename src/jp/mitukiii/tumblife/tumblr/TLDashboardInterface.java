@@ -12,7 +12,7 @@ public interface TLDashboardInterface
 
   public void start();
 
-  public boolean serialize();
+  public void serialize();
 
   public String getTitle();
 
