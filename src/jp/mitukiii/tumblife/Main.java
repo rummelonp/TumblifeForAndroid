@@ -197,7 +197,9 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
   {
     TLLog.i("Main / onStop");
 
-    dashboard.serialize();
+    if (setting.useSaveState()) {
+      dashboard.serialize();
+    }
 
     super.onStop();
   }
