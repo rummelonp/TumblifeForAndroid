@@ -25,22 +25,17 @@ public class TLUserParser extends TLParser
     for (int e = parser.getEventType(); e != XmlPullParser.END_DOCUMENT; e = parser.next()) {
       if (e == XmlPullParser.START_TAG) {
         String tag = parser.getName();
-        if ("user".equals(tag)) {
-          user.setLikedPostCount(Integer.valueOf(parser.getAttributeValue(NAME_SPACE, "liked-post-count")));
-        } else if ("tumblelog".equals(tag)) {
+        if ("tumblelog".equals(tag)) {
           TLTumblelog tumblelog = new TLTumblelog();
           tumblelog.setTitle(parser.getAttributeValue(NAME_SPACE, "title"));
           tumblelog.setAdmin("1".equals(parser.getAttributeValue(NAME_SPACE, "is-admin")));
-          tumblelog.setPosts(Integer.valueOf(parser.getAttributeValue(NAME_SPACE, "posts")));
           tumblelog.setTwitterEnabled("1".equals(parser.getAttributeValue(NAME_SPACE, "twitter-enabled")));
           tumblelog.setType(parser.getAttributeValue(NAME_SPACE, "type"));
           if ("private".equals(tumblelog.getType())) {
-            tumblelog.setPrivateId(Integer.valueOf(parser.getAttributeValue(NAME_SPACE, "private-id")));
             tumblelog.setPrimary(false);
           } else if ("public".equals(tumblelog.getType())) {
             tumblelog.setName(parser.getAttributeValue(NAME_SPACE, "name"));
             tumblelog.setUrl(parser.getAttributeValue(NAME_SPACE, "url"));
-            tumblelog.setFollowers(Integer.valueOf(parser.getAttributeValue(NAME_SPACE, "followers")));
             tumblelog.setAvatarUrl(parser.getAttributeValue(NAME_SPACE, "avatar-url"));
             tumblelog.setPrimary("yes".equals(parser.getAttributeValue(NAME_SPACE, "is-primary")));
           }
