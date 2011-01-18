@@ -84,7 +84,6 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
           dashboard.addQueues();
           dashboard.start();
         } catch (Exception e) {
-          TLLog.i("Main / onCreate", e);
           dashboard = new TLDashboard(delegate, context, handler);
         }
       } else {
@@ -173,7 +172,6 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
     }
 
     if (dashboard.isLogged()) {
-      TLLog.i("Main / onResume : Logged.");
       TLPost post = dashboard.postCurrent();
       if (post == null) {
         setEnabledButtons(false);
@@ -182,12 +180,18 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
         setEnabledButtons(true);
         movePost(post);
       }
+      if (dashboard.isRunned()) {
+        TLLog.i("Main / onResume : Logged and running.");
+      } else {
+        TLLog.i("Main / onResume : Logged and starting.");
+        dashboard.start();
+      }
     } else {
       TLLog.i("Main / onResume : start.");
       setEnabledButtons(false);
+      setting.loadAccount(context);
       webView.loadUrl(postFactory.getDefaultHtmlUrl());
       setTitle(dashboard.getTitle());
-      setting.loadAccount(context);
       start();
     };
   }
@@ -213,9 +217,9 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
 
     if (isFinished) {
       TLLog.i("Main / onDestroy : Finished.");
+      postFactory.destroy();
       dashboard.destroy();
       dashboard.deleteFiles();
-      postFactory.destroy();
       System.exit(RESULT_OK);
     } else {
       TLLog.i("Main / onDestroy : Maintain dashboard.");
@@ -600,12 +604,10 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
     setEnabledButtons(false);
     setting.loadAccount(context);
     setting.loadSetting(context);
-    postFactory.stop();
     postFactory.destroy();
-    postFactory = TLPostFactory.getSharedInstance(context);
-    dashboard.stop();
     dashboard.destroy();
-    dashboard = new TLDashboard(this, context, handler);
+    postFactory = TLPostFactory.getSharedInstance(context);
+    dashboard = new TLDashboard(delegate, context, handler);
     webView.loadUrl(postFactory.getDefaultHtmlUrl());
     setTitle(dashboard.getTitle());
     start();
