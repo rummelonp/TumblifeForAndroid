@@ -60,6 +60,8 @@ public interface TLDashboardInterface
 
   public boolean isLogined();
 
+  public boolean isRunned();
+
   public boolean isStoped();
 
   public boolean isDestroyed();

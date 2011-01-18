@@ -793,6 +793,11 @@ public class TLDashboard implements TLDashboardInterface, Serializable
     return isLogined;
   }
 
+  public boolean isRunned()
+  {
+    return isRunned;
+  }
+
   public boolean isStoped()
   {
     return isStoped;
