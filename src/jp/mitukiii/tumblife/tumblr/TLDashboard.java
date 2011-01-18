@@ -498,7 +498,7 @@ public class TLDashboard implements TLDashboardInterface, Serializable
 
   public void addQueues()
   {
-    TLLog.v("TLDashboard / addQueues");
+    TLLog.i("TLDashboard / addQueues");
 
     postFactory.addQueues(posts);
   }
