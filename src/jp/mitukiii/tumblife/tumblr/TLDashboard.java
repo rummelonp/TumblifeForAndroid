@@ -2,6 +2,7 @@ package jp.mitukiii.tumblife.tumblr;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.HttpURLConnection;
@@ -762,8 +763,30 @@ public class TLDashboard implements TLDashboardInterface, Serializable
 
     TLLog.d("TLDashboard / deleteFiles");
 
-    TLExplorer.deleteFiles(new File(TLExplorer.HTML_DIR));
-    TLExplorer.deleteFiles(new File(TLExplorer.IMAGE_DIR));
+    FilenameFilter htmlFilter = new FilenameFilter() {
+      public boolean accept(File dir, String filename) {
+        for (TLPost post: posts) {
+          if (filename.equals(post.getFileName())) {
+            return false;
+          }
+        }
+        return true;
+      }
+    };
+
+    FilenameFilter imageFiler = new FilenameFilter() {
+      public boolean accept(File dir, String filename) {
+        for (TLPost post: posts) {
+          if (filename.equals(post.getImageFileName())) {
+            return false;
+          }
+        }
+        return true;
+      }
+    };
+
+    TLExplorer.deleteFiles(new File(TLExplorer.HTML_DIR).listFiles(htmlFilter));
+    TLExplorer.deleteFiles(new File(TLExplorer.IMAGE_DIR).listFiles(imageFiler));
   }
 
   public boolean isLogined()
