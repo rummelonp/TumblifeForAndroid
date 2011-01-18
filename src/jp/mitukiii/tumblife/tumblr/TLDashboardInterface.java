@@ -58,11 +58,11 @@ public interface TLDashboardInterface
 
   public void deleteFiles();
 
-  public boolean isLogined();
+  public boolean isLogged();
 
   public boolean isRunned();
 
-  public boolean isStoped();
+  public boolean isStopped();
 
   public boolean isDestroyed();
 }

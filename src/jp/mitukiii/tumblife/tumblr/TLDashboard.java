@@ -101,10 +101,10 @@ public class TLDashboard implements TLDashboardInterface, Serializable
   protected boolean                       isLastPostLoaded;
   protected int                           lastPostIndex;
 
-  protected boolean                       isLogined;
+  protected boolean                       isLogged;
 
   protected transient boolean             isRunned;
-  protected transient boolean             isStoped;
+  protected transient boolean             isStopped;
   protected transient boolean             isDestroyed;
 
   public TLDashboard(TLDashboardDelegate delegate, Context context, Handler handler)
@@ -167,8 +167,8 @@ public class TLDashboard implements TLDashboardInterface, Serializable
             TLLog.d("TLDashboard / start : destroyed.");
             isRunned = false;
             return;
-          } else if (isStoped) {
-            TLLog.d("TLDashboard / start : stoped.");
+          } else if (isStopped) {
+            TLLog.d("TLDashboard / start : stopped.");
           } else if (failureCount >= FAILURE_COUNT_MAX) {
             handler.post(new Runnable() { public void run() { delegate.loadError(); } });
             isRunned = false;
@@ -210,11 +210,11 @@ public class TLDashboard implements TLDashboardInterface, Serializable
   {
     TLLog.i("TLDashboard / login");
 
-    if (isLogined) {
-      return isLogined;
+    if (isLogged) {
+      return isLogged;
     }
 
-    isLogined = false;
+    isLogged = false;
     HttpURLConnection con = null;
     try {
       con = TLConnection.post(getTumblrUrl(AUTH_URL), getAccountParameters());
@@ -224,7 +224,7 @@ public class TLDashboard implements TLDashboardInterface, Serializable
       }
       user = new TLUserParser(con.getInputStream()).parse();
       tumblelog = user.getPrimaryTumblelog();
-      isLogined = true;
+      isLogged = true;
       handler.post(new Runnable() { public void run(){ delegate.loginSuccess(); } });
     } catch (SocketException e) {
       TLLog.i("TLDashboard / login", e);
@@ -243,7 +243,7 @@ public class TLDashboard implements TLDashboardInterface, Serializable
         con.disconnect();
       }
     }
-    return isLogined;
+    return isLogged;
   }
 
   protected boolean load()
@@ -327,7 +327,7 @@ public class TLDashboard implements TLDashboardInterface, Serializable
     if (setting.getDashboardType() != DASHBOARD_TYPE.Default) {
       sb.append(setting.getDashboardType().getType() + ": ");
     }
-    if (isLogined) {
+    if (isLogged) {
       if (posts.size() > 0) {
         sb.append((postIndex + 1) + "/" + posts.size());
         if (pinPosts.size() > 0) {
@@ -737,14 +737,14 @@ public class TLDashboard implements TLDashboardInterface, Serializable
   {
     TLLog.i("TLDashboard / restart");
 
-    isStoped = false;
+    isStopped = false;
   }
 
   public void stop()
   {
     TLLog.i("TLDashboard / stop");
 
-    isStoped = true;
+    isStopped = true;
   }
 
   public void destroy()
@@ -788,9 +788,9 @@ public class TLDashboard implements TLDashboardInterface, Serializable
     TLExplorer.deleteFiles(new File(TLExplorer.IMAGE_DIR).listFiles(imageFiler));
   }
 
-  public boolean isLogined()
+  public boolean isLogged()
   {
-    return isLogined;
+    return isLogged;
   }
 
   public boolean isRunned()
@@ -798,9 +798,9 @@ public class TLDashboard implements TLDashboardInterface, Serializable
     return isRunned;
   }
 
-  public boolean isStoped()
+  public boolean isStopped()
   {
-    return isStoped;
+    return isStopped;
   }
 
   public boolean isDestroyed()

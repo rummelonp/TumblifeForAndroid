@@ -28,7 +28,7 @@ public class TLPostFactory
 
   protected int                  threadCount;
 
-  protected boolean              isStoped;
+  protected boolean              isStopped;
   protected boolean              isDestroyed;
 
   protected TLPostFactory(Context context)
@@ -187,8 +187,8 @@ public class TLPostFactory
           if (isDestroyed) {
             TLLog.d("TLPostFactory / start : destroyed.");
             return;
-          } else if (isStoped) {
-            TLLog.d("TLPostFactory / start : stoped.");
+          } else if (isStopped) {
+            TLLog.d("TLPostFactory / start : stopped.");
           } else {
             int index = 0;
             TLLog.v("TLPostFactory / start : running. : Thread count / " + threadCount + " : Queue count / " + posts.size());
@@ -214,7 +214,7 @@ public class TLPostFactory
   {
     TLLog.d("TLPostFactory / stop");
 
-    isStoped = true;
+    isStopped = true;
   }
 
   public void destroy()

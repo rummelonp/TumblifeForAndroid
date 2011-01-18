@@ -172,8 +172,8 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
       buttonBar.setVisibility(View.VISIBLE);
     }
 
-    if (dashboard.isLogined()) {
-      TLLog.i("Main / onResume : Logined.");
+    if (dashboard.isLogged()) {
+      TLLog.i("Main / onResume : Logged.");
       TLPost post = dashboard.postCurrent();
       if (post == null) {
         setEnabledButtons(false);
@@ -877,7 +877,7 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
 
   protected void privatePost()
   {
-    if (!dashboard.isLogined()) {
+    if (!dashboard.isLogged()) {
       return;
     }
 
