@@ -221,7 +221,7 @@
 
     <string name="setting_clearcache_key">clear_cache</string>
     <string name="setting_clearcache_title">Clear Cache</string>
-    <string name="setting_clearcache_summary">Delete the cache file when finished.</string>
+    <string name="setting_clearcache_summary">Delete old cache files at finish of application.</string>
     <string name="setting_clearcache_default">false</string>
 
   <!-- Hardkey Setting Activity -->

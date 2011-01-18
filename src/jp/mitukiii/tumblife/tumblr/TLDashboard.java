@@ -756,8 +756,7 @@ public class TLDashboard implements TLDashboardInterface, Serializable
 
   public void deleteFiles()
   {
-    if (setting.useSaveState() ||
-        !setting.useClearCache()) {
+    if (!setting.useClearCache()) {
       return;
     }
 

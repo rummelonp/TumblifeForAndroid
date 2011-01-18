@@ -45,7 +45,6 @@ public class Setting extends PreferenceActivity
     super.onResume();
     togglePreference(findPreference(getString(R.string.setting_usepin_key)));
     togglePreference(findPreference(getString(R.string.setting_dashboardtype_key)));
-    togglePreference(findPreference(getString(R.string.setting_savestate_key)));
   }
 
   @Override
@@ -78,14 +77,6 @@ public class Setting extends PreferenceActivity
         skipPhotos.setEnabled(true);
       } else {
         skipPhotos.setEnabled(false);
-      }
-    } else if (getString(R.string.setting_savestate_key).equals(key)) {
-      CheckBoxPreference saveState = (CheckBoxPreference) preference;
-      CheckBoxPreference clearCache = (CheckBoxPreference) findPreference(getString(R.string.setting_clearcache_key));
-      if (saveState.isChecked()) {
-        clearCache.setEnabled(false);
-      } else {
-        clearCache.setEnabled(true);
       }
     }
   }
