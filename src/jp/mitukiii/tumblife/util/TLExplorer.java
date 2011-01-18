@@ -310,6 +310,13 @@ public class TLExplorer
     }
   }
 
+  public static void deleteFiles(File[] files)
+  {
+    for (File f: files) {
+      deleteFiles(f);
+    }
+  }
+
   public static void deleteFiles(File file)
   {
     TLLog.i("TLExplorer / deleteFiles : fileName /" + file.getPath());
