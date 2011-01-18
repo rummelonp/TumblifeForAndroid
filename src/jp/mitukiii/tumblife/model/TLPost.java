@@ -503,6 +503,16 @@ public class TLPost extends TLModel implements Serializable
     this.isPhoto = isPhoto;
   }
 
+  public String getImageFileName()
+  {
+    return imageFileName;
+  }
+
+  public void setImageFileName(String imageFileName)
+  {
+    this.imageFileName = imageFileName;
+  }
+
   public String getImageFileUrl()
   {
     return imageFileUrl;

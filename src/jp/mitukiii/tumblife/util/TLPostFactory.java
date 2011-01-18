@@ -112,6 +112,7 @@ public class TLPostFactory
       imageFileName = TLExplorer.getPreffix(photoUrl) + "." + TLExplorer.IMAGE_PNG_EXTENSION;
       imageFileUrl = TLExplorer.makePngImageFile(photoUrl, imageFileName);
     }
+    post.setImageFileName(imageFileName);
     post.setImageFileUrl(imageFileUrl);
   }
 
