@@ -4,6 +4,10 @@ import jp.mitukiii.tumblife.model.TLPost;
 
 public interface TLDashboardDelegate
 {
+  public void deserializeSuccess(TLDashboard deserializedDaashboard);
+
+  public void deserializeFailure(TLDashboard newDaashboard);
+
   public void noInternet();
 
   public void noAccount();

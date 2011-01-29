@@ -78,12 +78,8 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
 
     if (dashboard == null) {
       if (setting.useSaveState()) {
-        try {
-          dashboard = TLDashboard.deserialize();
-          dashboard.reinit(delegate, context, handler);
-        } catch (Exception e) {
-          dashboard = new TLDashboard(delegate, context, handler);
-        }
+        showToast(R.string.deserialize);
+        TLDashboard.deserialize(delegate, context, handler);
       } else {
         dashboard = new TLDashboard(delegate, context, handler);
       }
@@ -169,30 +165,12 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
       buttonBar.setVisibility(View.VISIBLE);
     }
 
-    if (dashboard.isLogged()) {
-      TLPost post = dashboard.postCurrent();
-      if (post == null) {
-        setEnabledButtons(false);
-        webView.loadUrl(postFactory.getDefaultHtmlUrl());
-      } else {
-        setEnabledButtons(true);
-        movePost(post);
-      }
-      if (dashboard.isRunned()) {
-        TLLog.i("Main / onResume : Logged and running.");
-      } else {
-        TLLog.i("Main / onResume : Logged and starting.");
-        dashboard.addQueues();
-        dashboard.start();
-      }
-    } else {
-      TLLog.i("Main / onResume : start.");
+    if (dashboard == null) {
       setEnabledButtons(false);
-      setting.loadAccount(context);
       webView.loadUrl(postFactory.getDefaultHtmlUrl());
-      setTitle(dashboard.getTitle());
-      start();
-    };
+    } else {
+      preparedDashboard();
+    }
   }
 
   @Override
@@ -318,6 +296,24 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
     }
 
     return super.dispatchKeyEvent(event);
+  }
+
+  public void deserializeSuccess(TLDashboard deserializedDaashboard)
+  {
+    TLLog.i("Main / deserializeSuccess");
+
+    showToast(R.string.deserialize_success);
+    dashboard = deserializedDaashboard;
+    preparedDashboard();
+  }
+
+  public void deserializeFailure(TLDashboard newDashboard)
+  {
+    TLLog.i("Main / deserializeSuccess");
+
+    showToast(R.string.deserialize_failure);
+    dashboard = newDashboard;
+    preparedDashboard();
   }
 
   public void noAccount()
@@ -593,6 +589,36 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
     buttonBack.setEnabled(enabled);
     buttonNext.setEnabled(enabled);
     buttonPin.setEnabled(enabled);
+  }
+
+  protected void preparedDashboard()
+  {
+    TLLog.i("Main / preparedDashboard");
+
+    if (dashboard.isLogged()) {
+      TLPost post = dashboard.postCurrent();
+      if (post == null) {
+        setEnabledButtons(false);
+        webView.loadUrl(postFactory.getDefaultHtmlUrl());
+      } else {
+        setEnabledButtons(true);
+        movePost(post);
+      }
+      if (dashboard.isRunned()) {
+        TLLog.i("Main / preparedDashboard : Logged and running.");
+      } else {
+        TLLog.i("Main / preparedDashboard : Logged and starting.");
+        dashboard.addQueues();
+        dashboard.start();
+      }
+    } else {
+      TLLog.i("Main / preparedDashboard : start.");
+      setEnabledButtons(false);
+      setting.loadAccount(context);
+      webView.loadUrl(postFactory.getDefaultHtmlUrl());
+      setTitle(dashboard.getTitle());
+      start();
+    };
   }
 
   protected void reload()

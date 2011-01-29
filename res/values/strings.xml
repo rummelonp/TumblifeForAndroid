@@ -25,6 +25,10 @@
     <string name="main_menu_about">About</string>
 
   <!-- Toast Message -->
+    <string name="deserialize">Restore Dashboard...</string>
+    <string name="deserialize_success">Restore Dashboard Done.</string>
+	<string name="deserialize_failure">Restore Dashboard Failure.</string>
+
     <string name="login">Login...</string>
     <string name="login_success">Login Done.</string>
 
