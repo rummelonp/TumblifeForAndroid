@@ -121,6 +121,10 @@ public class TLDashboard implements TLDashboardInterface, Serializable
     this.handler  = handler;
     postFactory   = TLPostFactory.getSharedInstance(context);
     setting       = TLSetting.getSharedInstance(context);
+
+    if (pinPosts == null) {
+      pinPosts    = new ConcurrentHashMap<Long, TLPost>();
+    }
   }
 
   public void reinit(TLDashboardDelegate delegate, Context context, Handler handler)
