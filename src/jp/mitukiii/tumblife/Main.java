@@ -81,8 +81,6 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
         try {
           dashboard = TLDashboard.deserialize();
           dashboard.reinit(delegate, context, handler);
-          dashboard.addQueues();
-          dashboard.start();
         } catch (Exception e) {
           dashboard = new TLDashboard(delegate, context, handler);
         }
@@ -184,6 +182,7 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
         TLLog.i("Main / onResume : Logged and running.");
       } else {
         TLLog.i("Main / onResume : Logged and starting.");
+        dashboard.addQueues();
         dashboard.start();
       }
     } else {
