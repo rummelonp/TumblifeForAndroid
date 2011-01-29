@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import org.xmlpull.v1.XmlPullParserException;
 import android.content.Context;
 import android.os.Handler;
@@ -94,7 +96,7 @@ public class TLDashboard implements TLDashboardInterface, Serializable
   protected List<TLPost>                  posts             = new ArrayList<TLPost>(300);
   protected int                           postIndex         = 0;
   protected int                           containsPostCount = 0;
-  protected HashMap<Long, TLPost>         pinPosts          = new HashMap<Long, TLPost>();
+  protected Map<Long, TLPost>             pinPosts          = new ConcurrentHashMap<Long, TLPost>();
   protected TLUser                        user;
   protected TLTumblelog                   tumblelog;
 
