@@ -99,11 +99,7 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
     buttonLike.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        if (dashboard.hasPinPosts()) {
-          likeAll(true);
-        } else {
-          like();
-        }
+        onClickLike();
       }
     });
 
@@ -111,35 +107,31 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
     buttonReblog.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        if (dashboard.hasPinPosts()) {
-          reblogAll(true);
-        } else {
-          reblog();
-        }
+        onClickReblog();
       }
     });
 
     buttonBack = (Button)findViewById(R.id.tumblr_button_back);
     buttonBack.setOnClickListener(new View.OnClickListener() {
       @Override
-      public void onClick(View view) { movePost(dashboard.postBack()); }
+      public void onClick(View view) {
+        onClickBack();
+      }
     });
 
     buttonNext = (Button)findViewById(R.id.tumblr_button_next);
     buttonNext.setOnClickListener(new View.OnClickListener() {
       @Override
-      public void onClick(View view) { movePost(dashboard.postNext()); }
+      public void onClick(View view) {
+        onClickNext();
+      }
     });
 
     buttonPin = (Button)findViewById(R.id.tumblr_button_pin);
     buttonPin.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        TLPost post = dashboard.postPin(currentPost);
-        if (post == null) {
-          post = currentPost;
-        }
-        movePost(post);
+        onClickPin();
       }
     });
   }
@@ -254,31 +246,19 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
     int keyCode = event.getKeyCode();
     if (event.getAction() == KeyEvent.ACTION_DOWN) {
       if (keyCode == setting.getKeyCodeBackButton()) {
-        movePost(dashboard.postBack());
+        onClickBack();
         return true;
       } else if (keyCode == setting.getKeyCodeNextButton()) {
-        movePost(dashboard.postNext());
+        onClickNext();
         return true;
       } else if (keyCode == setting.getKeyCodePinButton()) {
-        TLPost post = dashboard.postPin(currentPost);
-        if (post == null) {
-          post = currentPost;
-        }
-        movePost(post);
+        onClickPin();
         return true;
       } else if (keyCode == setting.getKeyCodeLikeButton()) {
-        if (dashboard.hasPinPosts()) {
-          likeAll(true);
-        } else {
-          like();
-        }
+        onClickLike();
         return true;
       } else if (keyCode == setting.getKeyCodeReblogButton()) {
-        if (dashboard.hasPinPosts()) {
-          reblogAll(true);
-        } else {
-          reblog();
-        }
+        onClickReblog();
         return true;
       }
     } else {
@@ -580,6 +560,43 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
     text = text.replace(":index", String.valueOf(post.getIndex() + 1));
     text = text.replace(":id", String.valueOf(post.getId()));
     showToast(text);
+  }
+
+  protected void onClickLike()
+  {
+    if (dashboard.hasPinPosts()) {
+      likeAll(true);
+    } else {
+      like();
+    }
+  }
+
+  protected void onClickReblog()
+  {
+    if (dashboard.hasPinPosts()) {
+      reblogAll(true);
+    } else {
+      reblog();
+    }
+  }
+
+  protected void onClickBack()
+  {
+    movePost(dashboard.postBack());
+  }
+
+  protected void onClickNext()
+  {
+    movePost(dashboard.postNext());
+  }
+
+  protected void onClickPin()
+  {
+    TLPost post = dashboard.postPin(currentPost);
+    if (post == null) {
+      post = currentPost;
+    }
+    movePost(post);
   }
 
   protected void setEnabledButtons(boolean enabled)
