@@ -621,6 +621,20 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
     };
   }
 
+  protected void start()
+  {
+    if (setting.getEmail().length() == 0 ||
+        setting.getPassword().length() == 0)
+    {
+      TLLog.i("Main / start : No account.");
+      noAccount();
+    } else {
+      TLLog.i("Main / start : Login.");
+      showToast(R.string.login);
+      dashboard.start();
+    }
+  }
+
   protected void reload()
   {
     TLLog.d("Main / reload");
@@ -636,20 +650,6 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
     webView.loadUrl(postFactory.getDefaultHtmlUrl());
     setTitle(dashboard.getTitle());
     start();
-  }
-
-  protected void start()
-  {
-    if (setting.getEmail().length() == 0 ||
-        setting.getPassword().length() == 0)
-    {
-      TLLog.i("Main / start : No account.");
-      noAccount();
-    } else {
-      TLLog.i("Main / start : Login.");
-      showToast(R.string.login);
-      dashboard.start();
-    }
   }
 
   protected void showToast(int resid)
