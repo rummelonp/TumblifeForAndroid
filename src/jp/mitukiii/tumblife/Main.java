@@ -77,11 +77,10 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
     postFactory = TLPostFactory.getSharedInstance(context);
 
     if (dashboard == null) {
+      dashboard = new TLDashboard(delegate, context, handler);
       if (setting.useSaveState()) {
         showToast(R.string.deserialize);
-        TLDashboard.deserialize(delegate, context, handler);
-      } else {
-        dashboard = new TLDashboard(delegate, context, handler);
+        dashboard.deserialize();
       }
     } else {
       dashboard.reinit(delegate, context, handler);
@@ -157,11 +156,11 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
       buttonBar.setVisibility(View.VISIBLE);
     }
 
-    if (dashboard == null) {
+    if (dashboard.isPrepared()) {
+      preparedDashboard();
+    } else {
       setEnabledButtons(false);
       webView.loadUrl(postFactory.getDefaultHtmlUrl());
-    } else {
-      preparedDashboard();
     }
   }
 
@@ -287,12 +286,11 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
     preparedDashboard();
   }
 
-  public void deserializeFailure(TLDashboard newDashboard)
+  public void deserializeFailure()
   {
     TLLog.i("Main / deserializeSuccess");
 
     showToast(R.string.deserialize_failure);
-    dashboard = newDashboard;
     preparedDashboard();
   }
 

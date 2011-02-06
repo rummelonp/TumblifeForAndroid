@@ -6,7 +6,7 @@ public interface TLDashboardDelegate
 {
   public void deserializeSuccess(TLDashboard deserializedDaashboard);
 
-  public void deserializeFailure(TLDashboard newDaashboard);
+  public void deserializeFailure();
 
   public void noInternet();
 

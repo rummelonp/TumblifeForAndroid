@@ -14,6 +14,8 @@ public interface TLDashboardInterface
 
   public void start();
 
+  public void deserialize();
+
   public void serialize();
 
   public String getTitle();
@@ -57,6 +59,8 @@ public interface TLDashboardInterface
   public void destroy();
 
   public void deleteFiles();
+
+  public boolean isPrepared();
 
   public boolean isLogged();
 

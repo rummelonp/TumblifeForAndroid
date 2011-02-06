@@ -104,6 +104,7 @@ public class TLDashboard implements TLDashboardInterface, Serializable
 
   protected boolean                       isLogged;
 
+  protected transient boolean             isPrepared;
   protected transient boolean             isRunned;
   protected transient boolean             isStopped;
   protected transient boolean             isDestroyed;
@@ -120,6 +121,7 @@ public class TLDashboard implements TLDashboardInterface, Serializable
     this.handler  = handler;
     postFactory   = TLPostFactory.getSharedInstance(context);
     setting       = TLSetting.getSharedInstance(context);
+    isPrepared    = true;
 
     if (pinPosts == null) {
       pinPosts    = new ConcurrentHashMap<Long, TLPost>();
@@ -142,24 +144,32 @@ public class TLDashboard implements TLDashboardInterface, Serializable
     }
   }
 
-  public static void deserialize(final TLDashboardDelegate delegate, final Context context, final Handler handler)
+  public void deserialize()
   {
     TLLog.i("TLDashboard / deserialize");
+
+    isPrepared = false;
 
     new Thread() {
       public void run() {
         try {
-          final TLDashboard dashboard = (TLDashboard)TLExplorer.readSerializeFile(DATA_NAME);
-          dashboard.reinit(delegate, context, handler);
+          final TLDashboard deserializedDaashboard = (TLDashboard)TLExplorer.readSerializeFile(DATA_NAME);
+          deserializedDaashboard.reinit(delegate, context, handler);
+          if (isDestroyed) {
+            return;
+          }
           handler.post(new Runnable() {
             public void run () {
-              delegate.deserializeSuccess(dashboard);
+              delegate.deserializeSuccess(deserializedDaashboard);
             }
           });
         } catch (Exception e) {
+          if (isDestroyed) {
+            return;
+          }
           handler.post(new Runnable() {
             public void run () {
-              delegate.deserializeFailure(new TLDashboard(delegate, context, handler));
+              delegate.deserializeFailure();
             }
           });
         }
@@ -813,6 +823,11 @@ public class TLDashboard implements TLDashboardInterface, Serializable
   public boolean isLogged()
   {
     return isLogged;
+  }
+
+  public boolean isPrepared()
+  {
+    return isPrepared;
   }
 
   public boolean isRunned()
