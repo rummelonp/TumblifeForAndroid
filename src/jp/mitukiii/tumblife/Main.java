@@ -760,6 +760,7 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
     }
 
     if (currentPost.getTumblelogName() != null &&
+        dashboard.getTumblelog() != null &&
         currentPost.getTumblelogName().equals(dashboard.getTumblelog().getName()))
     {
       likeMinePost();
