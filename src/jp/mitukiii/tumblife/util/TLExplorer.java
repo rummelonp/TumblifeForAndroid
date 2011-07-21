@@ -312,6 +312,10 @@ public class TLExplorer
 
   public static void deleteFiles(File[] files)
   {
+    if (files == null) {
+      return;
+    }
+
     for (File f: files) {
       deleteFiles(f);
     }
@@ -319,6 +323,10 @@ public class TLExplorer
 
   public static void deleteFiles(File file)
   {
+    if (file == null) {
+      return;
+    }
+
     TLLog.i("TLExplorer / deleteFiles : fileName /" + file.getPath());
 
     if (!file.exists()) {
