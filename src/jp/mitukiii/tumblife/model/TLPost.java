@@ -27,6 +27,9 @@ public class TLPost extends TLModel implements Serializable
   protected String           reblogKey;
   protected String           slug;
   protected int              noteCount;
+  protected String           rebloggedFromUrl;
+  protected String           rebloggedFromName;
+  protected String           rebloggedFromTitle;
   protected String           tumblelogTitle;
   protected String           tumblelogName;
   protected String           tumblelogUrl;
@@ -174,6 +177,36 @@ public class TLPost extends TLModel implements Serializable
   public void setNoteCount(int noteCount)
   {
     this.noteCount = noteCount;
+  }
+
+  public String getRebloggedFromUrl()
+  {
+    return rebloggedFromUrl;
+  }
+
+  public void setRebloggedFromUrl(String rebloggedFromUrl)
+  {
+    this.rebloggedFromUrl = rebloggedFromUrl;
+  }
+
+  public String getRebloggedFromName()
+  {
+    return rebloggedFromName;
+  }
+
+  public void setRebloggedFromName(String rebloggedFromName)
+  {
+    this.rebloggedFromName = rebloggedFromName;
+  }
+
+  public String getRebloggedFromTitle()
+  {
+    return rebloggedFromTitle;
+  }
+
+  public void setRebloggedFromTitle(String rebloggedFromTitle)
+  {
+    this.rebloggedFromTitle = rebloggedFromTitle;
   }
 
   public String getTumblelogTitle()

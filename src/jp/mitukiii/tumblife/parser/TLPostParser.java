@@ -42,6 +42,9 @@ public class TLPostParser extends TLParser
           } else {
             post.setNoteCount(Integer.valueOf(noteCount));
           }
+          post.setRebloggedFromUrl(parser.getAttributeValue(NAME_SPACE, "reblogged-from-url"));
+          post.setRebloggedFromName(parser.getAttributeValue(NAME_SPACE, "reblogged-from-name"));
+          post.setRebloggedFromTitle(parser.getAttributeValue(NAME_SPACE, "reblogged-from-title"));
         } else if ("tumblelog".equals(tag)) {
           post.setTumblelogTitle(parser.getAttributeValue(NAME_SPACE, "title"));
           post.setTumblelogName(parser.getAttributeValue(NAME_SPACE, "name"));
