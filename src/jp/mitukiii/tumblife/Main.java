@@ -394,11 +394,13 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
     showToast(R.string.loadall_success);
   }
 
-  public void loadFailure()
+  public void loadFailure(Throwable e)
   {
     TLLog.d("Main / loadFailure");
 
-    showToast(R.string.load_failure);
+    showToast(getString(R.string.load_failure) + "\n" +
+        e.getClass().getSimpleName() + "\n" +
+        e.getMessage());
   }
 
   public void loadError()

@@ -335,15 +335,12 @@ public class TLDashboard implements TLDashboardInterface, Serializable
       handler.post(new Runnable() { public void run(){ delegate.loadSuccess(); } });
     } catch (TLSDCardNotFoundException e) {
       throw e;
-    } catch (NumberFormatException e) {
+    } catch (final XmlPullParserException e) {
       TLLog.e("TLDashboard / load", e);
-      handler.post(new Runnable() { public void run(){ delegate.loadFailure(); } });
-    } catch (XmlPullParserException e) {
+      handler.post(new Runnable() { public void run(){ delegate.loadFailure(e); } });
+    } catch (final IOException e) {
       TLLog.e("TLDashboard / load", e);
-      handler.post(new Runnable() { public void run(){ delegate.loadFailure(); } });
-    } catch (IOException e) {
-      TLLog.e("TLDashboard / load", e);
-      handler.post(new Runnable() { public void run(){ delegate.loadFailure(); } });
+      handler.post(new Runnable() { public void run(){ delegate.loadFailure(e); } });
     } finally {
       if (con != null) {
         con.disconnect();

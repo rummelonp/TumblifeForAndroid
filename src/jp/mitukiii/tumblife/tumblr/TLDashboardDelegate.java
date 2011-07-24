@@ -24,7 +24,7 @@ public interface TLDashboardDelegate
 
   public void loadAllSuccess();
 
-  public void loadFailure();
+  public void loadFailure(Throwable e);
 
   public void loadError();
 
