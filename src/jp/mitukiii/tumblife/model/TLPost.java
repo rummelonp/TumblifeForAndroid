@@ -571,7 +571,15 @@ public class TLPost extends TLModel implements Serializable
               "<body>\n" +
               "<div id=\"post\">\n" +
               "<div id=\"meta\">\n" +
-              "<h2 id=\"tumblelog\">" + getTumblelogName() + "</h2>\n" +
+              "<h2 id=\"tumblelog\">" +
+              "<a href=\"" + getUrl() + "\">" + getTumblelogName() + "</a>");
+    if (getRebloggedFromUrl() != null &&
+        getRebloggedFromName() != null)
+    {
+      sb.append(" reblogged " +
+                "<a href=\"" + getRebloggedFromUrl() + "\">" + getRebloggedFromName() + "</a>");
+    }
+    sb.append("</h2>\n" +
               "<h2 id=\"note-count\">" + getNoteCount() + " notes</h2>\n" +
               "</div>\n" +
               "<div id=\"content\" class=\"" + getType() + "\">\n");
