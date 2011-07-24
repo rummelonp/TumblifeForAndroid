@@ -156,7 +156,10 @@ public class Main extends Activity implements TLDashboardDelegate, TLWebViewClie
       buttonBar.setVisibility(View.VISIBLE);
     }
 
-    if (dashboard.isPrepared()) {
+    if (App.isClearCached) {
+      App.isClearCached = false;
+      reload();
+    } else if (dashboard.isPrepared()) {
       preparedDashboard();
     } else {
       setEnabledButtons(false);

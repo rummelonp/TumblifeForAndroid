@@ -121,6 +121,8 @@
 
     <string name="reblogall_progress_title">Reblog All...</string>
 
+    <string name="clearcache_now_title">Clear All Cache...</string>
+
     <string name="sendto_title">Send To</string>
     <string-array name="sendto_items">
       <item>Browser</item>
@@ -227,6 +229,10 @@
     <string name="setting_clearcache_title">Clear Cache</string>
     <string name="setting_clearcache_summary">Delete old cache files at finish of application.</string>
     <string name="setting_clearcache_default">true</string>
+
+    <string name="clearcache_key">clear_cache_now</string>
+    <string name="clearcache_title">Clear Cache</string>
+    <string name="clearcache_summary">Delete old cache.</string>
 
   <!-- Hardkey Setting Activity -->
     <string name="hardkey_setting_hidebuttonbar_key">hidebuttonbar</string>

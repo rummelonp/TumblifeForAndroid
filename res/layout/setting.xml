@@ -75,5 +75,9 @@
       android:title="@string/setting_clearcache_title"
       android:summary="@string/setting_clearcache_summary"
       android:defaultValue="@string/setting_clearcache_default" />
+    <PreferenceScreen
+      android:key="@string/clearcache_key"
+      android:title="@string/clearcache_title"
+      android:summary="@string/clearcache_summary" />
   </PreferenceCategory>
 </PreferenceScreen>

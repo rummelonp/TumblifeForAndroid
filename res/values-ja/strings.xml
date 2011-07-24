@@ -111,6 +111,9 @@
     <string name="setting_clearcache_title">キャッシュをクリア</string>
     <string name="setting_clearcache_summary">終了時に古いキャッシュを削除する</string>
 
+    <string name="clearcache_title">キャッシュをクリア</string>
+    <string name="clearcache_summary">古いキャッシュを削除する</string>
+
   <!-- Hardkey Setting Activity -->
     <string name="hardkey_setting_hidebuttonbar_title">ボタンを隠す</string>
 
