@@ -1,8 +1,8 @@
 package jp.mitukiii.tumblife.util;
 
 import java.io.IOException;
-import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 import android.content.Context;
 import android.content.res.AssetManager;
 import jp.mitukiii.tumblife.exeption.TLSDCardNotFoundException;
@@ -16,7 +16,7 @@ public class TLPostFactory
 
   protected static TLPostFactory postFactory;
 
-  protected List<TLPost>         posts            = new LinkedList<TLPost>();
+  protected List<TLPost>         posts            = new CopyOnWriteArrayList<TLPost>();
   protected TLSetting            setting;
   protected Context              context;
 
