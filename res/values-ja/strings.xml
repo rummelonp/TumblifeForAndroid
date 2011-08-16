@@ -85,6 +85,8 @@
 
     <string name="setting_skipminepost_title">自分のポストをスキップ</string>
 
+    <string name="setting_skiprebloggedpost_title">自分からReblogをスキップ</string>
+
     <string name="setting_skipphotos_title">写真をスキップ</string>
 
     <string name="setting_savephotos_title">写真を保存</string>

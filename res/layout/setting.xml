@@ -50,6 +50,10 @@
       android:title="@string/setting_skipminepost_title"
       android:defaultValue="@string/setting_skipminepost_default" />
     <CheckBoxPreference
+      android:key="@string/setting_skiprebloggedpost_key"
+      android:title="@string/setting_skiprebloggedpost_title"
+      android:defaultValue="@string/setting_skiprebloggedpost_default" />
+    <CheckBoxPreference
       android:key="@string/setting_skipphotos_key"
       android:title="@string/setting_skipphotos_title"
       android:defaultValue="@string/setting_skipphotos_default" />

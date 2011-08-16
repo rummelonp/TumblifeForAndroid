@@ -78,6 +78,7 @@ public class TLSetting extends TLModel
   protected PIN_ACTION       pinAction;
   protected DASHBOARD_TYPE   dashboardType;
   protected boolean          useSkipMinePost;
+  protected boolean          useSkipRebloggedPost;
   protected boolean          useSkipPhotos;
   protected boolean          useSavePhotos;
   protected boolean          hideButtonBar;
@@ -147,6 +148,10 @@ public class TLSetting extends TLModel
     useSkipMinePost = preferences.getBoolean(
         context.getString(R.string.setting_skipminepost_key),
         Boolean.valueOf(context.getString(R.string.setting_skipminepost_default)));
+
+    useSkipRebloggedPost = preferences.getBoolean(
+        context.getString(R.string.setting_skiprebloggedpost_key),
+        Boolean.valueOf(context.getString(R.string.setting_skiprebloggedpost_default)));
 
     useSkipPhotos = preferences.getBoolean(
         context.getString(R.string.setting_skipphotos_key),
@@ -259,6 +264,11 @@ public class TLSetting extends TLModel
   public boolean useSkipMinePost()
   {
     return useSkipMinePost;
+  }
+
+  public boolean useSkipRebloggedPost()
+  {
+    return useSkipRebloggedPost;
   }
 
   public boolean useSkipPhotos()

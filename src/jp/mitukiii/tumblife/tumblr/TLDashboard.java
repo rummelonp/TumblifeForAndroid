@@ -550,6 +550,11 @@ public class TLDashboard implements TLDashboardInterface, Serializable
         return true;
       }
     }
+    if (setting.useSkipRebloggedPost()) {
+      if (tumblelog.getName().equals(post.getRebloggedFromName())) {
+        return true;
+      }
+    }
     if (setting.useSkipPhotos()) {
       if (setting.getDashboardType() == DASHBOARD_TYPE.Default) {
         if (TLPost.TYPE_PHOTO.equals(post.getType())) {

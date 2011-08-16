@@ -187,6 +187,10 @@
     <string name="setting_skipminepost_title">Skip Mine Post</string>
     <string name="setting_skipminepost_default">false</string>
 
+    <string name="setting_skiprebloggedpost_key">skip_reblogged_post</string>
+    <string name="setting_skiprebloggedpost_title">Skip Reblogged From Me</string>
+    <string name="setting_skiprebloggedpost_default">false</string>
+
     <string name="setting_skipphotos_key">photo_skip</string>
     <string name="setting_skipphotos_title">Skip Photos</string>
     <string name="setting_skipphotos_default">false</string>
