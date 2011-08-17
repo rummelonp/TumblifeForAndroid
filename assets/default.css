@@ -25,6 +25,11 @@ body {
   top: 0
 }
 
+#content h1 {
+  margin: 0;
+  font-size: 98%;
+}
+
 img {
   max-width: 98%;
   padding: 2%;

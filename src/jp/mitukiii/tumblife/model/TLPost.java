@@ -609,7 +609,7 @@ public class TLPost extends TLModel implements Serializable
       }
     } else if (TYPE_REGULAR.equals(getType())) {
       if (getRegularTitle() != null) {
-        sb.append(getRegularTitle() + "\n");
+        sb.append("<h1>" + getRegularTitle() + "</h1>\n");
       }
       if (getRegularBody() != null) {
         sb.append(getRegularBody() + "\n");
