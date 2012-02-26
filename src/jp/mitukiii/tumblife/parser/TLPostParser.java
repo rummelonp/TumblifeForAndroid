@@ -94,7 +94,11 @@ public class TLPostParser extends TLParser
         } else if ("video-caption".equals(tag)) {
           post.setVideoCaption(parser.nextText());
         } else if ("video-source".equals(tag)) {
-          post.setVideoSource(parser.nextText());
+          try {
+            post.setVideoSource(parser.nextText());
+          } catch (XmlPullParserException exception) {
+            // Raise error if contains meta info of video by XML.
+          }
         } else if ("video-player".equals(tag)) {
           post.setVideoPlayer(parser.nextText());
         } else if ("audio-caption".equals(tag)) {
