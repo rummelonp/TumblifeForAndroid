@@ -24,34 +24,38 @@ public class TLConnection
     OutputStreamWriter writer = null;
 
     try {
-      con = (HttpURLConnection) new URL(_url).openConnection();
-      con.setDoInput(true);
-      con.setDoOutput(true);
-      con.setRequestMethod(method);
+      StringBuilder sb = new StringBuilder();
+      Iterator<String> pit = parameters.keySet().iterator();
+      while (pit.hasNext()) {
+        String parameterKey = (String)pit.next();
+        String parameterValue = parameters.get(parameterKey);
+        if (sb.length() > 0) {
+          sb.append("&");
+        }
+        sb.append(parameterKey);
+        sb.append("=");
+        sb.append(URLEncoder.encode(parameterValue));
+      }
+
+      if (POST.equals(method)) {
+        con = (HttpURLConnection) new URL(_url).openConnection();
+        con.setDoInput(true);
+        con.setDoOutput(true);
+        con.setRequestMethod(method);
+        writer = new OutputStreamWriter(con.getOutputStream());
+        writer.write(sb.toString());
+        writer.flush();
+      } else {
+        con = (HttpURLConnection) new URL(_url + '?' + sb.toString()).openConnection();
+        con.setDoInput(true);
+        con.setRequestMethod(method);
+      }
 
       Iterator<String> hit = headers.keySet().iterator();
       while (hit.hasNext()) {
         String field = (String)hit.next();
         String value = headers.get(field);
         con.setRequestProperty(field, value);
-      }
-
-      String parameterString = null;
-      Iterator<String> pit = parameters.keySet().iterator();
-      while (pit.hasNext()) {
-        String parameterKey = (String)pit.next();
-        String parameterValue = parameters.get(parameterKey);
-        if (parameterString == null) {
-          parameterString = "";
-        } else {
-          parameterString += "&"; 
-        }
-        parameterString += parameterKey + "=" + URLEncoder.encode(parameterValue);
-      }
-      if (parameterString != null) {
-        writer = new OutputStreamWriter(con.getOutputStream());
-        writer.write(parameterString);
-        writer.flush();
       }
 
       con.connect();
